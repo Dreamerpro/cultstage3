@@ -40,6 +40,6 @@ class SearchController extends Controller
             $eventsArray=\App\Event::getalldetails($events);
             return $eventsArray;
     	}
-    	return $query.'as'.$category;
+    	return \Response::json(['msg'=>'Successfully'],200);
     }
 }
