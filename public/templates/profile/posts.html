@@ -1,0 +1,37 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+<profile-cover></profile-cover>
+	<div class="content container">
+	<div class="col-md-3">
+			<profile-side-menu></profile-side-menu>
+		</div>
+
+		<div class="col-md-9" ng-controller="PostController as pc" ng-init="pc.init()"> 
+			<div class="new-post panel panel-default">
+				<div class="top-tool">
+				<!-- <div class="btn fa fa-file-photo-o"></div><div class="btn fa fa-file-video-o"></div></div> -->
+				<textarea placeholder="Write something here.." class="form-control" ng-model="pc.postbody"></textarea>
+				<button class="mt4 pull-right btn btn-default" ng-click="pc.post()">Post</button>
+				</div>
+			</div>
+			<div class="panel panel-default" ng-repeat="a in pc.posts track by $index">
+				<div class="dropdown pull-right post-tools">
+					<i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" ></i>
+					<ul class="dropdown-menu">
+						<li><a href="" ng-click="pc.delete(a)"><i class="fa fa-trash"></i> delete</a></li>
+						<li><a href="" ng-click="pc.editmode[$index]=true"><i class="fa fa-edit"></i> edit</a></li>
+					</ul>
+				</div>
+				<div class="panel-body bgw">
+					<div ng-show="!pc.editmode[$index]">{{a.body}}</div>
+					<div ng-show="pc.editmode[$index]">
+						<textarea class="form-control" ng-init="pc.editval[$index]=a.body" ng-model="pc.editval[$index]"></textarea>
+						<div class="btn" ng-click="pc.editmode[$index]=false">Cancel</div>
+						<div class="btn pull-right" 
+						ng-click="pc.saveedit(a,pc.editval[$index]);pc.editmode[$index]=false"
+						>Save</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

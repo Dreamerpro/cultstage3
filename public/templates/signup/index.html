@@ -1,0 +1,43 @@
+<form class="col-md-4 col-md-offset-4" id="signupform" name="signup" ng-controller="signUpCtrl" novalidate>
+<h3 id="signup-form-line">Be a part of the Cult.</h3>
+
+<div class="form-group">
+	<input class="form-control" type="text" name="name" placeholder="Name" ng-model="data.name" required></input>
+	<span ng-show="signup.name.$dirty && signup.name.$invalid">
+		<span ng-show="signup.name.$error.required">Name is required!</span>
+	</span>
+</div>
+
+<div class="form-group">
+	<input class="form-control" type="email" name="email" placeholder="Email"  ng-model="data.email" required></input>
+	<span ng-show="signup.email.$dirty && signup.email.$invalid">
+		<span ng-show="signup.email.$error.required">Email address is required!</span>
+		<span ng-show="signup.email.$error.email">Please provide a valid email!</span>
+	</span>
+</div>
+
+<div class="form-group">
+	<input class="form-control" type="password" name="password" placeholder="Password"  ng-model="data.password" ng-minlength="6" required></input>
+	<span ng-show="signup.password.$dirty && signup.password.$invalid">
+		<span ng-show="signup.password.$error.required">Password is required!</span>
+		<span ng-show="signup.password.$error.minlength">Password should be minimum 6 chars!</span>
+	</span>
+</div>
+<div class="form-group">
+	<input class="form-control" type="password_confirmation" name="password_confirmation" placeholder="Password Confirm"  ng-model="data.password_confirmation" ng-minlength="6" required></input>
+
+	<span ng-show="signup.password_confirmation.$dirty && signup.password_confirmation.$invalid">
+		<span ng-if="signup.password_confirmation!=data.password">Password doesn't match</span>
+		<span ng-show="signup.password_confirmation.$error.required">Password is required!</span>
+		<span ng-show="signup.password_confirmation.$error.minlength">Password should be minimum 6 chars!</span>
+	</span>
+</div>
+<input class="sign-in-btn" type="submit" value="Join the Cult!" ng-click="c()" ng-disabled="signup.name.$dirty && signup.name.$invalid || signup.email.$dirty && signup.email.$invalid">
+<a href="" class="pull-right sign-in" data-target="#sign-in-modal" data-toggle="modal">Already a member? Sign In.</a>
+<p></p>
+<hr>
+<div>
+	<div class="col-md-6 ss"  id="fbbtn"><div><i class="fa fa-facebook"></i><span>Sign in with <b>Facebook</b></span></div></div>
+	<div class="col-md-6 ss" id="gbtn"><div><i class="fa fa-google-plus"></i><span>Sign in with <b>Google</b></span></div></div>
+</div>
+</form>

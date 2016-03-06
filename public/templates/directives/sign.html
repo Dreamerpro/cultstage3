@@ -1,0 +1,69 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="sign-modal">
+<div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="sign_buttons clearfix">
+        	<div class="col-md-4" ng-click="sign=0" ng-class="{'active':!sign}">Sign Up</div>
+        	<div class="col-md-4" ng-click="sign=1" ng-class="{'active':sign}">Sign In</div>
+        </div>
+      <div class="modal-body">
+        
+        <div class="sign-form-container" ng-controller="AuthController">
+        	<form class="sign-up" ng-show="!sign" name="signupform" novalidate>
+        		<div class="form-group" >
+        			<label>User Name</label>
+        			<input class="form-control" type="text" name="name" ng-model="userData.up.name" required ng-minlength="3"></input>
+        			<span class="error-msg" ng-show="signupform.name.$dirty && signupform.name.$invalid">
+        				<span ng-show="signupform.name.$error.required">Name is required!</span>
+        				<span ng-show="signupform.name.$error.minlength">Name is too short!</span>
+        			</span>
+        	
+        		</div>
+        		<div class="form-group">
+        			<label>Email</label>
+        			<input class="form-control" type="email" name="email" ng-model="userData.up.email"  required></input>
+        			<span class="error-msg" ng-show="signupform.email.$dirty && signupform.email.$invalid">
+        				<span ng-show="signupform.email.$error.required">Email is required!</span>
+        				<span ng-show="signupform.email.$error.email">Email is not valid!</span>
+        			</span>
+        		</div>
+        		<div class="form-group">
+        			<label>Password</label>
+        			<input class="form-control" type="password" ng-model="userData.up.password"  name="password" required ng-minlength="6"></input>
+        			<span class="error-msg" ng-show="signupform.password.$dirty && signupform.password.$invalid">
+        				<span ng-show="signupform.password.$error.required">Password is required!</span>
+        				<span ng-show="signupform.password.$error.minlength">Password should be minimum 6 characters</span>
+        			</span>
+        		</div>
+        		<input class="btn btn-red" type="submit" ng-disabled="signupform.name.$dirty && signupform.name.$invalid || signupform.email.$dirty && signupform.email.$invalid || signupform.password.$dirty && signupform.password.$error.minlength" ng-click="submit().signUp()"></input>&nbsp;<span class="error-msg" ng-show="error.up">{{error.up}}</span>
+        	</form>
+        	
+        	<form class="sign-in" name="signinform" ng-show="sign" novalidate>
+        		<div class="form-group">
+        			<label>Email</label>
+        			<input class="form-control" type="email" name=email ng-model="userData.in.email" required></input>
+        			<span class="error-msg" ng-show="signinform.email.$dirty && signinform.email.$invalid">
+        				<span ng-show="signinform.email.$error.required">Email is required!</span>
+        				<span ng-show="signinform.email.$error.email">Email is not valid!</span>
+        			</span>
+        		</div>
+        		<div class="form-group">
+        			<label>Password</label>
+        			<input class="form-control" name="password" type="password" ng-model="userData.in.password" ng-minlength="6" required></input>
+        			<span class="error-msg" ng-show="signinform.password.$dirty && signinform.password.$invalid">
+        				<span ng-show="signinform.password.$error.required">Password is required!</span>
+        				<span ng-show="signinform.password.$error.minlength">Password should be at least 6 characters.</span>
+        			</span>
+        		</div>
+        		<input class="btn btn-red" type="submit" ng-click="submit().signIn()"  ng-disabled="signinform.email.$dirty && signinform.email.$invalid || signinform.password.$dirty && signinform.password.$error.minlength"></input>
+        		<a href="#/forgot_password" class="pull-right" id="fp">Forgot Password</a>
+        		&nbsp;<span class="error-msg" ng-show="error.in">{{error.in}}</span>
+        	</form>
+        </div>
+      </div>
+      <div class="modal-footer">
+       	<div class="col-md-6 ss"  id="fbbtn"><div><i class="fa fa-facebook"></i><span>Sign in with <b>Facebook</b></span></div></div>
+	<div class="col-md-6 ss" id="gbtn"><div><i class="fa fa-google-plus"></i><span>Sign in with <b>Google</b></span></div></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

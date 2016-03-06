@@ -1,0 +1,32 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container">
+		<div class="col-md-3">
+			<div class="panel-heading"><h4 style="color:#565a5c"><i class="fa fa-inbox"></i> Mailbox</h4></div>
+			<message-side-menu></message-side-menu>
+		</div>
+		<div class="col-md-9">
+			<div class="content-tools">
+
+			</div>
+			<div class="list-group">
+				<div class="list-group-item msg-list-item unread" ng-class="{'selected':isChecked(0)}">
+					<i class="fa fa-square-o pull-left" ng-class="{'fa-check-square-o':isChecked(0),'fa-square-o':!isChecked(0)}" ng-click="toggleSelected(0)"></i>
+					<span class="sender">Mr. X</span>
+					<span class="subject">Offer letter for project X</span>
+					<span class="short-msg"><small>You have been selected for ...</small> </span>
+					<span class="msg-date pull-right">15th Dec</span>
+				</div>
+				<div class="list-group-item msg-list-item unread" ng-class="{'selected':isChecked(1)}">
+					<i class="fa fa-square-o pull-left" ng-class="{'fa-check-square-o':isChecked(1),'fa-square-o':!isChecked(1)}" ng-click="toggleSelected(1)"></i>
+					<span class="sender">Mr. Y</span>
+					<span class="subject">Offer letter for project Y</span>
+					<span class="short-msg"><small>You have been selected for XYZ...</small> </span>
+					<span class="msg-date pull-right">15th Dec</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

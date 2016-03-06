@@ -1,0 +1,207 @@
+.header-bar{
+	background-color: #fff;
+	width: 100%;
+}
+.header-bar.th{
+	background-color: transparent !important;
+	position: absolute;
+}
+.header-bar>a{
+	color: #000 !important;
+	font-size: 20px;
+	text-decoration: none !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 61px;
+    line-height: 61px;
+    padding:0 10px 0 10px;
+}
+.th>a{
+	color: #fff !important;;
+}
+.search-bar-top{
+    border-left: 1px solid #dce0e0 !Important;
+}
+
+.search-bar-top>.form-group,.search-bar-top>.form-group>.form-control{
+	border-radius: 0px;
+	border: none !important;
+	outline: none;
+	box-shadow: none; 
+	height: 61px;
+	margin: 0 !important;
+	
+}
+.search-bar-top>.form-group>.form-control{
+	text-indent: 40px;	
+}
+.search-bar-top>.form-group>i.fa{
+	position: absolute;
+	margin: 22px;
+    font-size: 18;
+    color: #B9B9B9;
+}
+.header-menu-bar{
+    margin: 0;
+   padding-left:20;
+}
+.header-menu-bar>li{
+	display: inline-block;
+	list-style: none;
+	color: #565a5c;
+	width: 86px;
+	height: 61px;
+	line-height: 61px;
+	padding: 0 10px;
+	text-align: center;
+	cursor: pointer;
+	border-left: 1px solid #dce0e0;
+	vertical-align: top;
+}
+.header-menu-bar>li>a{
+	display: block;height: 100%;
+	color: #565a5c !important; 
+	text-decoration: none !important;
+}
+.header-bar:not(.th)>div>.header-menu-bar>li:hover{
+	background-color: #edefed;
+}
+.th>div>.header-menu-bar>li{
+	border-left: none !important;
+    vertical-align: top;
+}
+.th>div>.header-menu-bar>li>a{
+	color: #fff !important;
+	text-decoration: none !important;
+}
+.post-header-btn{
+	display: inline-block;
+    padding: 0 10;
+    line-height: 31px;
+    color: #fff;
+    border: 2px solid #fff;
+    margin-top: 12.5px;
+    cursor: pointer;
+    text-decoration: none !Important;
+    border-radius: 1px;
+}
+.post-header-btn:hover{
+	background-color: rgba(0,0,0,0.3);
+}
+.top-menu{
+	padding: 0 20 !important;
+	min-width: 160px !important;
+}
+
+.top-msg{
+	padding: 10 20;
+    line-height: 3;
+    width: 160px !important;
+}
+.top-msg>.dropdown-list-menu{
+	line-height: 40px;
+}
+/*.top-msg>a{
+	height: 51px !important;
+}
+*/.top-msg>a>i{
+	font-size: 1.6em;
+    margin-top: 20;
+    position: absolute;
+}
+.top-menu:hover>.dropdown-list-menu,.top-msg:hover>.dropdown-list-menu{
+	display: block;
+}
+.dropdown-list-menu{
+	display: none;
+    position: absolute;
+    width: 260px;
+    margin-left: -122px;
+    border-radius: 0 !important;
+	border-color:#eee;
+	text-align: left;
+	text-indent: 10px;
+	z-index: 100;
+}
+.top-msg>.dropdown-list-menu{
+	margin-left: -150px;
+    width: 300px !Important;
+}
+.top-msg>.dropdown-list-menu>div.list-group-item{
+	padding: 0 !Important;
+	cursor: auto;
+
+}
+.top-msg>.dropdown-list-menu>div.list-group-item>.item-heading{
+	padding: 5;
+	background-color: #edefed;
+	font-weight: bold;
+}
+.top-msg>.dropdown-list-menu>div.list-group-item>.item-content{
+	padding: 5;
+}
+.top-msg>.dropdown-list-menu>div.list-group-item:first-child{
+	/*margin-top: 5px;*/
+}
+.dropdown-list-menu>div.list-group-item{
+	border-radius: 0 !important;
+}
+.top-menu>.dropdown-list-menu>div.list-group-item{
+	border: none !Important;
+	margin-bottom: 0 !important;
+	padding: 0 15px !important;
+	height: 50px;
+	line-height: 50px;
+}
+.top-menu>.dropdown-list-menu>div.list-group-item:first-child{
+	/*margin-top: 18px;*/
+}
+.top-menu>.dropdown-list-menu>div.list-group-item>a>div{
+	border-top: 1px solid #ddd;
+}
+.top-menu>.dropdown-list-menu>div.list-group-item:first-child>a>div{
+	border: 0 !important;
+}
+.top-menu>.dropdown-list-menu>div.list-group-item:hover{
+	text-indent: 15px;
+}
+
+.dropdown-list-menu>div.list-group-item:first-child:before{
+	content: "";
+    width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+   	float: right;
+    margin-top: -8;
+    margin-right: 28px
+}
+.top-msg>.dropdown-list-menu>div.list-group-item:first-child:before{
+border-bottom: 10px solid #edefed;
+margin-top: -10;
+margin-right: 18px
+}
+.mt10lh20{
+    line-height: 20px;
+    margin-top: 10px;
+}
+a.mt10lh20{
+	padding-right: 10px;
+}
+a.mt10lh20:hover{
+	text-decoration: underline !important;
+}
+.accountsettings>.img-holder{
+    width: 36px;
+    border-radius: 18px;
+    height: 36px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 1px;
+    margin-left: 4px;
+}
+.accountsettings>.img-holder>img{
+    width: 34px;
+    border-radius: 17px;
+    height: 34px;
+}

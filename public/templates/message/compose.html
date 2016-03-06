@@ -1,0 +1,38 @@
+<div class="site-content clearfix" ng-controller="ComposeCtrl as cc" ng-init="cc.init()">
+<top-nav></top-nav>
+<!-- WYSIWYG -->
+
+<!-- <script src="js/plugins/text-editor/editor.js"></script>
+<script type="text/javascript">$(document).ready(function () {$("#message-box").Editor(); });</script>
+<link href="js/plugins/text-editor/editor.css" rel="stylesheet"> -->
+	<div class="content container">
+		<div class="col-md-3">
+			<div class="panel-heading"><h4 style="color:#565a5c"><i class="fa fa-inbox"></i> Mailbox</h4></div>
+			<message-side-menu></message-side-menu>
+		</div>
+		<div class="col-md-9" ng-controller="MessageController" ng-init="init(1)">
+			<div class="clearfix">
+				<div class="form-group col-md-6 row">
+					<label>To</label>
+					<!-- <input class="form-control" type="text" name="name" ng-model="cc.data.to"></input> -->
+					<ui-select ng-model="cc.data.to">
+					    <ui-select-match>
+					        <span ng-bind="$select.selected.name"></span>
+					    </ui-select-match>
+					    <ui-select-choices repeat="item in (cc.connected | filter: $select.search) track by $index"><!-- item.id -->
+					        <span ng-bind="item.name"></span>
+					    </ui-select-choices>
+					</ui-select>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Subject</label>
+					<input class="form-control" type="text" name="Subject" ng-model="cc.data.subject"></input>
+				</div>
+				<div text-angular ng-model="cc.data.msg"></div>
+				<button class="btn btn-white" ng-click='cc.send()'>Send</button>
+			</div>
+			
+		</div>
+
+	</div>
+</div>

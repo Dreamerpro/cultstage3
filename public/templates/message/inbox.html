@@ -1,0 +1,44 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container">
+		<div class="col-md-3">
+			<div class="panel-heading"><h4 style="color:#565a5c"><i class="fa fa-inbox"></i> Mailbox</h4></div>
+			<message-side-menu></message-side-menu>
+		</div>
+		<div class="col-md-9" ng-controller="MessageController" ng-init="init(0)">
+			<div class="content-tools clearfix" >
+				<div class="pull-left">
+					<div class="tool" ng-show="messages.inbox.length" ng-click="checkall()"><i class="fa" ng-class="{'fa-square-o':!b,'fa-check-square-o':b}"></i></div>
+					<div class="tool" ng-click="reload(1)"><i class="fa fa-repeat"></i></div>
+					<div class="tool" ng-show="messages.checked.length" ng-click="delete()"><i class="fa fa-trash-o"></i></div>
+				</div>
+				<div class="pull-right">
+					<div class="msg" ng-show="messages.inbox.length">
+						<small>{{messages.showing.join("-")}} of {{messages.inbox.length}}</small> 
+					</div>
+					<div class="tool" ng-class="{'disabled':!can().back()}" ng-click="fetch_previous(can().back())">
+						<i class="fa fa-chevron-left"></i>
+					</div>
+					<div class="tool" ng-class="{'disabled':!can().next()}" ng-click="fetch_next(can().next())">
+						<i class="fa fa-chevron-right"></i>
+					</div>
+				</div>
+				<div class="pull-right"></div>
+			</div>
+			<center><h4 class="text-info" ng-show="!messages.inbox.length"><br><br><br>No message to display.</h4></center>
+			<div class="list-group clearfix">
+				<div  class="list-group-item msg-list-item" ng-show="messages.inbox.length" ng-repeat="msg in messages.inbox| limitTo:10:messages.showing[0]-1 track by $index" ng-class="{'selected':isChecked(msg.uuid)}">
+					<i class="fa fa-square-o pull-left" ng-class="{'fa-check-square-o':isChecked(msg.uuid),'fa-square-o':!isChecked(msg.uuid)}" ng-click="toggleSelected(msg.uuid)"></i>
+					<a ng-href="#/message/inbox/{{msg.uuid}}">
+					<span class="sender">{{msg.from.name}}</span>
+					<span class="subject">{{msg.subject}} - </span>
+					<span class="short-msg"><small style="display: inline-block;" ng-bind-html="msg.body | limitTo:20"></small></span>
+					<span class="msg-date pull-right">{{msg.date}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

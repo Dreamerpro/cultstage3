@@ -1,0 +1,6 @@
+
+                                                                                   
+  [Symfony\Component\Console\Exception\CommandNotFoundException]                   
+  Command "migrate:" is ambiguous (migrate:install, migrate:rollback and 3 more).  
+                                                                                   
+

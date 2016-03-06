@@ -1,0 +1,109 @@
+<div class="site-content clearfix" ng-controller="ProjectCtrl as npc" ng-init="npc.init()">
+<top-nav></top-nav>
+
+	<div class="content container">
+		<div class="col-md-3">
+    		<job-side-menu></job-side-menu>
+		</div>
+		<div class="col-md-9">
+			
+			<div class="clearfix mb-40"  >
+				<input class="btn btn-red pull-right" ng-click="npc.toggleadd()" ng-show="!npc.add" value="Add" type="button">
+				<input class="btn btn-red pull-right" ng-click="npc.toggleadd()" ng-show="npc.add" value="Cancel" type="button">
+				<form name="newproject" class="col-md-12" ng-show="npc.add">
+					<span class="text-info">{{npc.flash}}</span>
+						<div class="form-group">
+							<label>Project Title</label>
+							<input  ng-model="npc.entered.title" class="form-control" type="text" placeholder="Project Title" required></input>
+						</div>
+						<div class="form-group">
+							<label>Type</label>
+							<select class="form-control" required ng-model="npc.entered.projecttype">
+								<option></option>
+								<option ng-repeat="a in npc.available.projecttypes" ng-value="a.id">
+									{{a.name}}
+								</option>
+							</select>
+						</div>
+					<!-- 	<div class="form-group">
+							<label>Requirement</label>
+							<select class="form-control" required ng-model="npc.entered.role">
+								<option></option>
+								<option ng-repeat="a in npc.available.roles" ng-value="a.role_id">
+									{{a.name}}
+								</option>
+							</select>
+						</div> -->
+						<div class="form-group">
+							<label>Description <small>(max 200 character)</small></label>
+							<textarea ng-model="npc.entered.description" class="form-control" maxlength="200" placeholder="Need a lead guitarist that cover Pink Floyd and Deep Purple. We gig every weekend."></textarea>
+						</div>
+						<div class="form-group">
+							<label>Add an image</label>
+							<!-- <div class="img-placeholder"></div> <br>
+							<button class="btn btn-host">Upload</button> -->
+							<br>
+<img
+  ngf-src="npc.file" 
+  ngf-resize="{width: 150, height: 150, quality: 0.9}"
+  ngf-no-object-url="true"
+>
+
+							<br>
+							<div class="btn btn-default" ng-show="!npc.file" ngf-select="npc.upload($file)">Upload Image</div>
+							<div class="btn btn-default" ng-show="npc.file" ng-click="npc.deleteImage()">Delete</div>
+						</div>
+						<div class="form-group">
+							<label>Language</label>
+							<select class="form-control" required ng-model="npc.entered.language">
+								<option></option>
+								<option ng-repeat="a in npc.available.languages" ng-value="a.id">
+									{{a.language}}
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Location</label>
+							<select class="form-control" required ng-model="npc.entered.location">
+								<option></option>
+								<option ng-repeat="a in npc.available.locations" ng-value="a.location_id">
+									{{a.location}}
+								</option>
+							</select>
+						</div>
+						<div class="form-group" >
+							<label>Stage</label>
+							<select class="form-control" required ng-model="npc.entered.productionstage">
+								<option></option>
+								<option ng-repeat="a in npc.available.productionstages" ng-value="a.id">
+									{{a.name}}
+								</option>
+							</select>
+						</div>
+						<input class="btn btn-red" value="Post" type="submit" ng-click="npc.createNewProject()">
+						<br>
+				</form>
+
+				<hr>
+			</div>
+			
+
+
+			<div class="result-item col-md-4" ng-repeat="a in npc.myprojects track by $index" ng-show="!npc.add">
+				<div class="holder">
+					<div class="img-container events"><img ng-src="asset/image/3/{{a.image}}"></img></div>
+					<div class="details">
+						<p>{{a.projectstatus.name}} | {{a.project_types[0].name}} | {{a.languages[0].language}}</p>
+						<h4 class="name">{{a.name}}</h4>
+						
+					</div>
+					<div class="item-footer">
+						<div class="col-md-6 btn btn-host">View</div>
+						<!-- <div class="col-md-6 btn btn-green">Join</div> -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+			<div class="search-results pull-left col-md-8" ng-controller="jobSearchCtrl">
+				<div class="col-md-4 result-item-holder" ng-repeat="item in results">
+					<div class="result-item img-thumbnail">
+						<div class="image-box" style="background-image:url({{item.img}})"><span class="pull-left pd4">{{item.protype}}</span></div>
+						<div class="item-stats"><span class="pd4 bet">{{item.status}}</span><span class="pd4 bkt">{{item.pos}} Position</span> </div>
+						<div class="item-sd col-md-6 wp"><h4>{{item.title}}</h4> <span><i class="fa fa-calendar"></i> {{item.postdate}}</span></div>
+						<div class="item-menu col-md-6 wp pull-right">
+							<button class="btn btn-danger">Read More</button> 
+							<button  class="btn btn-success">Apply</button>
+						</div>
+					</div>
+				</div>
+			</div>

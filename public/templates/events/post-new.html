@@ -1,0 +1,152 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container">
+	<div class="col-md-3 filter ">
+		<div class="list-group sub-menu" ng-controller="subRouteController">
+			<div class="list-group-item" ng-class="{'active-b':issma(0)}"><a href="#/events/interested">Interested Events</a>
+				<!-- <i class="fa fa-sliders pull-right" ng-disabled=true></i> --> </div>
+			
+			<div class="list-group-item" ng-class="{'active-b':issma(1)}"><a href="#/events/my-events">Posted Events</a></div>
+			<div class="list-group-item" ng-class="{'active-b':issma(2)}"><a href="#/events/post-new">Post New Event</a><!-- <i class="fa fa-plus"></i> --> </div>
+				<!-- <div class="list-group-item"></div> -->
+			</div>
+			
+		</div>
+
+		<div class="col-md-9"  ng-controller="PostNewEventCtrl as nec" ng-init="nec.init()">
+			<div class="init-message col-md-12" ng-hide="b">{{nec.flashmsg || 'Event will be verified before posting.'}}</div>
+			<div class="form-container">
+				<form name="nec.form">
+					<div class="form-group">
+						<label>Event Name</label>
+						<input class="form-control" type="text" name="name" ng-model="nec.selected.name" required></input>
+					</div>
+					<div class="form-group">
+						<label>Event Type</label>
+						<!-- <input class="form-control" type="text" name="type" ng-model="type"> -->
+						<select class="form-control input-sm" id="Type" name="Type" name="type" ng-model="nec.selected.type" required> 
+							<option value=""></option>
+							<option  ng-repeat="a in nec.available.types" ng-value="a.id">{{a.name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Intended Audience</label>
+						<span class="sb" ng-repeat="a in nec.selected.audiences" ng-click="nec.removeaudience(a)">
+							{{a.name}}
+							<i class="fa fa-times"></i>
+						</span>
+						<input 
+						class="form-control" 
+						type="text" 
+						name="name" 
+						ng-model="role" 
+						ng-focus="nec.showaudience=true"
+						ng-blur="nec.showaudience=false"
+						></input>
+						<div class="list-group" ng-show='nec.showaudience'>
+							<a class="list-group-item" ng-repeat="x in nec.available.audiences|filter:role" ng-mousedown="nec.addaudience(x)">{{x.name}}
+
+							</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Language</label>
+						<span class="sb" ng-repeat="a in nec.selected.languages" ng-click="nec.removelang(a)">
+							{{a.language}}
+							<i class="fa fa-times"></i>
+						</span>
+						<input 
+						class="form-control" 
+						type="text" 
+						name="name" 
+						ng-model="language" 
+						ng-focus="nec.showlang=true"
+						ng-blur="nec.showlang=false"
+						></input>
+						<div class="list-group" ng-show='nec.showlang'>
+							<a class="list-group-item" ng-repeat="x in nec.available.languages|filter:language" ng-mousedown="nec.addlang(x)">{{x.language}}
+
+							</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>City</label>
+						<span class="sb" ng-repeat="a in nec.selected.locations" ng-click="nec.removeloc(a)">
+							{{a.location}}
+							<i class="fa fa-times"></i>
+						</span>
+						<input class="form-control" type="text" name="name" ng-model="location" ng-focus="nec.showloc=true"
+						ng-blur="nec.showloc=false"></input>
+						<div class="list-group" ng-show="nec.showloc">
+							<a class="list-group-item" ng-repeat="x in nec.available.locations|filter:location" ng-mousedown="nec.addloc(x)">{{x.location}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Full address</label>
+						<textarea class="form-control" type="text" name="name" ng-model="nec.selected.address" required></textarea>
+					</div>
+
+					<div class="form-group">
+						<label>Date<small><small class="text-info" > (Starting - Closing date)</small></small></label>
+						<br>
+						<!-- <br><input type="checkbox" ng-model="od"> -->
+						<div class="col-md-3" style="padding:0 !important">
+							<!-- <label><i class="fa fa-calendar col-md-2"></i></label> -->
+							<input class="form-control col-md-12"  type="date" ng-model="nec.selected.startingdate">
+						</div>
+						<div class="col-md-3" style="padding:0 !important" ng-show="!nec.ode">
+							<input class="form-control col-md-12" type="date" ng-model="nec.selected.closingdate"></input>
+						</div>
+						<div class="col-md-3" >
+							 <span style="cursor:pointer" ng-click="nec.ode=!nec.ode;nec.selected.closingdate=null">
+							 	<i class="fa"  ng-class="{'fa-check-square-o':nec.ode,'fa-square-o':!nec.ode}"></i>
+							 	 One day event.</span>
+						</div>
+
+						<br>
+					</div>
+					<div class="form-group">
+						<label>Time<small><small class="text-info" > (Starting - Closing time)</small></small></label>
+						<br>
+						<!-- <br><input type="checkbox" ng-model="od"> -->
+						<div class="col-md-3" style="padding:0 !important">
+							<!-- <label><i class="fa fa-calendar col-md-2"></i></label> -->
+							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.startingtime">
+						</div>
+						<div class="col-md-3" style="padding:0 !important" >
+							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.closingtime"></input>
+					</div>
+						<!-- <div class="col-md-3" >
+							<i class="fa fa-square-o" ng-click="check=true" ng-class="{'fa-check-square-o':check}"></i> <span>One day event.</span>
+						</div> -->
+
+						<br>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<br>
+						<textarea class="form-control" name="description" ng-model="nec.selected.description"></textarea>
+					</div>
+					<div class="form-group" ng-init="nec.selected.image=false">
+						<label>Image</label>
+						<br><br>
+						<div ng-show="nec.selected.image">
+						<img  width="100px" height="100px" ngf-thumbnail="nec.file"><!--  || '/thumb.jpg -->
+						</div>
+						
+						<br>
+					<div class="btn btn-default" ngf-select ng-model="nec.file" name="file" ngf-pattern="'image/*'"
+						    ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100" 
+						    >Select</div><!-- ngf-resize="{width: 100, height: 100}" -->
+					
+					<button class="btn btn-default" type="button" ng-click="nec.uploadimage()">Upload Image</button>
+					
+					</div>
+					<input type="hidden" ng-model="nec.selected.image">
+					<input class="btn btn-host col-md-1" type="submit" value="Post" ng-click='nec.submit()'></input>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

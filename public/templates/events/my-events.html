@@ -1,0 +1,41 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container" ng-controller="MyEvents as m">
+	<div class="col-md-3 filter ">
+		<div class="list-group sub-menu" ng-controller="subRouteController">
+			<div class="list-group-item" ng-class="{'active-b':issma(0)}">
+				<a href="#/events/interested">Interested Events</a>
+				<!-- <i class="fa fa-sliders pull-right" ng-disabled=true></i>  --></div>
+			
+			<div class="list-group-item" ng-class="{'active-b':issma(1)}"><a href="#/events/my-events">Posted Events</a></div>
+			
+			<div class="list-group-item" ng-class="{'active-b':issma(2)}"><a href="#/events/post-new">Post New Event</a></div>
+		</div>
+				
+	</div>
+			
+	
+	<div class="col-md-9"  ng-init="m.init(2)"><!--  -->
+		<div class="result-item col-md-4 col-xs-12" ng-repeat="x in m.events track by $index"><!-- |object_filter:filter_option -->
+				<div class="holder">
+					<div class="item-location">{{x.locations.join(",")}}</div>
+					<div class="img-container events"><img ng-src="asset/image/2/{{x.image}}"></img></div><!-- {{x.image}} -->
+					<div class="details">
+						<p><span>{{x.languages.join(',')}}</span>|<span>{{x.audience.join(',')}}</span></p>
+						<h4 class="event-name">{{x.name}}</h4>
+						<p>{{x.details}}</p>
+					</div>
+					<div class="item-footer">
+						<span><i class="fa fa-calendar"></i> {{x.start_date}}</span>
+						<a class="pull-right" ng-href="#/event/{{x.event_uuid}}">Read More</a>
+						<a class="pull-right" ng-href="#/event/">Edit</a>
+						<!-- <a ng-href="#/event/{{x.event_uuid}}" class="col-md-6 btn btn-host">Details</a>
+						<div class="col-md-6 btn btn-green">Join</div> -->
+					</div>
+				</div>
+		</div>
+	</div>
+	</div>
+	
+</div>

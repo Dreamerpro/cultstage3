@@ -1,0 +1,25 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container" ng-controller="MyJobPostings as mjp" ng-init="mjp.init()">
+		<div class="col-md-3">
+    		<job-side-menu></job-side-menu>
+		</div>
+		<div class="col-md-9">
+			<div class="result-item col-md-4" ng-repeat="b in mjp.myjobs">
+				<div class="holder">
+					<div class="img-container events"><img ng-src="asset/image/3/{{b.project.image}}"></img>
+					</div>
+					<div class="details">
+						<p>{{b.role.name}}</p>
+						<h4 class="name">{{b.title}}</h4>
+					</div>
+					<div class="item-footer">
+						<div class="col-md-6 btn btn-host">View</div>
+						<!-- <div class="col-md-6 btn btn-green">Join</div> -->
+					</div>
+				</div>
+			</div>						
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="nav-bar clearfix">
+	<ul ng-show="isLoggedIn" class="container" ng-controller="MenuCtrl">
+	<li><a href="#/dashboard" ng-class="{'active':isActive(1)}">Dashboard</a></li>
+	<li><a href="#/people" ng-class="{'active':isActive(2)}">People</a></li>
+	<li><a href="#/events" ng-class="{'active':isActive(3)}">Events</a></li>
+	<li><a href="#/jobs" ng-class="{'active':isActive(4)}">Jobs</a></li>
+	<li><a href="#/message" ng-class="{'active':isActive(5)}">Messages</a></li>
+	<li><a href="#/profile" ng-class="{'active':isActive(6)}">Profile</a></li>
+	</ul>
+</div>

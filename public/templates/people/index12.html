@@ -1,0 +1,60 @@
+<div class="top-sub-menu clearfix ng-scope">
+	<a ng-repeat="subMenu in subMenus.people" ng-click="setSM($index)" ng-class="{'col-md-2':true,'active':isSMSet($index)}">{{subMenu}}
+		<i ng-class="{'fa':true, 'fa-dot-circle-o':isSMSet($index),'fa-circle-o':!isSMSet($index)}"></i></a>
+</div>
+<div class="content clearfix" ng-controller="pplCtrl">
+	<!-- <div class="mid-bar-menu clearfix" >
+		<div ng-class="{'col-md-offset-4':true,'col-md-2':true,'active':isCTSet(1)}" ng-click="setCT(1)">Existing Connection</div>
+		<div ng-class="{'col-md-2':true,'active':isCTSet(2)}" ng-click="setCT(2)">New Connection</div>
+	</div> -->
+
+	<div class="col-md-8 col-md-offset-2"  style="margin-top:20px">
+		<div class="filter">
+			<div class="filter-btn btn" ng-click="showFilters(true)"><i class="fa fa-filter"></i> Filter</div>
+
+			<div class="search-bar col-md-2 pull-right"><input class="form-control pull-right" type="text"></input><i class="fa fa-search pull-right"></i></div>
+			<div class="filter-options" ng-show="toShowFilters">
+				<div class="form-group">
+					<input class="form-control" type="text" name="language" placeholder="Language"></input>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="location" placeholder="Location"></input>
+				</div>
+				<div class="category-button">Category <i class="fa fa-angle-down pull-right"></i> </div>
+				<div class="category-content clearfix" >
+					<span ng-class="{'col-md-2':true,'active':isCategory($index)}" ng-repeat="cat in categories" ng-click="setCategory($index)"> {{cat}}</span>
+				</div>
+				<br>
+				<div class="type-button" ng-show="category && !isFiltered">Sub-Category <i class="fa fa-angle-down pull-right"></i> </div>
+				<div class="type-content  clearfix" ng-show="category && !isFiltered">
+					<span ng-class="{'col-md-2':true,'active':isType($index)}" ng-repeat="cat in types[category-1]" ng-click="setType($index)"> {{cat}}</span>
+				</div>
+				<br>
+				<div class="btn btn-success">Apply</div>
+			</div>
+			
+			<br>
+		</div>
+		<div class="col-md-12 people-result">
+			<div class="people-result-item col-md-6" ng-repeat="people in peoples">
+				<div class="clearfix">
+					<img class="col-md-4" ng-src="{{people.profilepic}}">	
+					<div class="col-md-8">					
+						<div class="name">
+							{{people.name}}
+						</div><br>
+						<div class="detail">
+							{{people.language}} | {{people.location}} | {{people.role}}
+						</div>
+						<br>
+						<div class="btn btn-default col-md-5 col-md-offset-1">View Profile</div> <div class="btn btn-default col-md-5 col-md-offset-1">Connect</div> 
+					</div>
+
+				</div>
+								
+			</div>
+		</div>
+
+	</div>
+	
+</div>

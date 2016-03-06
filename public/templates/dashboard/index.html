@@ -1,0 +1,97 @@
+<div class="site-content clearfix">
+<top-nav></top-nav>
+
+	<div class="content container" ng-controller="DashboardCtrl as dc" ng-init="dc.init()">
+		<div class="col-md-3">
+					<div class="profile-div panel">
+						<div class="dash-profile-pic">
+							{{dc.dashboard.datauser.avatar}}
+							<img ng-src="{{dc.dashboard.datauser.avatar?dc.dashboard.datauser.avatar:'images/avatar-default.jpg'}}">
+							<!-- ng-if="dc.dashboard.datauser.avatart"  -->
+<!-- https://scontent.xx.fbcdn.net/hprofile-xta1/v/t1.0-1/p160x160/12036432_1202171393142770_5020833743961035711_n.jpg?oh=f601d2f92cbec0b69efb4138099cb691&oe=56D7326A -->						
+						</div>
+						<div class="dash-pro-btm clearfix">
+							<h4 class="name">{{dc.dashboard.datauser.name}}</h4>
+							<a class="btn btn-red" href="#/profile/edit">Complete Profile</a>
+						</div>
+						
+					</div>
+
+				<div class="trust-info panel panel-default">
+					<div class="panel-heading gray">
+						Trust Informations
+						<a href="#/profile/edit" class="pull-right">Edit</a>
+					</div>
+					<div class="panel-body white">
+						<div class="roww">
+							<i class="fa fa-phone"></i>
+							<span>+91-{{dc.dashboard.datauser.phone}}</span>
+						</div>
+						<div class="roww">
+							<i class="fa fa-envelope-o"></i>
+							<span>{{dc.dashboard.datauser.email}}</span>
+						</div>
+						<div class="roww">
+							<!-- <i class="fa fa-facebook"></i>
+							<span>woody.marc</span> -->
+						</div>
+					</div>
+				</div>
+				<div class="manage-div panel panel-default">
+					<div class="panel-heading gray">
+						Manage
+					</div>
+					<div class="panel-body white">
+						<div class="roww">
+							<a href="">Projects</a>
+						</div>
+						<div class="roww">
+							<a href="">Help Center</a>
+						</div>
+
+					</div>
+				</div>
+
+		</div><!-- LEFT BAR ENDS -->
+		<div class="col-md-9">
+			<div class="welcome-div panel panel-default">
+				<div class="panel-heading gray">
+					<h4>Welcome {{dc.dashboard.datauser.name}}</h4>
+				</div>
+				<div class="panel-body white">
+					<p>Check your job notification, connection requests, upcoming events , messages and notification all from your dashboard. Before getting started to make new connections and applying for jobs make sure to:<br> 
+					<h5><b>Build Profile</b></h5>
+					Upload a photo, write your short bio and upload all your creative stuff respectively to help your connections or recruiters get to know you before accepting your connection requests or inviting you for an interview for the job.
+					<h5><b>Complete Your Trust Information</b></h5>
+					Connect your social networks and verify your email, phone number & address to build trust in the cultstage community.
+				</p>
+				</div>
+			</div>
+
+			<div class="notification-div panel panel-default">
+				<div class="panel-heading gray">
+					<h4>Notifications</h4>
+				</div>
+				<div class="panel-body white pt0">
+					<div class="row bb ">
+						<div class="notification-menu">Jobs</div><div class="notification-menu">Events</div><div class="notification-menu">People</div><div class="notification-menu">New Feature</div>
+					</div>
+					<br>
+					<div class="connection-requests clearfix">
+						<div class="col-md-6" ng-repeat="a in dc.dashboard.connectionrequest track by $index">
+							<div class="col-md-4">
+							<img style="width:100%" ng-src="{{a.img?a.img:'images/avatar-default.jpg'}}">
+							</div>
+							<div class="col-md-8">
+								<p>{{a.name }}  {{ a.roles.join(",")}}</p>
+								<a class="pull-right view-profile" ng-href="#/event/{{x.event_uuid}}">View Profile</a>
+								<a class="pull-right connect" ng-click="dc.accept(a)">Connect</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

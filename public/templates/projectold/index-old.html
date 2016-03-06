@@ -1,0 +1,92 @@
+<div class="user-menu clearfix" >
+	<a  ng-click="setUM(1)" ng-class="{'col-md-1':true,'active':isUMSet(1)}">My stage</a>
+	<a  ng-click="setUM(2)" ng-class="{'col-md-1':true,'active':isUMSet(2)}">INVITE</a>
+	<a  ng-click="setUM(3)" ng-class="{'col-md-1':true,'active':isUMSet(3)}">LEARN</a>
+	<a  ng-click="setUM(4)" ng-class="{'col-md-1':true,'active':isUMSet(4)}">MAGAZINE</a>
+	<a  ng-click="setUM(5)" ng-class="{'col-md-1':true,'active':isUMSet(5)}">OPPORTUNITIES</a>
+</div>
+<div class="cover clearfix" style="background:grey" ng-controller="ProjectHeaderCtrl">
+	<div class="project-header">
+		<a class="project-logo"><img ng-src="{{header.logo}}"> </a>
+		<h4>{{header.title}}</h4>
+		<button class="btn btn-success">Add Member</button>&nbsp;<button  class="btn btn-default">Edit</button>
+	</div>	
+</div>
+<div class="content clearfix" ng-controller="projectContentCtrl">
+	<div class="mid-bar-menu clearfix">
+		<div ng-class="{'col-md-offset-4':true,'col-md-1':true,'active':isSet(1)}" ng-click="set(1)">About</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(2)}" ng-click="set(2)">Group Update</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(3)}" ng-click="set(3)">Add a Job</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(4)}" ng-click="set(4)">Dashboard</div>
+	</div>
+	<div class="left-side-bar col-md-2" ng-controller="ProjectSideBarCtrl">
+		<div class="overview">
+			<h4>Overview</h4>
+			<span><i class="fa fa-clock-o"></i><i class="fa fa-time"></i> {{data.lastActive}}</span>
+			<span><i class="fa fa-map-marker"></i> {{data.location}}</span>
+		</div>
+		<br>
+		<div>
+			<h4>Roles</h4>
+			<span ng-repeat="role in data.roles">{{role.name}}</span>
+		</div>
+		<br>
+		<div>
+			<h4>Member</h4>
+			<div class="staff" ng-repeat="member in data.members">
+				<div class="profile-pic">
+					<img ng-src="{{member.ppic}}">
+				</div><div class="staff-about">
+					<h5>{{member.name}}</h5>
+					<p>{{member.about}}</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="project-content col-md-8">
+		<div class="project-about" ng-show="isSet(1)" ng-controller="AboutProject">
+			<!-- <h4>About</h4><hr> -->
+			<p>{{about}}</p>
+		</div>
+		<div class="project-group " ng-show="isSet(2)" ng-controller="GroupUpdateCtrl">
+			<div class="newfeed panel panel-default">
+				<div class="feed-buttons"><span><i class="fa fa-edit"></i>&nbsp;Share update</span> | <span><i class="fa fa-share-alt"></i>&nbsp; Share Media</span></div>
+				
+				<textarea class="form-control" placeholder="Post something"></textarea>
+			</div>
+			<div class="feed panel panel-default" ng-repeat="feed in feeds">
+				<p>{{feed.data}}</p>
+			</div>
+		</div>
+		<div class="project-add-job" ng-show="isSet(3)">
+			<div class="add-posting ng-scope" ng-controller="addProjectCtrl">
+			<form >
+				<div class="form-group">
+					<label>Requirement</label>
+					<input class="form-control" text="text" placeholder="Need a guitarist?">
+				</div>
+				<div class="form-group">
+					<label>Description <small>(max 200 character)</small></label>
+					<textarea class="form-control" maxlength="200" placeholder="Need a lead guitarist that cover Pink Floyd and Deep Purple. We gig every weekend."></textarea>
+				</div>
+				<div class="form-group">
+					<label>Add an image</label>
+					<div class="img-placeholder"></div> <br>
+					<button class="btn btn-danger">Upload</button>
+				</div>
+				<div class="form-group">
+					<label>Language</label>
+					<input class="form-control" type="text" placeholder="Language">
+				</div>
+				<div class="form-group">
+					<label>Location</label>
+					<input class="form-control" type="text" placeholder="location">
+				</div>
+					<input class="btn btn-success" value="Post" type="submit">
+			</form>
+			</div>
+		</div>
+		<div class="project-dashboard" ng-show="isSet(4)">Dashboard</div>
+	</div>
+</div>

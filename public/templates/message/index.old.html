@@ -1,0 +1,30 @@
+
+<div class="content clearfix">
+	<div class="col-md-8 col-md-offset-2 msgContent" ng-controller="msgCtrl">
+		<div class="msg-menu col-md-4 list-group">
+			<div ng-class="{'list-group-item':true,'active':isSet(1)}" ng-click="set(1)"><i class="fa fa-edit"></i> New Message</div>
+			<div ng-class="{'list-group-item':true,'active':isSet(2)}" ng-click="set(2)"><i class="fa fa-inbox"></i> All Message</div>
+			<div ng-class="{'list-group-item':true,'active':isSet(3)}" ng-click="set(3)"><i class="fa fa-envelope-o"></i> Unread Message</div>
+			<div ng-class="{'list-group-item':true,'active':isSet(4)}" ng-click="set(4)"><i class="fa fa-reply"></i> Sent</div>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{header}}</div>
+				<div class="panel-body" ng-show="isSet(1)">
+					<textarea class="form-control"></textarea>
+				</div>
+				<div class="list-gorup" ng-show="isSet(2)">
+					<div class="list-group-item" ng-repeat="msg in allmessages">{{msg.msg}}</div>
+				</div>
+				<div class="list-gorup" ng-show="isSet(3)">
+					<div class="list-group-item" ng-repeat="msg in allmessages">{{msg.msg}}</div>
+				</div>
+				<div class="list-gorup" ng-show="isSet(4)">
+					<div class="list-group-item" ng-repeat="msg in allmessages">{{msg.msg}}</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+</div>

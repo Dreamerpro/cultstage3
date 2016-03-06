@@ -1,0 +1,32 @@
+<div class="add-posting col-md-8 col-md-offset-2" ng-controller="addProjectCtrl">
+<select class="select-project form-control" style="width:83.33333333% !important;display:inline-block"  ng-model="projectid">
+	<option ng-repeat="p in projects" value="{{p.uuid}}">{{p.title}}</option>
+</select>
+
+<button class="btn btn-success"><i class="fa fa-add"></i>New Project</button>
+<br><br>
+<form ng-show="projectid">
+	<div class="form-group">
+		<label>Requirement</label>
+		<input class="form-control" text="text" placeholder="Need a guitarist?"></input>
+	</div>
+	<div class="form-group">
+		<label>Description <small>(max 200 character)</small></label>
+		<textarea class="form-control" maxlength="200" placeholder="Need a lead guitarist that cover Pink Floyd and Deep Purple. We gig every weekend."></textarea>
+	</div>
+	<div class="form-group">
+		<label>Add an image</label>
+		<div class="img-placeholder"></div> <br>
+		<button class="btn btn-danger">Upload</button>
+	</div>
+	<div class="form-group">
+		<label>Language</label>
+		<input class="form-control" type="text" placeholder="Language"></input>
+	</div>
+	<div class="form-group">
+		<label>Location</label>
+		<input class="form-control" type="text" placeholder="location"></input>
+	</div>
+		<input class="btn btn-success" value="Post" type="submit"></input>
+</form>
+</div>

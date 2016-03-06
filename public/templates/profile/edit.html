@@ -1,0 +1,114 @@
+<div class="site-content clearfix" ng-controller="EditProfileCtrl as epc" ng-init="epc.getUserData()">
+<!-- editprofile controller -->
+<!-- <div class="modal" role="modal" id="modal-roles">
+	<div class="modal-dialog" style="    width: 80%;">
+		<div class="modal-content">
+			<div class="modal-header">
+
+			</div>
+			<div class="modal-body clearfix">
+				<div class="col-md-2 list-group col-md-offset-1">
+					<div class="list-group-item">On Stage</div>
+					<div class="list-group-item">On Stage</div>
+					<div class="list-group-item">On Stage</div>
+				</div>
+				<div class="col-md-2 list-group">
+					<div class="list-group-item">Behind the Stage</div>
+				</div>
+				<div class="col-md-2 list-group">
+					<div class="list-group-item">Stage Authorities</div>
+				</div>
+				<div class="col-md-2 list-group">
+					<div class="list-group-item">Music</div>
+				</div>
+				<div class="col-md-2 list-group">
+					<div class="list-group-item">Releasing Authorities</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<!-- <profile-cover></profile-cover> -->
+	<div class="content container">
+	
+	<div class="col-md-3 ">
+		<!-- <profile-side-menu></profile-side-menu> -->
+		<h3>Edit Profile</h3><br>
+		<a class="btn btn-host" href="#/profile">View Profile</a>
+		<!-- {{epc.profiledata.name}} -->
+	</div>
+
+		<div class="col-md-9">
+			<div class="overview panel">
+				<!-- <h3>Edit</h3> -->
+				<div class="overview-details clearfix">
+	
+
+		<form>
+			<span class="text-info" ng-if="epc.flashmessage"><small> {{epc.flashmessage}}</small></span>
+			<div class="form-group">
+				<label>Full Name</label>
+				<input class="form-control" type="text" ng-model="epc.profiledata.name" value="{{epc.profiledata.name}}">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input class="form-control" type="email" ng-model="epc.profiledata.email" ng-value="epc.profiledata.email">
+			</div>
+			<!-- <div class="form-group">
+				<label>Current Passsword ()/label>
+				<input class="form-control" type="password" ng-value="{{epc.password}}">
+			</div> -->
+			<div class="form-group">
+				<label>Roles</label>
+				<div><span class="sb" ng-repeat="role in epc.profiledata.roles" ng-click="epc.removerole(role)">{{role.name}} <i class="fa fa-times"></i></span></div>
+				<input class="form-control" type="text" ng-model="inputrole"  ng-focus="showrolelist=true" ng-blur="showrolelist=false">
+				<div class="list-group" ng-show="showrolelist">
+					<a class="list-group-item" ng-repeat="role in epc.available.roles | filter:inputrole" ng-mousedown="epc.addrole(role)">{{role.name}}</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Language</label>
+				<div><span class="sb" ng-repeat="language in epc.profiledata.languages" ng-click="epc.removelanguage(language)">{{language.language}} <i class="fa fa-times"></i></span></div>
+				<input class="form-control" type="text" ng-model="inputlanguage" ng-focus="showlanguagelist=true" ng-blur="showlanguagelist=false">
+				<div class="list-group" ng-show="showlanguagelist">
+					<a class="list-group-item" ng-repeat="language in epc.available.languages | filter:inputlanguage" ng-mousedown="epc.addlanguage(language)">{{language.language}}</a>
+				</div>
+			</div>
+			<div class="form-group"><!--  -->
+				<label>Location</label>
+				<div><span class="sb" ng-repeat="location in epc.profiledata.locations" ng-click="epc.removelocation(location)">{{location.location}} <i class="fa fa-times"></i></span></div>
+				<input class="form-control" type="text" ng-model="inputlocation" ng-focus="showlocationlist=true" ng-blur="showlocationlist=false">
+				<div class="list-group" ng-show="showlocationlist">
+					<a class="list-group-item" ng-repeat="location in epc.available.locations | filter:inputlocation" ng-mousedown="epc.addlocation(location)">{{location.location}}</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Phone No.</label>
+				<input class="form-control" type="tel" ng-value="epc.profiledata.phone" ng-model="epc.profiledata.phone">
+			</div>
+			<div class="form-group">
+				<label>Date of Birth</label><!-- ng-value="epc.profiledata.dob"  value="{{new Date(epc.profiledata.dob)}}"  -->
+				<input class="form-control" type="date" format-date ng-value="epc.profiledata.dob" ng-model="epc.profiledata.dob">
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<textarea class="form-control" ng-model="epc.profiledata.description">
+				</textarea>
+			</div>
+
+
+			<input class="btn btn-red" type="submit" value="Save" ng-click="epc.save()">
+		</form>
+				</div>
+			</div>
+		
+		</div>
+			
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+<!-- <div class="user-menu clearfix" >
+	<a  ng-click="setUM(1)" ng-class="{'col-md-1':true,'active':isUMSet(1)}">My stage</a>
+	<a  ng-click="setUM(2)" ng-class="{'col-md-1':true,'active':isUMSet(2)}">INVITE</a>
+	<a  ng-click="setUM(3)" ng-class="{'col-md-1':true,'active':isUMSet(3)}">LEARN</a>
+	<a  ng-click="setUM(4)" ng-class="{'col-md-1':true,'active':isUMSet(4)}">MAGAZINE</a>
+	<a  ng-click="setUM(5)" ng-class="{'col-md-1':true,'active':isUMSet(5)}">OPPORTUNITIES</a>
+</div> -->
+<div class="cover clearfix" style="background-image:url(images/user/user-cover.jpg)">
+	<div class="user-profile-pic">
+		<img src="images/user/user-profile.png">
+	</div>
+	<div class="menu-name-bar" ng-init="name='SHowcase'">
+		{{name}}
+	</div>
+</div>
+<div class="content clearfix" ng-controller="userContentCtrl">
+	<div class="mid-bar-menu clearfix">
+		<div ng-class="{'col-md-1':true,'col-md-offset-3':true,'active':isSet(1)}" ng-click="set(1)">About</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(2)}" ng-click="set(2)">Posts</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(3)}" ng-click="set(3)">Video</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(4)}" ng-click="set(4)">Audio</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(5)}" ng-click="set(5)">Scriptwork</div>
+		<div ng-class="{'col-md-1':true,'active':isSet(6)}" ng-click="set(6)">Others</div>
+	</div>
+	<div class="left-side-bar col-md-2" ng-controller="ProjectSideBarCtrl">
+		<div class="overview">
+			<h4>Overview</h4>
+			<span><i class="fa fa-clock-o"></i><i class="fa fa-time"></i> {{data.lastActive}}</span>
+			<span><i class="fa fa-map-marker"></i> {{data.location}}</span>
+		</div>
+		<br>
+		<div>
+			<h4>Roles</h4>
+			<span ng-repeat="role in data.roles">{{role.name}}</span>
+		</div>
+		<br>
+		<div>
+			<h4>Member</h4>
+			<div class="staff" ng-repeat="member in data.members">
+				<div class="profile-pic">
+					<img ng-src="{{member.ppic}}">
+				</div><div class="staff-about">
+					<h5>{{member.name}}</h5>
+					<p>{{member.about}}</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="user-content clearfix col-md-8">
+		<div id="about" class="" ng-show="isSet(1)">
+			<span>Kurt Donald Cobain (February 20, 1967 – April 5, 1994)[1] was an American musician who was best known as the lead singer, guitarist, and primary songwriter of the rock band Nirvana. Cobain formed Nirvana with Krist Novoselic in Aberdeen, Washington, in 1985 and established it as part of the Seattle music scene, having its debut album Bleach released on the independent record label Sub Pop in 1989.
+<br>
+After signing with major label DGC Records, the band found breakthrough success with "Smells Like Teen Spirit" from its second album Nevermind (1991). Following the success of Nevermind, Nirvana was labeled "the flagship band" of Generation X, and Cobain hailed as "the spokesman of a generation".
+</span>
+		</div>
+		<div id="post" class="" ng-show="isSet(2)">
+			SA
+		</div>
+		<div id="video" class="" ng-show="isSet(3)">
+			HS
+		</div>
+		<div id="audio" class="" ng-show="isSet(4)">
+			LS
+		</div>
+		<div id="sciptwork" class="" ng-show="isSet(5)">
+			A
+		</div>
+		<div id="other" class="" ng-show="isSet(6)">
+			DFF
+		</div>
+		<!-- PROJECT END -->	
+		</div>
+</div>

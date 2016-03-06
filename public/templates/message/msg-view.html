@@ -1,0 +1,38 @@
+<div class="site-content clearfix" ng-controller="MessageController" ng-init="fetchmsg()"> 
+<top-nav></top-nav>
+
+	<div class="content container">
+		<div class="col-md-3">
+			<div class="panel-heading"><h4 style="color:#565a5c"><i class="fa fa-inbox"></i> Mailbox</h4></div>
+			<message-side-menu></message-side-menu>
+		</div>
+		<div class="col-md-9"  >
+			<div class="content-tools clearfix">
+				<div class="pull-left">
+					
+					<a class="tool" ng-href="#/message/{{back}}"><i class="fa fa-arrow-left"></i></a>
+					<div class="tool" ng-click="delete()"><i class="fa fa-trash-o"></i></div>
+				</div>
+				<div class="pull-right">
+					<div class="msg" ng-show="messages.inbox.length"><small>{{messages.showing.join("-")}} of {{messages.inbox.length}}</small> </div>
+					<div class="tool" ng-class="{'disabled':!can().back()}" ng-click="view_previous(can().back())">
+						<i class="fa fa-chevron-left"></i>
+					</div>
+					<div class="tool" ng-class="{'disabled':!can().next()}" ng-click="view_next(can().next())">
+						<i class="fa fa-chevron-right"></i>
+					</div>
+				</div>
+				<div class="pull-right"></div>
+			</div>
+			<div class="message-view-holder">
+				<!-- <div class="btn btn-default pull-right" style="margin-top:10px"><i class="fa fa-reply"></i> </div> -->
+				<small class="pull-right">{{messages.open.data[0].created_at}}</small>
+				<h3>{{messages.open.data[0].subject}}</h3>
+				<hr>
+				<h4>{{messages.open.data[0].sender}}</h4>
+				<p ng-bind-html="messages.open.data[0].body"></p>
+			</div>
+		</div>
+
+	</div>
+</div>
