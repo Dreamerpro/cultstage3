@@ -1,4 +1,26 @@
 angular.module('cultstage')
+.filter('firstname', function () {
+	return function (objects) {
+		if(objects==undefined){return false;}
+		var l=objects.indexOf('+');
+		if(l>0){
+			return objects.substring(0, l);
+		}
+		else{
+			return objects;
+		}
+		
+	}
+})
+.filter('avatar', function () {
+	return function (objects) {
+		console.log(objects);
+		if(objects===null){ console.log(objects); return 'images/avatar-default.jpg';}
+		else{return objects;}
+		
+	}
+})
+
 .filter('object_filter', function() {
 	//var option={name:'D\'',types:[],locations:[]};
 	

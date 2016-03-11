@@ -23,7 +23,7 @@ Route::group(['middleware' => 'web'], function () {
     //Route::get('/home', 'HomeController@index');
 
     Route::get('/', function () {
-    	return view('holder');
+    	return view('holder')->with('user',false);
 	});
 	/*Route::get('/magazine', function () {
 	    return view('magazine');
@@ -87,4 +87,6 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('asset/image/{type}/{file}','Data\ImageController@getimage');
 	Route::post('/search/{query}/{category}', 'SearchController@search');
 
+	Route::get('auth/{platform}', 'SocialAuthController@redirectToProvider');
+	Route::get('auth/{platform}/callback', 'SocialAuthController@handleProviderCallback');
 });

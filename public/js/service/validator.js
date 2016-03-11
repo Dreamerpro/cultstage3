@@ -30,22 +30,37 @@ angular.module('cultstage')
 		}
 	}
 })
-.factory('AuthService', function($http, SessionService,$rootScope,$location){
+.factory('CookieService', function($cookies){
+	return {
+		set:function(key, val){
+			return $cookies.put(key, val);
+		},
+		get:function(key){
+			return $cookies.get(key);
+		},
+		unset:function(key){
+			return $cookies.remove(key);
+		},
+		clearuser:function(){
+			return $cookies.remove('authenticated');
+		}
+	}
+})
+.factory('AuthService', function($http, CookieService,$rootScope,$location){
 	var cache=function(userdata){
-		SessionService.set('authenticated', true);
+		CookieService.set('authenticated', true);
 		console.log(userdata);
-		SessionService.set('name', userdata.name);
-		SessionService.set('email', userdata.email);
-		SessionService.set('avatar', userdata.avatar);
-		
+		CookieService.set('name', userdata.name);
+		CookieService.set('email', userdata.email);
+		if(userdata.avatar!=null){CookieService.set('avatar', userdata.avatar);}
 		$rootScope.updateUserStatus();
 		$("#sign-modal").modal('hide');
 	}
 	var uncache=function(){
-		SessionService.unset('authenticated');
-		SessionService.unset('name');
-		SessionService.unset('email');
-		SessionService.unset('avatar');
+		CookieService.unset('authenticated');
+		CookieService.unset('name');
+		CookieService.unset('email');
+		CookieService.unset('avatar');
 		$rootScope.updateUserStatus();
 	}
 
@@ -77,18 +92,18 @@ angular.module('cultstage')
 			return prom;
 		},
 		isloggedin:function(){
-			return SessionService.get('authenticated');
+			return CookieService.get('authenticated');
 		}
 
 	}
 })
-.factory('UserService', function($http, SessionService){
+.factory('UserService', function($http, CookieService){
 	return {
 		get:function(){
 			return {
-				name:SessionService.get('name'),
-				email:SessionService.get('email'),
-				avatar:SessionService.get('avatar')
+				name:CookieService.get('name'),
+				email:CookieService.get('email'),
+				avatar:CookieService.get('avatar')
 			}
 		}
 

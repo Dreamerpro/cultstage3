@@ -1,4 +1,4 @@
-angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize', 'ui.select'])
+angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize', 'ui.select','ngCookies'])
 .config(['$routeProvider', function($routeProvider) {
 	$tu="templates/";
 	$routeProvider
@@ -49,9 +49,10 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	.when('/profile/:uuid',{ templateUrl:$tu+'/profile/index.html'})
 	.when('/message/',{ templateUrl:$tu+'/message/index.html' })
 	.when('/people/',{ templateUrl:$tu+'/people/index.html' })
-	*//*.otherwise({
+	*/
+	.otherwise({
 		redirectTo:"/"
-	})*/
+	})
 	;
 }])
 .config(function($provide) {

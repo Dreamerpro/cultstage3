@@ -34,5 +34,15 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'facebook' => [
+        'client_id' => '511377382383358',
+        'client_secret' => '14c6149df8bee4eca4d5ad23ab63a559',
+        'redirect' => 'http://dev.cultstage.com/auth/facebook/callback',
+    ],
+    'google' => [
+        'client_id' => '638694339776-j8um54ditdrfkon4if9omdgga3732st4.apps.googleusercontent.com',
+        'client_secret' => 'fxgO1jR9EXsH64595gwHM-T7',
+        'redirect' => 'http://dev.cultstage.com/auth/google/callback',
+    ],
 
 ];

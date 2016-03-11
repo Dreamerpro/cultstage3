@@ -18,7 +18,8 @@
 	<script type="text/javascript" src="js/lib/angular.route.min.js"></script>
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-
+	<script src='/bower_components/angular-cookies/angular-cookies.min.js'></script>
+	
 	
 
 	<script type="text/javascript" src="js/app/app.js"></script>
@@ -79,10 +80,10 @@
 					</div>
 				</div>
 			</li><li class="top-menu" ng-show="isLoggedIn"> 
-			<a class="accountsettings" href="#/dashboard" ng-click="sign=0" >@{{userData.name}}<div class="img-holder"><img ng-src="@{{userData.avatar==null?userData.avatar:'images/avatar-default.jpg'}}"></div></a>
+			<a class="accountsettings" href="#/dashboard" ng-click="sign=0" >@{{userData.name|firstname}}<div class="img-holder"><img ng-src="@{{userData.avatar==null?'':userData.avatar}}"></div></a>
 				<div class="list-group dropdown-list-menu">
 					<div class="list-group-item" ng-class="{'nocaret':!islanding}" style=""><a class="clearfix" href="#/jobs/my-applications"><div class="item">Your Jobs</div></a></div>
-					<div class="list-group-item"><a  class="clearfix" href="#/profile/edit"><div class="item">Edit Profile</div></a></div>
+					<div class="list-group-item"><a class="clearfix" href="#/profile/edit"><div class="item">Edit Profile</div></a></div>
 					<div class="list-group-item"><a class="clearfix" href=""><div class="item">Invite Friends</div></a></div>
 					<div class="list-group-item"><a class="clearfix" href="" ng-click="logout()"><div class="item">Logout</div></a></div>
 				</div>
@@ -91,11 +92,11 @@
 		</div>
 	</div>
 
-
+	
 	<div ng-view >
 
 	</div>
-
+	
 	<footer>
 
 			<div class="footer-contents">
