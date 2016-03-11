@@ -80,7 +80,7 @@
 					</div>
 				</div>
 			</li><li class="top-menu" ng-show="isLoggedIn"> 
-			<a class="accountsettings" href="#/dashboard" ng-click="sign=0" >@{{userData.name|firstname}}<div class="img-holder"><img ng-src="@{{userData.avatar==null?'':userData.avatar}}"></div></a>
+			<a class="accountsettings" href="#/dashboard" ng-click="sign=0" >@{{userData.name|firstname}}<div class="img-holder"><img ng-src="@{{userData.avatar|avatar}}"></div></a>
 				<div class="list-group dropdown-list-menu">
 					<div class="list-group-item" ng-class="{'nocaret':!islanding}" style=""><a class="clearfix" href="#/jobs/my-applications"><div class="item">Your Jobs</div></a></div>
 					<div class="list-group-item"><a class="clearfix" href="#/profile/edit"><div class="item">Edit Profile</div></a></div>
