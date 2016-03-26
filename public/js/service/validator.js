@@ -39,10 +39,10 @@ angular.module('cultstage')
 			return $cookies.get(key);
 		},
 		unset:function(key){
-			return $cookies.remove(key);
+			return $cookies.remove(key, { path: '/' });
 		},
 		clearuser:function(){
-			return $cookies.remove('authenticated');
+			return $cookies.remove('authenticated', { path: '/' });
 		}
 	}
 })
