@@ -47,10 +47,10 @@ class SocialAuthController extends Controller
            
         }
         
-        $authcookie=\Cookie::make('authenticated', true, 20,"www.cultstage.com",null,false,false);
-        $username=\Cookie::make('name', $authuser->name,20,"www.cultstage.com",null,false,false);
-        $avatar=\Cookie::make('avatar', \Auth::user()->avatar,20,"www.cultstage.com",null,false,false);
-        $email=\Cookie::make('email', $authuser->email,20,"www.cultstage.com",null,false,false);
+        $authcookie=\Cookie::make('authenticated', true, 20,null,null,false,false);
+        $username=\Cookie::make('name', $authuser->name,20,null,null,false,false);
+        $avatar=\Cookie::make('avatar', \Auth::user()->avatar,20,null,null,false,false);
+        $email=\Cookie::make('email', $authuser->email,20,null,null,false,false);
         
         return redirect('/')
         ->withCookie($authcookie)
