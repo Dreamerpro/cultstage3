@@ -23,9 +23,7 @@ class Events extends Seeder
          ];
 
         foreach ($events as $value) {
-        	$event=new App\Models\Event\EventType;
-        	$event->name= $value;
-        	$event->save();	
+        	$event=App\Models\Event\EventType::firstOrCreate(['name'=>$value]);
         };
     }
 }

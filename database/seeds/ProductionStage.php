@@ -14,9 +14,9 @@ class ProductionStage extends Seeder
         $array=['Pre-Production','Production','Post-Production'];
 
         foreach ($array as $item) {
-        	$ps=new App\ProductionStage;
-        	$ps->name=$item;
-        	$ps->save();
+        	$ps=\App\ProductionStage::firstOrCreate(["name"=>$item]);
+        	/*$ps->name=$item;
+        	$ps->save();*/
         }
     }
 }

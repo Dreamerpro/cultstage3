@@ -184,7 +184,8 @@ class UserFullDetail extends Model
     }
 
     public static function getpeoplesearch($users ,$filter){
-      $me=\Auth::user()->id;
+      $me=null;
+      if(\Auth::user()){$me=\Auth::user()->id;}
       $resultpeople=[];
 
       $filterlocations=collect($filter['locations']);

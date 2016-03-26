@@ -11,14 +11,72 @@ class Role extends Seeder
      */
     public function run()
     {
-    	$roles_array=['singer','actor'];
+    	$roles_array=[
+            "Actor",
+            "Actress",
+            "Comedian",
+            "Supporting Actor",
+            "Supporting Actress",
+            "Models",
+            "Child Artists",
+            "Aged Characters",
+            
+            "Music Director",
+            "Playback Singers",
+            "Track Singers",
+            "Instrumentalists",
+            "Music Programmers",
+            "Dubbing Facilities",
+            "Recording Studios",
+            "DTS Studios",
+            "Mixing and Mastering Team",
+            "Dubbing Artist",
+            "Sound Engineers",
+            
+            "Shooting Permission",
+            "Film Chamber/Title Registration",
+            "Censor Board",
+            "Producers Association",
+            "Director Association",
+            
+            "Publicity Designers",
+            "Advertising Agencies",
+            "Distributors",
+            "Audio Companies",
+            "Audio Releasing Premises",
+            "Online Promotion",
+            "Railway Marketing",
+            "BMTC/KSRTC Bus Marketing",
+            "FM Marketing/Jingles",
+            "Local Cable Marketing",
+            "Preview Theatres",
+            "Event Management",
 
-        $i=0;
+            "Directors",
+            "Associate Directors",
+            "Art Director",
+            "Cinematographers",
+            "Cinema Story, Screenplay & Dialogue writers",
+            "Lyricists",
+            "Choreographers",
+            "Dancers",
+            "Stunt Directors & Masters",
+            "Fighters",
+            "Production Executives",
+            "Make-up Artists",
+            "Hair Stylists",
+            "Costume Designers",
+            "Cinema Advertisement Designers",
+            "Still Photographers",
+            "Cinema Vehicle Drivers",
+            "Cinema Production Assistance",
+            "Cinema Journalists",
+            "Cinema Photo Journalists"   
+        ];
+
+        $i=1;
         foreach ($roles_array as $value) {
-        	$roles=new App\Models\Detail\Roles;
-        	$roles->name= $value;
-        	$roles->role_id=$i+1;
-        	$roles->save();	
+        	$roles=App\Models\Detail\Roles::firstOrCreate(["name"=>$value,"role_id"=>$i]);
         	$i++;
         }
 

@@ -66,7 +66,7 @@
 				<label>Roles</label>
 				<div><span class="sb" ng-repeat="role in epc.profiledata.roles" ng-click="epc.removerole(role)">{{role.name}} <i class="fa fa-times"></i></span></div>
 				<input class="form-control" type="text" ng-model="inputrole"  ng-focus="showrolelist=true" ng-blur="showrolelist=false">
-				<div class="list-group" ng-show="showrolelist">
+				<div class="list-group slider" ng-show="showrolelist">
 					<a class="list-group-item" ng-repeat="role in epc.available.roles | filter:inputrole" ng-mousedown="epc.addrole(role)">{{role.name}}</a>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 				<label>Language</label>
 				<div><span class="sb" ng-repeat="language in epc.profiledata.languages" ng-click="epc.removelanguage(language)">{{language.language}} <i class="fa fa-times"></i></span></div>
 				<input class="form-control" type="text" ng-model="inputlanguage" ng-focus="showlanguagelist=true" ng-blur="showlanguagelist=false">
-				<div class="list-group" ng-show="showlanguagelist">
+				<div class="list-group slider" ng-show="showlanguagelist">
 					<a class="list-group-item" ng-repeat="language in epc.available.languages | filter:inputlanguage" ng-mousedown="epc.addlanguage(language)">{{language.language}}</a>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 				<label>Location</label>
 				<div><span class="sb" ng-repeat="location in epc.profiledata.locations" ng-click="epc.removelocation(location)">{{location.location}} <i class="fa fa-times"></i></span></div>
 				<input class="form-control" type="text" ng-model="inputlocation" ng-focus="showlocationlist=true" ng-blur="showlocationlist=false">
-				<div class="list-group" ng-show="showlocationlist">
+				<div class="list-group slider" ng-show="showlocationlist">
 					<a class="list-group-item" ng-repeat="location in epc.available.locations | filter:inputlocation" ng-mousedown="epc.addlocation(location)">{{location.location}}</a>
 				</div>
 			</div>

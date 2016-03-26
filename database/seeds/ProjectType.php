@@ -14,9 +14,9 @@ class ProjectType extends Seeder
          $array=['Movie','Album','Short Film'];
 
         foreach ($array as $item) {
-        	$ps=new App\Models\Detail\ProjectType;
-        	$ps->name=$item;
-        	$ps->save();
+        	$ps=App\Models\Detail\ProjectType::firstOrCreate(["name"=>$item]);;
+        /*	$ps->name=$item;
+        	$ps->save();*/
         }
     }
 }

@@ -11,14 +11,11 @@ class Languages extends Seeder
      */
     public function run()
     {
-        $lang_array=['Kannada','Hindi','Marathi'];
+        $lang_array=['Kannada','Hindi','Marathi',"Malayalam","Tamil","Telegu","Bengali","Assamese"];
 
-        $i=0;
+        $i=1;
         foreach ($lang_array as $value) {
-        	$lang=new App\Models\Detail\Language;
-        	$lang->language= $value;
-        	$lang->language_id=$i+1;
-        	$lang->save();	
+        	$lang=App\Models\Detail\Language::firstOrCreate(["language"=>$value,"language_id"=>$i]);
         	$i++;
         }
     }

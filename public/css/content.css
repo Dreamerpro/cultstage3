@@ -493,6 +493,8 @@ section.home-bottom{
     padding: 0 !important;
     border-radius: 0 !important;
     z-index: 1000;
+    height: 300px;
+    overflow-y: auto;
     /*width: 80%;*/
 }
 .suggestion-list>.list-group-item{
@@ -593,4 +595,12 @@ p.paragraph>.tab{
     text-align: center;
     background: #000000;
     display: none;
+}
+
+.result-content{
+    min-height: 600px;
+}
+.slider{
+	max-height: 400px;
+    overflow-y: auto;
 }
