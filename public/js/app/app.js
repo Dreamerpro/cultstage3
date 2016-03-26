@@ -146,10 +146,12 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	$rootScope.updateUserStatus();	
 	
 	$rootScope.logout=function () {
-		AuthService.logout();
-		$location.path('/');
-		$location.search({});
-		console.log($rootScope.isLoggedIn);
+		AuthService.logout().success(function () {
+			$location.path('/');
+			$location.search({});
+			console.log($rootScope.isLoggedIn);
+		})
+		
 	}
 
 	$rootScope.showcats=function () {

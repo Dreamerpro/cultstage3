@@ -62,6 +62,7 @@ angular.module('cultstage')
 		CookieService.unset('email');
 		CookieService.unset('avatar');
 		$rootScope.updateUserStatus();
+		console.log("uncahced");
 	}
 
 	return {
