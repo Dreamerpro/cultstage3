@@ -19,7 +19,6 @@ class EventController extends Controller
     public function getpostedevents()
     {
         $user=\Auth::user();
-
         return Event::getalldetails($user->posted_events);
     }
 
