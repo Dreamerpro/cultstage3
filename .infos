@@ -6,3 +6,5 @@
 ##user connection status only 1 row for 1 connection . To check connection get from both colmn containin the user id
 
 ## message 0 means deleted by none, 1 means deleted by receiver, 2 means deleted by sent, 3 deleted by both 
+
+login/job profile/jobsite

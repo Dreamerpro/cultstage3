@@ -1,5 +1,8 @@
 <html ng-app="cultstage">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CultStage</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -45,12 +48,13 @@
 	<script type="text/javascript" src="js/service/validator.js"></script>
 
 </head>
-<body style="min-width:700px">
+<body >
 	<sign-modal></sign-modal>
-	<div ng-class="{'header-bar':true,'clearfix':true,'th':islanding}">
-		<a href="#/"  class="pull-left"><i class="fa fa-modx"></i> CultStage</a>
-		<div ng-hide="islanding" class="search-bar-top col-md-4">
-			<div class="form-group"><i class="fa fa-search"></i> 
+	<div ng-class="{'th':islanding}" class="header-bar clearfix">
+		<div class="navicon-div @{{!islanding?'visible-xs':'hidden'}} "><i class="fa fa-navicon"></i></div>
+		<a href="#/" ><i class="fa fa-modx"></i> CultStage</a>
+		<div ng-hide="islanding" class="search-bar-top col-md-4 col-xs-12 col-sm-12 hidden-sm hidden-xs">
+			<div class="form-group has-feedback "><i class="fa fa-search form-control-feedback pull-left"></i> 
 				<input 
 				class="form-control" 
 				ng-model="data.query" 
@@ -65,28 +69,32 @@
 			</div>
 		</div>
 		<div class="pull-right">
-		<a href="#/jobs/new-job" class="post-header-btn">Post a Job</a>
-		<ul class="header-menu-bar pull-right">
+		<!-- <a href="#/jobs/new-job" class="post-header-btn hidden-xs">Post a Job</a> -->
+		<ul class="hidden-xs header-menu-bar pull-right">
 			<li ng-hide="isLoggedIn"> <a href="" data-toggle="modal" data-target="#sign-modal" ng-click="sign=0" >Sign Up</a></li><li ng-hide="isLoggedIn"><a href="" data-toggle="modal" data-target="#sign-modal" ng-click="sign=1" >Log In</a></li>
-			<li ng-show="isLoggedIn" class="top-msg"><a href="">Messages <i class="fa fa-inbox pull-right"></i></a>
-				<div class="list-group dropdown-list-menu">
-					<div class="list-group-item" ng-class="{'nocaret':!islanding}">
-						<div class="item-heading">Inbox (0)<a class="pull-right mt10lh20" href="#/message/inbox">View Inbox</a></div>
+			<li ng-show="isLoggedIn" class="top-msg col-md-6" ><a class="dropdown-toggle" data-toggle="dropdown"><span class="col-xs-8">Messages</span> <i class="fa fa-inbox col-xs-4"></i></a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-menu-item" ng-class="{'nocaret':!islanding}">
+						<a class="item-heading " href="#/message/inbox">Inbox (0)</a>
 						<!-- <div class="item-content"> <a href="">X y z</a></div> -->
-					</div>
-					<div class="list-group-item">
-						<div class="item-heading"> Notification<a class="pull-right mt10lh20" href="#/dashboard">View Notifications</a></div>
+					</li>
+					<li class="dropdown-menu-item">
+						<a class="item-heading" href="#/dashboard"> Notification</a>
 						<!-- <div class="item-content"> You have 1 notification in dashboard<a class="pull-right" href=""></a></div>	 -->			
-					</div>
-				</div>
-			</li><li class="top-menu" ng-show="isLoggedIn"> 
-			<a class="accountsettings" href="#/dashboard" ng-click="sign=0" >@{{userData.name|firstname}}<div class="img-holder"><img ng-src="@{{userData.avatar|avatar}}"></div></a>
-				<div class="list-group dropdown-list-menu">
-					<div class="list-group-item" ng-class="{'nocaret':!islanding}" style=""><a class="clearfix" href="#/jobs/my-applications"><div class="item">Your Jobs</div></a></div>
-					<div class="list-group-item"><a class="clearfix" href="#/profile/edit"><div class="item">Edit Profile</div></a></div>
-					<div class="list-group-item"><a class="clearfix" href=""><div class="item">Invite Friends</div></a></div>
-					<div class="list-group-item"><a class="clearfix" href="" ng-click="logout()"><div class="item">Logout</div></a></div>
-				</div>
+					</li>
+				</ul>
+			</li><li class="top-menu col-md-6" ng-show="isLoggedIn"> <!-- href="#/dashboard" -->
+			<a class="accountsettings dropdown-toggle" data-toggle="dropdown"  >
+				<span class="col-xs-8">@{{userData.name|firstname}}</span>
+				<div class="img-holder col-xs-4"><img ng-src="@{{userData.avatar?userData.avatar:'images/avatar-default.jpg'}}"></div>
+			</a>
+				<ul class="dropdown-menu"><!-- list-group dropdown-list-menu -->
+					<li class="dropdown-menu-item"><a href="#/dashboard">Dashboard</a></li>
+					<li class="dropdown-menu-item" style=""><a href="#/jobs/my-applications">Your Jobs</a></li>
+					<li class="dropdown-menu-item"><a href="#/profile/edit">Edit Profile</a></li>
+					<li class="dropdown-menu-item"><a href="">Invite Friends</a></li>
+					<li class="dropdown-menu-item"><a href="" ng-click="logout()">Logout</a></li>
+				</ul>
 			</li>
 		</ul>
 		</div>
@@ -101,24 +109,24 @@
 
 			<div class="footer-contents">
 				<div class="container">
-					<div class="col-md-4">
-						<a class="logo">CultStage</a>
+					<div class="col-md-4 col-xs-12">
+						<a class="logo"><b>CultStage</b></a>
 						<span></span>
 					</div>
-					<div class="col-md-8">
-						<ul class="f-menu" class="col-md-6">
+					<div class="col-md-8 col-xs-12">
+						<ul class="f-menu" class="col-md-6 col-xs-12">
 							<li><a href="">Terms of Use</a></li>
 							<li><a href="">DCMA notice</a></li>
 							<li><a href="">Privacy Policy</a></li>
 							<li><a href="">Contact Us</a></li>
 						</ul>
-						<ul class="f-menu" class="col-md-6">
+						<ul class="f-menu" class="col-md-6 hidden-xs">
 							<li><a href="">Press Enquiries</a></li>
 							<li><a href="">Business Development</a></li>
 							<li><a href="">Technical Support</a></li>
 							<li><a href="">Investors Section</a></li>
 						</ul>
-						<ul class="f-menu" class="col-md-6">
+						<ul class="f-menu" class="col-md-6 col-xs-12">
 							<li><a href="#/aboutus">About Us</a></li>
 							<li><a href="#/ourmission">Our Mission</a></li>
 							<li><a href="#/advertise">Advertise on CultStage</a></li>

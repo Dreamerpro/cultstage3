@@ -3,7 +3,7 @@
 
 	<div class="content container">
 		<div class="col-md-3">
-    		<job-side-menu></job-side-menu>
+    		<job-side-menu sideMenu="false" ng-class="class"></job-side-menu>
 		</div>
 		<div class="col-md-9" ng-controller="NewJobCtrl as njc" ng-init="njc.init()">
 			<div class="init-message col-md-12" ng-hide="b">You can load details from existing Project .</div>

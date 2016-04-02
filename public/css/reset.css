@@ -8,6 +8,9 @@ a{
 label{
 	color: #565a5c;
 }
+ul, menu, dir{
+	padding: 0;
+}
 @-ms-viewport{
   width: device-width;
 }

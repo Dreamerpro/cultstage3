@@ -27,7 +27,7 @@ angular.module('cultstage')
 		else{return "Search";}
 	}*/
 	$scope.submit=function(){
-//		alert($scope.data);
+
 		if($scope.validate()){
 			console.log($scope.data);
 			$location.path('/search');

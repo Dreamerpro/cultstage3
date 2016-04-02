@@ -1,6 +1,6 @@
-body{
+/*body{
 	min-width: 700px !Important;
-}
+}*/
 .site-content{
 	display: block;
 	width: 100%;
@@ -525,11 +525,12 @@ section.home-bottom{
 	background-color: #eee;
 }
 .welcome-div{
-	height: 310;
+	min-height: 310;
 }
 .welcome-div>.panel-body{
-	height: 248px;
+	min-height: 248px;
 	border-radius: 4px;
+	height: auto;
 }
 .connect{
 	background-color: green;
@@ -603,4 +604,9 @@ p.paragraph>.tab{
 .slider{
 	max-height: 400px;
     overflow-y: auto;
+}
+
+
+.nav-bar>ul::-webkit-scrollbar{
+	width: 0px;
 }

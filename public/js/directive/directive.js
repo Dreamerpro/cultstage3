@@ -1,4 +1,16 @@
 angular.module('cultstage')
+.directive('sideMenu', function () {
+	return {
+		restrict:'A',
+		controller:function ($scope, $attrs, $elem) {
+			$scope.class="hidden-xs";
+			$scope.$watch($attrs.sideMenu,function (va) {
+				if(va){$scope.class="show-xs";}
+				else{$scope.class="hidden-xs";}
+			})
+		}
+	}
+})
 .directive('topNav', function(){
 	return {
 		restrict:'E',
