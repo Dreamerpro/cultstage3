@@ -32,8 +32,18 @@ ul, menu, dir{
 
 @media(max-width: 768px){
 	.container{
-	width:100% !important;
-}
+		width:100% !important;
+	}
+	.custom-vxs{
+		position: fixed !important;
+		top: 61px;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: #fff;
+		z-index: 9;
+	}
+
 }
 .jumbotron{
 	padding-top: 10px !important;
@@ -248,3 +258,4 @@ background-color: #eee;
 	border: 0 !important;
 	/*z-index: -100;*/
 }
+

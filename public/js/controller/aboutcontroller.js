@@ -1,8 +1,10 @@
 angular.module('cultstage')
-.controller('ProfileAboutCtrl', function  ($http, $location) {
+.controller('ProfileAboutCtrl', function  ($http, $location,UserService) {
 	// body...
 	var _self=this;
 	this.about={};
+	this.avatar=UserService.get().avatar;
+
 
 	this.init=function () {
 		_self.getUserData();

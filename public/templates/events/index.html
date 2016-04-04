@@ -2,7 +2,7 @@
 <top-nav></top-nav>
 
 	<div class="content container" ng-controller="MyEvents as m"  >
-	<div class="col-md-3 filter " ng-init="filter_b=false">
+	<div class="col-md-3 filter {{sideMenuClass}}" ng-init="filter_b=false">
 		<div class="list-group sub-menu" ng-controller="subRouteController">
 			<div class="list-group-item" ng-class="{'active-b':issma(0)}">
 				<a href="#/events/interested">Interested Events</a>

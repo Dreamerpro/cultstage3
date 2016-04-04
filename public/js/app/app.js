@@ -116,6 +116,12 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 		};
 	}
 
+	$rootScope.sideMenuClass="hidden-xs";
+	$rootScope.toggleSM=function () {
+		if($rootScope.sideMenuClass=="hidden-xs"){$rootScope.sideMenuClass="custom-vxs";}
+		else{$rootScope.sideMenuClass="hidden-xs";}
+		
+	}	
 
 	$rootScope.$on('$locationChangeSuccess', function(event){
         var url = $location.url()/*,
@@ -124,6 +130,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
         	$rootScope.islanding=true;
         }
         else{
+        	$rootScope.toggleSM();
         	$rootScope.islanding=false;
         
         	for(var r=0 ;r<$rootScope.routes.length;r++){

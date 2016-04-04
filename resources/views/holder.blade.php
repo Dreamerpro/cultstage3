@@ -51,7 +51,7 @@
 <body >
 	<sign-modal></sign-modal>
 	<div ng-class="{'th':islanding}" class="header-bar clearfix">
-		<div class="navicon-div @{{!islanding?'visible-xs':'hidden'}} "><i class="fa fa-navicon"></i></div>
+		<div class="navicon-div @{{!islanding?'visible-xs':'hidden'}} " ng-click="toggleSM()"><i class="fa fa-navicon"></i></div>
 		<a href="#/" ><i class="fa fa-modx"></i> CultStage</a>
 		<div ng-hide="islanding" class="search-bar-top col-md-4 col-xs-12 col-sm-12 hidden-sm hidden-xs">
 			<div class="form-group has-feedback "><i class="fa fa-search form-control-feedback pull-left"></i> 

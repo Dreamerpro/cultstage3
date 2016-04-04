@@ -4,6 +4,8 @@ angular.module('cultstage')
 	this.posts=[];
 	this.postbody="";
 	this.flash="";
+	this.avatar=UserService.get().avatar;
+	
 	this.init=function () {
 		$http.get('/myposts')
 		.success(function (argument) {
