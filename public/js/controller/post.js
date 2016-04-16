@@ -3,9 +3,7 @@ angular.module('cultstage')
 	var _self=this;
 	this.posts=[];
 	this.postbody="";
-	this.flash="";
-	this.avatar=UserService.get().avatar;
-	
+
 	this.init=function () {
 		$http.get('/myposts')
 		.success(function (argument) {
@@ -25,7 +23,7 @@ angular.module('cultstage')
 				_self.postbody="";
 			})
 			.error(function (argument) {
-				
+
 			})
 		}
 		else{
