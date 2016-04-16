@@ -3,7 +3,7 @@ angular.module('cultstage')
 	return {
 		isValid:function(data,isSignup){
 			if(data.password===undefined || data.password.length<6 || data.email==undefined || data.email.length<1){
-				console.log(data.password);	
+				console.log(data.password);
 				return false;
 			}
 			if(isSignup===true && data.name.length<1){
@@ -39,7 +39,7 @@ angular.module('cultstage')
 			return $cookies.get(key);
 		},
 		unset:function(key){
-			return $cookies.remove(key, { path: '/' ,domain: '.www.cultstage.com'});
+			return $cookies.remove(key);//, { path: '/' ,domain: '.www.cultstage.com'}
 		},
 		clearuser:function(){
 			return $cookies.remove('authenticated', { path: '/' });
@@ -92,7 +92,7 @@ angular.module('cultstage')
 			$location.path('/');
 			return prom;
 		},
-		isloggedin:function(){
+			isloggedin:function(){
 			return CookieService.get('authenticated');
 		}
 

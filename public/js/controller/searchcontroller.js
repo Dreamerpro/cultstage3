@@ -14,7 +14,10 @@ angular.module('cultstage')
 			console.log(msg);
 		})
 	}
-
+	this.psub=function(roles,languages) {
+		var out=languages.length?languages.join(","):"";
+		return out+roles.join(",");
+	}
 	this.apply_filter=function(filteroption){
 		//console.log(filteroption);
 		//$location.search($.param(filteroption));
@@ -41,6 +44,6 @@ angular.module('cultstage')
 		else{
 			alert('You need to log in first!')
 		}
-		
+
 	}
 })

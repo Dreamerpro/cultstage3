@@ -6,7 +6,7 @@
     		<job-side-menu></job-side-menu>
 		</div>
 		<div class="col-md-9">
-			
+
 			<div class="clearfix mb-40"  >
 				<input class="btn btn-red pull-right" ng-click="npc.toggleadd()" ng-show="!npc.add" value="Add" type="button">
 				<input class="btn btn-red pull-right" ng-click="npc.toggleadd()" ng-show="npc.add" value="Cancel" type="button">
@@ -45,7 +45,7 @@
 							<button class="btn btn-host">Upload</button> -->
 							<br>
 <img
-  ngf-src="npc.file" 
+  ngf-src="npc.file"
   ngf-resize="{width: 150, height: 150, quality: 0.9}"
   ngf-no-object-url="true"
 >
@@ -87,16 +87,16 @@
 
 				<hr>
 			</div>
-			
 
 
+			<div ng-if="npc.myprojects.length<1"><br><h4 class="text-info text-center">You have no projects.</h4></div>
 			<div class="result-item col-md-4" ng-repeat="a in npc.myprojects track by $index" ng-show="!npc.add">
 				<div class="holder">
 					<div class="img-container events"><img ng-src="asset/image/3/{{a.image}}"></img></div>
 					<div class="details">
 						<p>{{a.projectstatus.name}} | {{a.project_types[0].name}} | {{a.languages[0].language}}</p>
 						<h4 class="name">{{a.name}}</h4>
-						
+
 					</div>
 					<div class="item-footer">
 						<div class="col-md-6 btn btn-host">View</div>

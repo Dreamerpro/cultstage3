@@ -21,11 +21,11 @@ class CultstageAuthController extends Controller
     	else{
     		return \Response::json(['msg'=>'Invalid credentials'],500);
     	}
-    	
+
     }
 /*    public function logout()
     {
-    	
+
     }
     public function register()
     {

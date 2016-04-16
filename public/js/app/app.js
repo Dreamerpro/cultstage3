@@ -1,4 +1,4 @@
-angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize', 'ui.select','ngCookies'])
+angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize', 'ui.select','ngCookies','ui-notification'])
 .config(['$routeProvider', function($routeProvider) {
 	$tu="templates/";
 	$routeProvider
@@ -10,7 +10,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	.when("/teach", { templateUrl:$tu+'teach/index.html'})
 
 	.when("/dashboard", { templateUrl:$tu+'dashboard/index.html'})
-	
+
 	.when("/message", { redirectTo:"message/inbox"})
 	.when("/message/compose", { templateUrl:$tu+'message/compose.html'})
 	.when("/message/inbox", { templateUrl:$tu+'message/inbox.html'})
@@ -18,16 +18,16 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	.when("/message/sent", { templateUrl:$tu+'message/sent.html'})
 	.when("/message/inbox/:uuid", { templateUrl:$tu+'message/msg-view.html'})
 	.when("/message/sent/:uuid", { templateUrl:$tu+'message/msg-view.html'})
-	
+
 	.when("/jobs", { redirectTo:'/jobs/my-applications'})
 	.when("/jobs/my-applications", { templateUrl:$tu+'jobs/applications.html'})
 	.when("/jobs/my-job-postings", { templateUrl:$tu+'jobs/my-job-postings.html'})
 	.when("/jobs/new-job", { templateUrl:$tu+'jobs/new-job.html'})
 	.when("/jobs/my-projects", { templateUrl:$tu+'jobs/my-projects.html'})
-	
+
 	.when("/people", { redirectTo:"people/connected" })
 	.when("/people/connected", { templateUrl:$tu+'people/index.html'})
-	
+
 	.when("/events", { redirectTo:"events/interested"})
 	.when("/events/interested", { templateUrl:$tu+'events/index.html'})
 	.when("/events/my-events", { templateUrl:$tu+'events/my-events.html'})
@@ -55,6 +55,17 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	})
 	;
 }])
+.config(function(NotificationProvider) {
+        NotificationProvider.setOptions({
+            delay: 4000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'center',
+            positionY: 'top'
+  			})
+})
 .config(function($provide) {
     // this demonstrates how to register a new tool and add it to the default toolbar
     $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions) { // $delegate is the taOptions we are decorating
@@ -81,7 +92,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
         return taOptions;
     }]);
 })
-.run(function($rootScope, $location, AuthService,UserService){
+.run(function($rootScope, $location, AuthService,UserService,Notification){
 	$rootScope.loggedin=false;
 	$rootScope.data={
 					query:"",
@@ -91,7 +102,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	$rootScope.activeM=-1;
 	$rootScope.activeSM=-1;
 
-	$rootScope.routes=['/home/',"/dashboard","/people","/events","/jobs","/message","/profile","aboutus","ourmission","advertise","contactus"];	
+	$rootScope.routes=['/home/',"/dashboard","/people","/events","/jobs","/message","/profile","aboutus","ourmission","advertise","contactus"];
 	$rootScope.subRoutes=[
 					["jobs/my-applications","events/interested","/message/compose","/people/connected","/profile/about"],
 					["events/my-events","/jobs/my-job-postings","/message/inbox",,"/profile/posts"],
@@ -100,7 +111,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 					["/profile/audio"],
 					["/profile/script-works"]
 					];
-	
+
 	$rootScope.findSubRoute=function(){
     	var found=false;
 		for (var i = $rootScope.subRoutes.length - 1; i >= 0; i--) {
@@ -108,20 +119,20 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 				if($location.path().indexOf($rootScope.subRoutes[i][j])>-1){
 					$rootScope.SM=i;
 					console.log(i);
-					var found=true;	
-					break;	
+					var found=true;
+					break;
 				}
 			}
 			if(found){break;}
 		};
 	}
 
-	$rootScope.sideMenuClass="hidden-xs";
-	$rootScope.toggleSM=function () {
-		if($rootScope.sideMenuClass=="hidden-xs"){$rootScope.sideMenuClass="custom-vxs";}
-		else{$rootScope.sideMenuClass="hidden-xs";}
-		
-	}	
+	// $rootScope.sideMenuClass="hidden-xs";
+	// $rootScope.toggleSM=function () {
+	// 	if($rootScope.sideMenuClass=="hidden-xs"){$rootScope.sideMenuClass="custom-vxs";}
+	// 	else{$rootScope.sideMenuClass="hidden-xs";}
+	//
+	// }
 
 	$rootScope.$on('$locationChangeSuccess', function(event){
         var url = $location.url()/*,
@@ -130,19 +141,26 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
         	$rootScope.islanding=true;
         }
         else{
-        	$rootScope.toggleSM();
-        	$rootScope.islanding=false;
-        
-        	for(var r=0 ;r<$rootScope.routes.length;r++){
-        		if($location.path().indexOf($rootScope.routes[r])>-1){
-        			$rootScope.activeM=r; 
-        			$rootScope.findSubRoute();
-        			break;
-        		}
-        		else{
-        			if(r==$rootScope.routes.length-1) $rootScope.activeM=-1;
-        		}
-        	}
+					if((_.contains(_.flatten($rootScope.subRoutes),url) || url=="/dashboard") && !AuthService.isloggedin()){
+
+							$location.path("/");
+							Notification.error({message: 'You must log in first.', replaceMessage: true});
+					}
+					else{
+							$rootScope.islanding=false;
+
+							for(var r=0 ;r<$rootScope.routes.length;r++){
+								if($location.path().indexOf($rootScope.routes[r])>-1){
+									$rootScope.activeM=r;
+									$rootScope.findSubRoute();
+									break;
+								}
+								else{
+									if(r==$rootScope.routes.length-1) $rootScope.activeM=-1;
+								}
+							}
+					}
+
         }
 	});
 	$rootScope.updateUserStatus=function(){
@@ -150,15 +168,15 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 		if($rootScope.isLoggedIn){ $rootScope.userData=UserService.get(); }
 		else{$rootScope.userData==null;}
 	}
-	$rootScope.updateUserStatus();	
-	
+	$rootScope.updateUserStatus();
+
 	$rootScope.logout=function () {
 		AuthService.logout().success(function () {
 			$location.path('/');
 			$location.search({});
 			console.log($rootScope.isLoggedIn);
 		})
-		
+
 	}
 
 	$rootScope.showcats=function () {

@@ -34,7 +34,7 @@ ul, menu, dir{
 	.container{
 		width:100% !important;
 	}
-	.custom-vxs{
+	/*.custom-vxs{
 		position: fixed !important;
 		top: 61px;
 		right: 0;
@@ -42,7 +42,7 @@ ul, menu, dir{
 		left: 0;
 		background: #fff;
 		z-index: 9;
-	}
+	}*/
 
 }
 .jumbotron{
@@ -93,11 +93,11 @@ body{
 .img-thumbnail{
 	width: 100%;
 }
-textarea:hover, 
-input:hover, 
-textarea:active, 
-input:active, 
-textarea:focus, 
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
 input:focus,
 button:focus,
 button:active,
@@ -129,7 +129,7 @@ input:disabled{
     font-weight: bold !important;
 }
 .btn-host:hover{
-	background-color:#128D9A;	
+	background-color:#128D9A;
 }
 .btn-red{
 	color: #fff !important;
@@ -185,13 +185,13 @@ input:disabled{
 }
 .item-footer>span>i{
 	font-size: 14px;
-	margin-left: 2px;	
+	margin-left: 2px;
 }
 .item-footer>a{
 	padding: 4px 8px;
 	background-color: #43435A;
     color: #fff;
-    margin-right: 2px;	
+    margin-right: 2px;
 }
 .item-footer>a:last-child{
 	background-color: green;
@@ -258,4 +258,3 @@ background-color: #eee;
 	border: 0 !important;
 	/*z-index: -100;*/
 }
-

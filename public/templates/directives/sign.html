@@ -6,7 +6,7 @@
         	<div class="col-md-4 col-xs-6" ng-click="sign=1" ng-class="{'active':sign}">Sign In</div>
         </div>
       <div class="modal-body">
-        
+
         <div class="sign-form-container" ng-controller="AuthController">
         	<form class="sign-up" ng-show="!sign" name="signupform" novalidate>
         		<div class="form-group" >
@@ -16,7 +16,7 @@
         				<span ng-show="signupform.name.$error.required">Name is required!</span>
         				<span ng-show="signupform.name.$error.minlength">Name is too short!</span>
         			</span>
-        	
+
         		</div>
         		<div class="form-group">
         			<label>Email</label>
@@ -36,7 +36,7 @@
         		</div>
         		<input class="btn btn-red" type="submit" ng-disabled="signupform.name.$dirty && signupform.name.$invalid || signupform.email.$dirty && signupform.email.$invalid || signupform.password.$dirty && signupform.password.$error.minlength" ng-click="submit().signUp()"></input>&nbsp;<span class="error-msg" ng-show="error.up">{{error.up}}</span>
         	</form>
-        	
+
         	<form class="sign-in" name="signinform" ng-show="sign" novalidate>
         		<div class="form-group">
         			<label>Email</label>

@@ -31,7 +31,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/send-entry', function () {
 	    return view('entry');
 	});
-	Route::get('/user' , function(){ 
+	Route::get('/user' , function(){
 		return \Auth::user();
 	});
 	Route::get('/userdetails/{id}', 'ProfileController@getdetails');
@@ -41,16 +41,18 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/availableeventtypes/', 'Data\RawDataController@getavailableeventtypes');
 	Route::get('/availableproductionstages/', 'Data\RawDataController@getavailableproductionstages');
 	Route::get('/availableprojecttypes/', 'Data\RawDataController@getavailableprojecttypes');
-	
+
 
 Route::group(['middleware'=>'auth'], function(){
 		Route::get('/get/profiledetails', 'ProfileController@getdetails');
 		Route::post('/post/profiledetails', 'ProfileController@savedetails');
 		Route::get('/connectedpeople', 'ProfileController@getconnectedpeople');
 		Route::post('/filteredconnectedpeople', 'ProfileController@getfilteredconnectedpeople');
-		
+
 		Route::post('/uploadeventimage/', 'Data\ImageController@uploadeventimage');
 		Route::post('/uploadprojectimage/', 'Data\ImageController@uploadprojectimage');
+    Route::post('/upload/profileimage', 'Data\ImageController@uploadprofileimage');
+
 		Route::post('/postnewevent/', 'EventController@postnewevent');
 		Route::get('/bookmarkedevents/', 'EventController@getbookmarkedevents');
 		Route::get('/postedevents/', 'EventController@getpostedevents');
@@ -72,7 +74,7 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::get('/get_sent', 'MessageController@get_sent');
 		Route::get('/get_msg/{uuid}', 'MessageController@get_msg');
 		Route::post('/delete_msg', 'MessageController@del_msg');
-		
+
 		/*POSTS*/
 		Route::get('/myposts', 'PostController@getmyposts');
 		Route::get('/delete_post/{uuid}', 'PostController@delete');
@@ -83,7 +85,7 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::get('/acceptconnect/{id}', 'ProfileController@acceptconnect');
 		Route::get('/get_connect_requests', 'ProfileController@connect_requests');
 });
-	
+
 	Route::get('asset/image/{type}/{file}','Data\ImageController@getimage');
 	Route::post('/search/{query}/{category}', 'SearchController@search');
 

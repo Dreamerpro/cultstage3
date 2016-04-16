@@ -2,22 +2,22 @@
 <top-nav></top-nav>
 
 	<div class="content container" ng-controller="MyEvents as m"  >
-	<div class="col-md-3 filter {{sideMenuClass}}" ng-init="filter_b=false">
+	<div class="col-md-3 filter custom-vxs" ng-init="filter_b=false">
 		<div class="list-group sub-menu" ng-controller="subRouteController">
 			<div class="list-group-item" ng-class="{'active-b':issma(0)}">
 				<a href="#/events/interested">Interested Events</a>
-				<!-- <i class="fa fa-sliders pull-right" ng-click="filter_b=!filter_b"></i> --> 
+				<!-- <i class="fa fa-sliders pull-right" ng-click="filter_b=!filter_b"></i> -->
 			</div>
-			
+
 			<div class="pad10" ng-show="filter_b">
 
 <form ng-controller="ContentCtrl">
-	
+
 
 	<div class="form-group">
 		<label>Type</label><br>
 		<span class="fs" ng-repeat="l in filter_option.types" ng-click="removefilter(0,l,2)">{{l}} <i class="fa fa-times"></i></span>
-		
+
 		<input class="form-control" type="text" placeholder="Any Type" name="types" ng-model="type" ng-focus="bool[0]=true" ng-blur="bool[0]=false"></input>
 		<div class="list-group suggestion-list col-md-10" ng-show="bool[0]">
 				<div class="list-group-item " ng-repeat="x in data.types[2]|orderBy:'toString()'|filter:type" ng-mousedown="addfilter(0,x,2)">{{x}}</div>
@@ -35,28 +35,29 @@
 	<div class="form-group">
 		<label>Language</label><br>
 		<span class="fs" ng-repeat="l in filter_option.languages" ng-click="removefilter(2,l,2)">{{l}} <i class="fa fa-times"></i></span>
-		
+
 		<input class="form-control" type="text" placeholder="All Language" name="languages" ng-model="language" ng-focus="bool[2]=true" ng-blur="bool[2]=false"></input>
 		<div class="list-group suggestion-list col-md-10" ng-show="bool[2]">
 				<div class="list-group-item " ng-repeat="x in data.languages |orderBy:'toString()'|filter:language" ng-mousedown="addfilter(2,x,2)">{{x}}</div>
 		</div>
 	</div>
 	<div class="btn btn-red" ng-click="reset_filter(2)">Clear</div>
-	
+
 
 </form>
 
 
-					
+
 			</div>
 
 			<div class="list-group-item" ng-class="{'active-b':issma(1)}"><a href="#/events/my-events">Posted Events</a></div>
 			<div class="list-group-item" ng-class="{'active-b':issma(2)}"><a href="#/events/post-new">Post New Event</a></div>
 		</div>
-			
+
 		</div>
 
 		<div class="col-md-9" ng-controller="MyEvents as m" ng-init="m.init(1)" ><!--  -->
+			<div ng-if="m.events.length<1"> <br><h4 class="text-info text-center">No events to show.</h4>    </div>
 		<div class="result-item col-md-4 col-xs-12" ng-repeat="x in m.events track by $index"><!-- |object_filter:filter_option -->
 				<div class="holder">
 					<div class="item-location">{{x.locations.join(",")}}</div>

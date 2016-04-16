@@ -3,20 +3,21 @@
 
 	<div class="content container" ng-controller="MyEvents as m">
 	<div class="col-md-3 filter ">
-		<div class="list-group sub-menu" ng-controller="subRouteController">
+		<div class="list-group sub-menu custom-vxs" ng-controller="subRouteController">
 			<div class="list-group-item" ng-class="{'active-b':issma(0)}">
 				<a href="#/events/interested">Interested Events</a>
 				<!-- <i class="fa fa-sliders pull-right" ng-disabled=true></i>  --></div>
-			
+
 			<div class="list-group-item" ng-class="{'active-b':issma(1)}"><a href="#/events/my-events">Posted Events</a></div>
-			
+
 			<div class="list-group-item" ng-class="{'active-b':issma(2)}"><a href="#/events/post-new">Post New Event</a></div>
 		</div>
-				
+
 	</div>
-			
-	
+
+
 	<div class="col-md-9"  ng-init="m.init(2)"><!--  -->
+    <div ng-if="m.events.length<1"> <br><h4 class="text-info text-center">No events to show.</h4>    </div>
 		<div class="result-item col-md-4 col-xs-12" ng-repeat="x in m.events track by $index"><!-- |object_filter:filter_option -->
 				<div class="holder">
 					<div class="item-location">{{x.locations.join(",")}}</div>
@@ -37,5 +38,5 @@
 		</div>
 	</div>
 	</div>
-	
+
 </div>

@@ -15,15 +15,15 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<!-- <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'> -->
-	
+
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib/angular.min.js"></script>
 	<script type="text/javascript" src="js/lib/angular.route.min.js"></script>
 	<script type="text/javascript" src="js/lib/underscore.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
 	<script src='/bower_components/angular-cookies/angular-cookies.min.js'></script>
-	
-	
+
+
 
 	<script type="text/javascript" src="js/app/app.js"></script>
 	<script type="text/javascript" src="js/controller/controller.js"></script>
@@ -40,6 +40,7 @@
 	<script type="text/javascript" src="js/controller/compose.js"></script>
 	<script type="text/javascript" src="js/controller/post.js"></script>
 	<script type="text/javascript" src="js/controller/searchcontroller.js"></script>
+	<script type="text/javascript" src="js/controller/profilecoverctrl.js"></script>
 	<!--script type="text/javascript" src="js/controller/sent.js"></script>
 	<script type="text/javascript" src="js/controller/inbox.js"></script-->
 
@@ -51,16 +52,16 @@
 <body >
 	<sign-modal></sign-modal>
 	<div ng-class="{'th':islanding}" class="header-bar clearfix">
-		<div class="navicon-div @{{!islanding?'visible-xs':'hidden'}} " ng-click="toggleSM()"><i class="fa fa-navicon"></i></div>
+		<!-- <div class="navicon-div @{{!islanding?'visible-xs':'hidden'}} " ng-click="toggleSM()"><i class="fa fa-navicon"></i></div> -->
 		<a href="#/" ><i class="fa fa-modx"></i> CultStage</a>
 		<div ng-hide="islanding" class="search-bar-top col-md-4 col-xs-12 col-sm-12 hidden-sm hidden-xs">
-			<div class="form-group has-feedback "><i class="fa fa-search form-control-feedback pull-left"></i> 
-				<input 
-				class="form-control" 
-				ng-model="data.query" 
-				type="text" 
-				placeholder="What are you searching?" 
-				ng-change="showcats()"></input> 
+			<div class="form-group has-feedback "><i class="fa fa-search form-control-feedback pull-left"></i>
+				<input
+				class="form-control"
+				ng-model="data.query"
+				type="text"
+				placeholder="What are you searching?"
+				ng-change="showcats()"></input>
 				<div class="categories list-group" style="position: fixed;z-index: 10;min-width: 400px;" ng-show="showcat">
 					<a style="border-radius: 0;" class="list-group-item" ng-click="search(0)">Job</a>
 					<a style="border-radius: 0;" class="list-group-item" ng-click="search(1)">Poeple</a>
@@ -68,11 +69,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="pull-right">
+		<div class="menu-right">
 		<!-- <a href="#/jobs/new-job" class="post-header-btn hidden-xs">Post a Job</a> -->
-		<ul class="hidden-xs header-menu-bar pull-right">
+		<ul class="header-menu-bar pull-right">
 			<li ng-hide="isLoggedIn"> <a href="" data-toggle="modal" data-target="#sign-modal" ng-click="sign=0" >Sign Up</a></li><li ng-hide="isLoggedIn"><a href="" data-toggle="modal" data-target="#sign-modal" ng-click="sign=1" >Log In</a></li>
-			<li ng-show="isLoggedIn" class="top-msg col-md-6" ><a class="dropdown-toggle" data-toggle="dropdown"><span class="col-xs-8">Messages</span> <i class="fa fa-inbox col-xs-4"></i></a>
+			<li ng-show="isLoggedIn" class="top-msg col-md-6 hidden-xs " ><a class="dropdown-toggle" data-toggle="dropdown"><span class="col-xs-8">Messages</span> <i class="fa fa-inbox col-xs-4"></i></a>
 				<ul class="dropdown-menu">
 					<li class="dropdown-menu-item" ng-class="{'nocaret':!islanding}">
 						<a class="item-heading " href="#/message/inbox">Inbox (0)</a>
@@ -80,17 +81,17 @@
 					</li>
 					<li class="dropdown-menu-item">
 						<a class="item-heading" href="#/dashboard"> Notification</a>
-						<!-- <div class="item-content"> You have 1 notification in dashboard<a class="pull-right" href=""></a></div>	 -->			
+						<!-- <div class="item-content"> You have 1 notification in dashboard<a class="pull-right" href=""></a></div>	 -->
 					</li>
 				</ul>
 			</li><li class="top-menu col-md-6" ng-show="isLoggedIn"> <!-- href="#/dashboard" -->
-			<a class="accountsettings dropdown-toggle" data-toggle="dropdown"  >
-				<span class="col-xs-8">@{{userData.name|firstname}}</span>
-				<div class="img-holder col-xs-4"><img ng-src="@{{userData.avatar?userData.avatar:'images/avatar-default.jpg'}}"></div>
+			<a class="accountsettings dropdown-toggle" data-toggle="dropdown" >
+				<span class="col-xs-8">@{{userData.name | firstname}}</span>
+				<div class="img-holder col-xs-4"><img ng-src="@{{userData.avatar || 'images/avatar-default.jpg'}}"></div>
 			</a>
 				<ul class="dropdown-menu"><!-- list-group dropdown-list-menu -->
 					<li class="dropdown-menu-item"><a href="#/dashboard">Dashboard</a></li>
-					<li class="dropdown-menu-item" style=""><a href="#/jobs/my-applications">Your Jobs</a></li>
+					<li class="dropdown-menu-item"><a href="#/jobs/my-applications">Your Jobs</a></li>
 					<li class="dropdown-menu-item"><a href="#/profile/edit">Edit Profile</a></li>
 					<li class="dropdown-menu-item"><a href="">Invite Friends</a></li>
 					<li class="dropdown-menu-item"><a href="" ng-click="logout()">Logout</a></li>
@@ -100,11 +101,11 @@
 		</div>
 	</div>
 
-	
+
 	<div ng-view >
 
 	</div>
-	
+
 	<footer>
 
 			<div class="footer-contents">
@@ -146,9 +147,9 @@
 				 	<div><a href="" class="fa fa-instagram"></a> </div>
 				 </div>
 				</div>
-				 
+
 			</div>
-		
+
 	</footer>
 
 </body>
@@ -158,7 +159,9 @@
 	<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
 	<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
 	<script src='/bower_components/ui-select/dist/select.js'></script>
-	
+	<script src='/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js'></script>
+
+	<link rel='stylesheet' href='/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css'>
 	<link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
 	<link rel='stylesheet' href='/bower_components/ui-select/dist/select.css'>
 

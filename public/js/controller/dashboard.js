@@ -3,7 +3,7 @@ angular.module('cultstage')
 	// body...
 	var _self=this;
 	this.dashboard={};
-	
+
 
 	this.init=function () {
 		_self.getUserData();
@@ -16,9 +16,8 @@ angular.module('cultstage')
 				return _self.dashboard.datauser=data.data;
 			},
 			function(err){
-				alert(err.data.msg);
 	/*			SessionService.clearuser();
-				$rootScope.updateUserStatus();*/	
+				$rootScope.updateUserStatus();*/
 				$location.path('/');
 			}
 		)
@@ -26,11 +25,10 @@ angular.module('cultstage')
 	this.getconnectionrequests=function () {
 		$http.get('/get_connect_requests')
 		.success(function (argument) {
-			console.log(argument);
 			_self.dashboard.connectionrequest=argument;
 		})
 		.error(function (argument) {
-			console.log(argument);
+			//console.log(argument);
 		})
 	}
 

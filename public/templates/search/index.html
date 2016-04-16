@@ -6,7 +6,7 @@
 			<div class="list-group sub-menu" ng-controller="subRouteController">
 				<div class="list-group-item" ng-class="{'active-b':issma(0)}"><a><b>Filter</b></a></div>
 				<div class="pad10" >
-	
+
 <div class="filter-events" ng-if="pc.query.category==2">
 		<div class="form-group">
 			<label>Type</label><br>
@@ -30,7 +30,7 @@
 	<div class="form-group">
 		<label>Language</label><br>
 		<span class="fs" ng-repeat="l in filter_option.languages" ng-click="removefilter(2,l,2)">{{l.language}} <i class="fa fa-times"></i></span>
-		
+
 		<input class="form-control" type="text" placeholder="All Language" name="languages" ng-model="language" ng-focus="bool[2]=true" ng-blur="bool[2]=false"></input>
 		<div class="list-group suggestion-list col-md-10" ng-show="bool[2]">
 				<div class="list-group-item " ng-repeat="x in data.languages |orderBy:'toString()'|filter:language" ng-mousedown="addfilter(2,x,2)">{{x.language}}</div>
@@ -39,18 +39,18 @@
 	<div class="btn btn-red" ng-click="reset_filter(2)">Clear</div>
 	<div class="btn btn-red" ng-click="pc.apply_filter(filter_option)">Apply</div>
 
-</div>				
-	
+</div>
+
 
 
 
 					<form ng-if="pc.query.category==1">
-	
+
 
 	<div class="form-group">
 		<label>Category</label><br>
 		<span class="fs" ng-repeat="l in filter_option.roles" ng-click="removefilter(0,l,1)">{{l.name}} <i class="fa fa-times"></i></span>
-		
+
 		<input class="form-control" type="text" placeholder="Any Role" ng-model="type" ng-focus="bool[0]=true" ng-blur="bool[0]=false"></input>
 		<div class="list-group suggestion-list col-md-10" ng-show="bool[0]">
 			<div class="list-group-item" ng-repeat="x in data.roles | filter:type " ng-mousedown="addfilter(0,x,1)">{{x.name}}</div>
@@ -68,7 +68,7 @@
 	<div class="form-group">
 		<label>Language</label><br>
 		<span class="fs" ng-repeat="l in filter_option.languages track by $index" ng-click="removefilter(2,l,1)">{{l.language}} <i class="fa fa-times"></i></span>
-		
+
 		<input class="form-control" type="text" placeholder="All Language" ng-model="language" ng-focus="bool[2]=true" ng-blur="bool[2]=false"></input>
 		<div class="list-group suggestion-list col-md-10" ng-show="bool[2]">
 				<div class="list-group-item" ng-repeat="x in data.languages | orderBy:'toString()'|filter:language" ng-mousedown="addfilter(2,x,1)">{{x.language}}</div>
@@ -76,15 +76,15 @@
 	</div>
 	<div class="btn btn-white" ng-click="reset_filter(1);pc.apply_filter(filter_option)">Clear</div>
 	<div class="btn btn-red" ng-click="pc.apply_filter(filter_option)">Apply</div>
-	
+
 
 					</form>
-					
-				
+
+
 				</div>
 				<!-- <div class="list-group-item"></div> -->
 			</div>
-			
+
 		</div>
 		<div class="col-md-9 result-content clearfix">
 			<div  ng-if="pc.query.category==1" class="result-item col-md-4" ng-repeat="result in pc.results track by $index"><!-- | object_filter:filter_option -->
@@ -121,7 +121,7 @@
 							<div class="col-md-6 btn btn-green">Join</div> -->
 						</div>
 					</div>
-			
+
 			</div>
 
 			<div  ng-if="pc.query.category==0" class="result-item col-md-4" ng-repeat="result in pc.results track by $index"><!-- | object_filter:filter_option -->
@@ -129,7 +129,7 @@
 					<div class="item-location">{{result.locations.join(",")}}</div>
 					<div class="img-container people"><img ng-src="{{result.avatar?result.avatar:'images/avatar-default.jpg'}}"></img></div>
 					<div class="details">
-						<p><span>{{result.languages.names.join(',')}}</span>|<span>{{result.roles.names.join(',')}}</span></p>
+						<p><span>{{result.languages.names.join(',')}}</span><span>{{result.roles.names.join(',')}}</span></p>
 						<h4 class="event-name">{{result.name}} <small>({{result.totalconnections}} connections)</small></h4>
 						<p>{{result.details}}</p>
 					</div>

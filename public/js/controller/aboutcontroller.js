@@ -3,7 +3,7 @@ angular.module('cultstage')
 	// body...
 	var _self=this;
 	this.about={};
-	this.avatar=UserService.get().avatar;
+	// this.avatar=UserService.get().avatar;
 
 
 	this.init=function () {
@@ -14,7 +14,7 @@ angular.module('cultstage')
 		.then(
 			function(data){
 				data.data.languages=_self.collectLanguageNames(data.data.languages);
-				
+
 				data.data.roles=_self.collectRoleNames(data.data.roles);
 				data.data.locations=_self.collectLocationNames(data.data.locations);
 				return _self.about=data.data;
@@ -22,28 +22,28 @@ angular.module('cultstage')
 			function(err){
 				alert(err.data.msg);
 	/*			SessionService.clearuser();
-				$rootScope.updateUserStatus();*/	
+				$rootScope.updateUserStatus();*/
 				$location.path('/');
 			}
 		)
 	}
 	//in db location and language can be renamed to name
 	this.collectLocationNames=function (data) {
-		var out=[];	
+		var out=[];
 		for (var i = data.length - 1; i >= 0; i--) {
 			out.push(data[i].location);
 		}
 		return out.join(', ');
 	}
 	this.collectLanguageNames=function (data) {
-		var out=[];	
+		var out=[];
 		for (var i = data.length - 1; i >= 0; i--) {
 			out.push(data[i].language);
 		}
 		return out.join(', ');
 	}
 	this.collectRoleNames=function (data) {
-		var out=[];	
+		var out=[];
 		for (var i = data.length - 1; i >= 0; i--) {
 			out.push(data[i].name);
 		}

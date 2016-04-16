@@ -56,7 +56,7 @@
 .ss>div>i{
 	margin-right: 5px;
 	font-size: 15px;
-	
+
 }
 .ss>div>span{
 	display: inline-block;
@@ -119,7 +119,7 @@
 	background-color: #ddd;
 }
 
-    
+
 .search-bar>form>.form-group>.fa-caret-down{
 	position: absolute;
     right: 8;
@@ -203,7 +203,7 @@ section.home-bottom{
     width: 100%;
     padding-top: 40px;
     padding-bottom: 40px;
-    
+
 }
 .home-bottom>.container{
 	min-height: 245px;
@@ -297,7 +297,7 @@ section.home-bottom{
 	background-color: #eee;
 }
 .event-attendee>.list-group-item>a>img{
-   width: 50px	
+   width: 50px
 }
 .interested-btn,.invite-btn{
 	position: absolute;
@@ -318,6 +318,7 @@ section.home-bottom{
 .sub-menu>div.list-group-item{
 	padding: 0 !important
 }
+
 .sub-menu>div.list-group-item:hover,.sub-menu>div.list-group-item.active{
 	background-color: #edefed;cursor: pointer;
 }
@@ -415,7 +416,7 @@ section.home-bottom{
 
 .message-view-holder{
 	background-color: #fff;
-	padding:5px 20px ;	 
+	padding:5px 20px ;
 	min-height: 400px;
 	margin-bottom: 40px;
 	border: 1px solid #ddd;
@@ -451,6 +452,9 @@ section.home-bottom{
     margin-top: 90px;
     margin-left: 15px;
 }
+.profile-pic img{
+	height: 200px;
+}
 .overview{
 	background-color: #fff !important;
 	padding: 20px;
@@ -477,7 +481,7 @@ section.home-bottom{
     padding: 6px;
 }
 .new-post{
-    border-color: #ddd;    
+    border-color: #ddd;
 }
 .new-post>.top-tool{
 	padding: 4px;
@@ -588,15 +592,20 @@ p.paragraph>.tab{
 }
 
 /*PROFILE*/
-.profile-pic:hover .grey-transparent{
+.profile-pic:hover .change-profile{
 	display: block;
+	cursor: pointer;
 }
-.grey-transparent{
-	margin-top: -22px;
-    text-align: center;
-    background: #000000;
-    display: none;
+.change-profile{
+	margin-top: -200px;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.5);;
+	display: none;
+	height: 200px;
+	width: 200px;
+	position: absolute;
 }
+
 
 .result-content{
     min-height: 600px;
@@ -609,4 +618,9 @@ p.paragraph>.tab{
 
 .nav-bar>ul::-webkit-scrollbar{
 	width: 0px;
+}
+@media  (max-width:964px){
+	.custom-vxs .list-group-item{
+		display: inline-block;
+	}
 }

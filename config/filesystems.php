@@ -55,6 +55,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app/projectimages'),
         ],
+        'profileimage' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/profileimages'),
+        ],
         'ftp' => [
             'driver'   => 'ftp',
             'host'     => 'ftp.example.com',
