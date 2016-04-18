@@ -41,6 +41,8 @@
 	<script type="text/javascript" src="js/controller/post.js"></script>
 	<script type="text/javascript" src="js/controller/searchcontroller.js"></script>
 	<script type="text/javascript" src="js/controller/profilecoverctrl.js"></script>
+	<script type="text/javascript" src="js/controller/scriptcontroller.js"></script>
+	<script type="text/javascript" src="js/controller/photoscontroller.js"></script>
 	<!--script type="text/javascript" src="js/controller/sent.js"></script>
 	<script type="text/javascript" src="js/controller/inbox.js"></script-->
 

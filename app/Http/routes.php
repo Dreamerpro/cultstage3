@@ -52,6 +52,7 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::post('/uploadeventimage/', 'Data\ImageController@uploadeventimage');
 		Route::post('/uploadprojectimage/', 'Data\ImageController@uploadprojectimage');
     Route::post('/upload/profileimage', 'Data\ImageController@uploadprofileimage');
+    Route::post('/upload/albumimage', 'Data\ImageController@uploadalbumimage');
 
 		Route::post('/postnewevent/', 'EventController@postnewevent');
 		Route::get('/bookmarkedevents/', 'EventController@getbookmarkedevents');
@@ -64,16 +65,22 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::post('/newjob/', 'ProjectController@postnewjob');
 		Route::get('/myjobpostings/', 'ProjectController@myjobpostings');
 
-		Route::post('/deleteimage/','Data\ImageController@deleteimage');
+		Route::post('/deleteimage','Data\ImageController@deleteimage');
 
 		Route::get('/appliedjobs', 'ProjectController@appliedjobs');
 
+    Route::get('/myalbumimages','Data\ImageController@albumimages');
 		/*MEssage*/
 		Route::post('/sendmessage', 'MessageController@send');
 		Route::get('/get_inbox', 'MessageController@get_inbox');
 		Route::get('/get_sent', 'MessageController@get_sent');
 		Route::get('/get_msg/{uuid}', 'MessageController@get_msg');
 		Route::post('/delete_msg', 'MessageController@del_msg');
+    // Script
+    Route::get('/myscripts', 'ScriptController@getmyscripts');
+		Route::get('/delete_script/{id}', 'ScriptController@deleteScript');
+		Route::post('/savescript', 'ScriptController@saveScript');
+		Route::post('/updatescript', 'ScriptController@updateScript');
 
 		/*POSTS*/
 		Route::get('/myposts', 'PostController@getmyposts');

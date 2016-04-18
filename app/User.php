@@ -63,7 +63,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Project');
     }
-    
+
     public function job_postings()
     {
         return $this->hasMany('App\Job','posted_by');
@@ -78,5 +78,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
-    
+    public function scripts()
+    {
+        return $this->hasMany('App\Script');
+    }
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+
 }

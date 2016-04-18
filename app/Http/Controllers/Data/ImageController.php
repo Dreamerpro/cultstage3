@@ -31,7 +31,33 @@ class ImageController extends Controller
 	}
    		return \Response::json(['name'=>$name],200);
    }
+   public function albumimages()
+   {
+     return \Auth::user()->images()->where('type',4)->get();
+   }
+   public function uploadalbumimage()
+   {
+         $file=Input::file('file');
+         $name="";
+         $nos=count(\Auth::user()->images()->where('type',4)->get()->toArray());
+         if($nos==5){
+           abort(403);
+         }
+      if($file){
+         $name= Uuid::generate().'.'.$file->getClientOriginalExtension();
 
+         $originalname=$file->getClientOriginalName();
+
+         \Storage::disk('albumimage')->put($name, File::get($file));
+         $image=new Image;
+         $image->name=$name;
+         $image->originalname=$originalname;
+         $image->user_id=\Auth::user()->id;
+         $image->type=4;//album
+         $image->save();
+       }
+         return \Response::json(['name'=>$name],200);
+   }
 
    public function uploadprojectimage()
    {
@@ -99,6 +125,10 @@ class ImageController extends Controller
       {
          \Storage::disk('projectimage')->delete($filename);
       }
+      else if($type==4)//projectimage
+      {
+         \Storage::disk('albumimage')->delete($filename);
+      }
 
 
        Image::where('name',$filename)->first()->delete();
@@ -118,6 +148,10 @@ class ImageController extends Controller
       else if($type==1)//eventimage
       {
          $file=\Storage::disk('profileimage')->get($filename);
+      }
+      else if($type==4)//eventimage
+      {
+         $file=\Storage::disk('albumimage')->get($filename);
       }
 
       return $file;

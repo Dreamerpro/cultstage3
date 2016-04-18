@@ -26,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
+        $gate->define('update-script', function ($user, $script) {
+           return $user->id === $script->user_id;
+        });
+        $gate->define('delete-script', function ($user, $script) {
+           return $user->id === $script->user_id;
+        });
         //
     }
 }

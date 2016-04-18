@@ -6,8 +6,29 @@
 			<profile-side-menu></profile-side-menu>
 		</div>
 
-		<div class="col-md-9">
-			<center  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-photo-o fa-4x"></i> <br><h4>No Photos found!</h4><div class="btn btn-default">Upload photo</div></center>
+		<div class="col-md-9" ng-controller="PhotosController as pc" ng-init="pc.init()">
+			<div class="" ng-if="pc.photos.length<1">
+<center  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-photo-o fa-4x"></i> <br><h4>No Photos found!</h4>
+
+	<div class="btn btn-default"  ngf-select="pc.addphoto($file)" ng-model="pc.file" name="file" ngf-pattern="'image/*'"
+				ngf-accept="'image/*'" ngf-max-size="5MB" >Upload photo</div>
+</center>
+			</div>
+			<div >
+				<div ng-if="pc.photos.length">
+					<h4>My Photos (max 5) <i class="fa fa-plus btn pull-right" ngf-select="pc.addphoto($file)" ng-model="pc.file" name="file" ngf-pattern="'image/*'"
+								ngf-accept="'image/*'" ngf-max-size="5MB"></i></h4>
+								<br>
+				</div>
+				<div class="photo-item col-md-4 thumbnail" ng-repeat="p in pc.photos">
+					<div class="btn pull-right" ng-click="pc.deletephoto(p)">
+						<i class="fa fa-trash " ></i>
+					</div>
+					<img  style="width:100%" ng-src="{{'/asset/image/4/'+p.name}}" alt="Image" />
+
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

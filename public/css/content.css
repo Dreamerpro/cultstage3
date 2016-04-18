@@ -606,7 +606,9 @@ p.paragraph>.tab{
 	position: absolute;
 }
 
-
+.c-header{
+	height: 40px;
+}
 .result-content{
     min-height: 600px;
 }

@@ -6,9 +6,60 @@
 			<profile-side-menu></profile-side-menu>
 		</div>
 
-		<div class="col-md-9">
+		<div class="col-md-9" ng-controller="ScriptCtrl as sc" ng-init="sc.init()">
 
-			<center  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-excel-o fa-4x"></i> <br><h4>No Script found!</h4><div class="btn btn-default">Upload script</div></center>
+			<center ng-show="!sc.newscript && sc.allscripts.length<1"  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-excel-o fa-4x"></i> <br><h4>No Script found!</h4><div class="btn btn-default" ng-click="sc.newscript=true">Add script</div></center>
+			<div class="newscript" ng-show="sc.newscript">
+				<h4>New Script</h4>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="sc.data.title" name="name" value="" placeholder="Title">
+				</div>
+				<div text-angular ng-model="sc.data.script" ></div>
+				<br>
+				<div class="btn btn-primary" ng-click="sc.save()">
+					Save
+				</div>
+				<div class="btn btn-danger" ng-click="sc.cancel()">
+					Cancel
+				</div>
+				<br>
+				<hr>
+			</div>
+			<div class="list-scripts">
+				<div class="c-header">
+					<i class="fa fa-file-excel-o"></i> My Scripts <div class="btn btn-default pull-right" ng-click="sc.newscript=true"><i class="fa fa-plus"></i> </div>
+					<br>
+				</div>
+					<div class="list-group">
+						<div class="list-group-item" ng-repeat="i in sc.allscripts track by $index">
+							<div class="" ng-hide="sc.editscript[$index]">
+									<div class="dropdown pull-right post-tools">
+										<i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" ></i>
+										<ul class="dropdown-menu">
+											<li><a href="" ng-click="sc.delete(i)"><i class="fa fa-trash"></i> delete</a></li>
+											<li><a href="" ng-click="sc.editscript[$index]=true"><i class="fa fa-edit"></i> edit</a></li>
+										</ul>
+									</div>
+									<h4>{{$index+1}}. {{i.title}} </h4>
+									<p ng-bind-html="i.script">	</p>
+							</div>
+							<div class="editscript" ng-show="sc.editscript[$index]">
+									<div class="form-group">
+										<input type="text" class="form-control" ng-model="i.title" name="name" placeholder="Title">
+									</div>
+									<div text-angular ng-model="i.script" ></div>
+									<br>
+									<div class="btn btn-primary" ng-click="sc.update(i,$index)">
+										Update
+									</div>
+									<div class="btn btn-danger" ng-click="sc.editscript[$index]=false">
+										Cancel
+									</div>
+							</div>
+
+						</div>
+
+			</div>
 		</div>
 	</div>
 </div>

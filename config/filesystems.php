@@ -51,6 +51,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app/eventimages'),
         ],
+        'albumimage' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/albumimages'),
+        ],
         'projectimage' => [
             'driver' => 'local',
             'root'   => storage_path('app/projectimages'),

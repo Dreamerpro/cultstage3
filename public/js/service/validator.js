@@ -46,7 +46,7 @@ angular.module('cultstage')
 		}
 	}
 })
-.factory('AuthService', function($http, CookieService,$rootScope,$location){
+.factory('AuthService', function($http, CookieService,$rootScope,$location, Notification){
 	var cache=function(userdata){
 		CookieService.set('authenticated', true);
 		console.log(userdata);
@@ -55,6 +55,7 @@ angular.module('cultstage')
 		if(userdata.avatar!=null){CookieService.set('avatar', userdata.avatar);}
 		$rootScope.updateUserStatus();
 		$("#sign-modal").modal('hide');
+		Notification.success({message: 'Successfully logged in.', replaceMessage: true});
 	}
 	var uncache=function(){
 		CookieService.unset('authenticated');
