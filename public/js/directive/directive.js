@@ -1,4 +1,34 @@
 angular.module('cultstage')
+.directive('audios', function($sce) {
+  return {
+    restrict: 'A',
+    scope: { link:'=' },
+    replace: true,
+    template: '<audio ng-src="{{url}}" controls></audio>',
+    link: function (scope) {
+        scope.$watch('link', function (newVal, oldVal) {
+           if (newVal !== undefined) {
+               scope.url = $sce.trustAsResourceUrl("/asset/audio/" + newVal);
+           }
+        });
+    }
+  }
+})
+.directive('videos', function($sce) {
+  return {
+    restrict: 'A',
+    scope: { link:'=' },
+    replace: true,
+    template: '<video ng-src="{{url}}" controls></video>',
+    link: function (scope) {
+        scope.$watch('link', function (newVal, oldVal) {
+           if (newVal !== undefined) {
+               scope.url = $sce.trustAsResourceUrl("/asset/video/" + newVal);
+           }
+        });
+    }
+  }
+})
 .directive('sideMenu', function () {
 	return {
 		restrict:'A',

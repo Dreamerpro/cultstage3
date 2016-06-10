@@ -19,7 +19,7 @@ class EventAudience extends Model
     	//dd($array);
     	$out =new \Illuminate\Database\Eloquent\Collection;
     	foreach ($array as $item) {
-    		$out->push(Roles::find($item)->toArray());
+    		$out->push(Roles::find($item));
     	}
     	return $out;
     }

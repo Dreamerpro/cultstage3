@@ -22,12 +22,17 @@ class Project extends Model
     }
     public function project_status($id)
     {
-        return collect(\App\ProductionStage::find($id)->toArray())->only('name');
+        //return $this->hasOne('\App\ProductionStage','production_stages','project_id','type_id');
+        return collect(\App\ProductionStage::find($id)->toArray());
     }
 
     public function users()
     {
     	return $this->hasOne('App\User');
+    }
+    public function canDelete()// should be changed with gate
+    {
+      if($this->user_id!=\Auth::user()->id){  abort(403);   }
     }
 
 }

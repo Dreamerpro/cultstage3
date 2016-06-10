@@ -16,8 +16,8 @@ class UserFullDetail extends Model
     {
     	if(!$id){return false;}
     	$user=User::find($id);
-   
-   		
+
+
    		$languages=UserFullDetail::getlanguages($user);
    		$locations=UserFullDetail::getlocations($user);
       $roles=UserFullDetail::getroles($user);
@@ -29,6 +29,7 @@ class UserFullDetail extends Model
     		'name'=>$user->name,
     		'email'=>$user->email,
     		'avatar'=>$user->avatar,
+        'cover'=>$user->cover,
     		'phone'=>$user->phone?$user->phone->phone:null,
     		'dob'=>$user->dob?$user->dob->dob:null,
     		'languages'=>$languages,
@@ -38,7 +39,7 @@ class UserFullDetail extends Model
         'totalconnection'=>$totalconnection,
         'membersince'=>$user->created_at
     		]);
-		
+
     	return $userbasic;
     }
 
@@ -48,7 +49,7 @@ class UserFullDetail extends Model
     	$languagemodel=$user->languages->toArray();
    		$languages=[];
    		foreach ($languagemodel as $val) {
-   			array_push($languages, ['language_id'=>$val['language_id'],'language'=>Language::find($val['language_id'])->language]);		
+   			array_push($languages, ['id'=>$val['id'],'language'=>Language::find($val['id'])->language]);
    		}
    		return $languages;
     }
@@ -57,7 +58,7 @@ class UserFullDetail extends Model
     	$locationmodel=$user->locations->toArray();
    		$locations=[];
    		foreach ($locationmodel as $val) {
-   			array_push($locations, ['location_id'=>$val['location_id'],'location'=>Location::find($val['location_id'])->location]);		
+   			array_push($locations, ['id'=>$val['id'],'location'=>Location::find($val['id'])->location]);
    		}
    		return $locations;
     }
@@ -66,23 +67,23 @@ class UserFullDetail extends Model
       $rolemodel=$user->roles->toArray();
       $roles=[];
       foreach ($rolemodel as $val) {
-        array_push($roles, ['role_id'=>$val['role_id'],'name'=>Roles::find($val['role_id'])->name]);    
+        array_push($roles, ['id'=>$val['id'],'name'=>Roles::find($val['id'])->name]);
       }
       return $roles;
     }
     public static function gettotalconnections($user){
-      
+
        $total_con=UserConnection::where('user_id1',$user->id)->where('status',1)->get()?count(UserConnection::where('user_id1',$user->id)->where('status',1)->get()):0;
        $total_con+=UserConnection::where('user_id2',$user->id)->where('status',1)->get()?count(UserConnection::where('user_id2',$user->id)->where('status',1)->get()):0;
       return $total_con;
     }
-    
+
     public static function getconnectedpeople($user){
       $peoples=UserConnection::where('user_id1',$user->id)->where('status',1)->get();
       $resultpeople=[];
       foreach ($peoples as $people) {
           //
-         
+
           $conuser=User::find($people->user_id2);
           $totalcon=UserFullDetail::gettotalconnections($conuser);
           $languagearray=UserFullDetail::getlanguages($conuser);
@@ -91,7 +92,7 @@ class UserFullDetail extends Model
 
 
 
-          array_push($resultpeople, 
+          array_push($resultpeople,
             [
               'id'=>$conuser->id,
               'name'=>$conuser->name,
@@ -107,14 +108,14 @@ class UserFullDetail extends Model
       $peoples1=UserConnection::where('user_id2',$user->id)->where('status',1)->get();
       foreach ($peoples1 as $people) {
           //
-         
+
         $conuser=User::find($people->user_id1);
         $totalcon=UserFullDetail::gettotalconnections($conuser);
         $languagearray=UserFullDetail::getlanguages($conuser);
         $locationarray=UserFullDetail::getlocations($conuser);
         $rolesarray=UserFullDetail::getroles($conuser);
 
-        array_push($resultpeople, 
+        array_push($resultpeople,
           [
             'id'=>$conuser->id,
             'name'=>$conuser->name,
@@ -126,7 +127,7 @@ class UserFullDetail extends Model
             'membersince'=>$conuser->created_at
           ]);
       }
-      
+
       return $resultpeople;
     }
 
@@ -135,7 +136,7 @@ class UserFullDetail extends Model
       $resultpeople=[];
       foreach ($peoples as $people) {
           //
-         
+
           $conuser=User::find($people->user_id2);
           $totalcon=UserFullDetail::gettotalconnections($conuser);
           $languagearray=UserFullDetail::getlanguages($conuser);
@@ -144,7 +145,7 @@ class UserFullDetail extends Model
 
 
 
-          array_push($resultpeople, 
+          array_push($resultpeople,
             [
               'id'=>$conuser->id,
               'name'=>$conuser->name,
@@ -160,14 +161,14 @@ class UserFullDetail extends Model
       $peoples1=UserConnection::where('user_id2',$user->id)->where('status',0)->get();
       foreach ($peoples1 as $people) {
           //
-         
+
         $conuser=User::find($people->user_id1);
         $totalcon=UserFullDetail::gettotalconnections($conuser);
         $languagearray=UserFullDetail::getlanguages($conuser);
         $locationarray=UserFullDetail::getlocations($conuser);
         $rolesarray=UserFullDetail::getroles($conuser);
 
-        array_push($resultpeople, 
+        array_push($resultpeople,
           [
             'id'=>$conuser->id,
             'name'=>$conuser->name,
@@ -179,7 +180,7 @@ class UserFullDetail extends Model
             'membersince'=>$conuser->created_at
           ]);
       }
-      
+
       return $resultpeople;
     }
 
@@ -221,23 +222,23 @@ class UserFullDetail extends Model
                     'membersince'=>$conuser->created_at,
                   ]);
               }
-              
+
 
         }
-      
+
       return $resultpeople;
 
-      
 
 
 
-          
-  
+
+
+
   }
 
     public static function getfilteredconnectedpeople($user ,$filter){
       $peoples=UserConnection::where('user_id1',$user->id)->where('status',1)->get();
-      
+
       $resultpeople=[];
 
       $filterlocations=collect($filter['locations']);
@@ -268,7 +269,7 @@ class UserFullDetail extends Model
             if(!$rolesarray->contains('role_id',$role['role_id'])) { continue 2; }
           }
 
-          array_push($resultpeople, 
+          array_push($resultpeople,
             [
               'id'=>$conuser->id,
               'name'=>$conuser->name,
@@ -305,7 +306,7 @@ class UserFullDetail extends Model
             if(!$rolesarray->contains('role_id',$role['role_id'])) { continue 2; }
           }
 
-          array_push($resultpeople, 
+          array_push($resultpeople,
             [
               'id'=>$conuser->id,
               'name'=>$conuser->name,
@@ -326,7 +327,7 @@ class UserFullDetail extends Model
     public static function getLocationValues($array){
         $names=[];
         $ids=[];
-        for ($i=0; $i <count($array) ; $i++) { 
+        for ($i=0; $i <count($array) ; $i++) {
           array_push($names,$array[$i]['location']);
           array_push($ids,$array[$i]['location_id']);
         }
@@ -335,7 +336,7 @@ class UserFullDetail extends Model
     public static  function getLanguageValues($array){
         $names=[];
         $ids=[];
-        for ($i=0; $i <count($array) ; $i++) { 
+        for ($i=0; $i <count($array) ; $i++) {
           array_push($names,$array[$i]['language']);
           array_push($ids,$array[$i]['language_id']);
         }
@@ -344,7 +345,7 @@ class UserFullDetail extends Model
     public static function  getRolesValues($array){
         $names=[];
         $ids=[];
-        for ($i=0; $i <count($array) ; $i++) { 
+        for ($i=0; $i <count($array) ; $i++) {
           array_push($names,$array[$i]['name']);
           array_push($ids,$array[$i]['role_id']);
         }

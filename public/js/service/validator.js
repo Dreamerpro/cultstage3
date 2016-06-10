@@ -53,6 +53,7 @@ angular.module('cultstage')
 		CookieService.set('name', userdata.name);
 		CookieService.set('email', userdata.email);
 		if(userdata.avatar!=null){CookieService.set('avatar', userdata.avatar);}
+		if(userdata.cover!=null){CookieService.set('cover', userdata.cover);}
 		$rootScope.updateUserStatus();
 		$("#sign-modal").modal('hide');
 		Notification.success({message: 'Successfully logged in.', replaceMessage: true});
@@ -62,6 +63,7 @@ angular.module('cultstage')
 		CookieService.unset('name');
 		CookieService.unset('email');
 		CookieService.unset('avatar');
+		CookieService.unset('cover');
 		$rootScope.updateUserStatus();
 		console.log("uncahced");
 	}
@@ -105,7 +107,8 @@ angular.module('cultstage')
 			return {
 				name:CookieService.get('name'),
 				email:CookieService.get('email'),
-				avatar:CookieService.get('avatar')
+				avatar:CookieService.get('avatar'),
+				cover:CookieService.get('cover')
 			}
 		}
 

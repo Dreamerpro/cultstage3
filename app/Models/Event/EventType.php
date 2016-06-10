@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class EventType extends Model
 {
     protected $table="event_types";
-    
-    public function events()
+
+    public function event()
     {
-    	return $this->belongsToMany('App\Event');
+    	return $this->hasOne('App\Event');
     }
 }

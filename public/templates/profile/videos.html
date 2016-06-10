@@ -1,14 +1,45 @@
 <div class="site-content clearfix">
 <top-nav></top-nav>
 <profile-cover></profile-cover>
-	<div class="content container">
+	<div class="content container" ng-controller="VideoController as pc" ng-init="pc.init()">
 	<div class="col-md-3">
 			<profile-side-menu></profile-side-menu>
 		</div>
 
-		<div class="col-md-9">
+		<div class="col-md-9" ng-controller="VideoController as pc" ng-init="pc.init()">
+			<div class="text-center" ng-if="!pc.loaded">
+					<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+			</div>
+			<center  style="color:#565a5c; margin-top:40px" ng-if="pc.loaded && pc.videos.length<1">
+				<i class="fa fa-file-video-o fa-4x"></i> <br><h4>No Video found!</h4>
+				<div class="btn btn-default"  ngf-select="pc.upload($file)" ng-model="pc.file" name="file" ngf-pattern="'video/*'"
+							ngf-accept="'video/*'" ngf-max-size="50MB" >Upload Video</div>
+			</center>
+			<div class="clearfix" ng-if="pc.loaded && pc.videos.length>0">
+							<div class="c-header">
+							<i class="fa fa-file-video-o"></i>	My Videos <small>({{pc.videos.length}})</small></h4>
+								<div class="btn btn-default pull-right"  ngf-select="pc.upload($file)" ng-model="pc.file" name="file" ngf-pattern="'video/*'"
+											ngf-accept="'video/*'" ngf-max-size="50MB" ><i class="fa fa-plus"></i></div>
 
-			<center  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-video-o fa-4x"></i> <br><h4>No Video found!</h4><div class="btn btn-default">Upload video</div></center>
-		</div>
-	</div>
+							</div>
+				<div class="list-group">
+					<div class="list-group-item" ng-repeat="au in pc.videos track by $index">
+						<div class="dropdown pull-right post-tools">
+							<i class="fa fa-angle-down btn btn-default dropdown-toggle" data-toggle="dropdown" ></i>
+							<ul class="dropdown-menu">
+								<li><a href="" ng-click="pc.delete(au, $index)"><i class="fa fa-trash"></i> delete</a></li>
+								<!-- <li><a href="" ng-click="pc.editmode[$index]=true"><i class="fa fa-edit"></i> edit title</a></li> -->
+							</ul>
+						</div>
+						<small><small><i class="pull-right">Uploaded at {{au.created_at.split(' ')[0]}} &nbsp;</i></small></small>
+						<h4>{{au.title.split(".")[0]}}</h4>
+						<video videos controls link="au.name">
+							Your browser does not support the video element.
+						</video>
+					</div>
+				</div>
+			</div>
+
+		</div>	</div>
 </div>

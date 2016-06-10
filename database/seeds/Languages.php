@@ -13,10 +13,9 @@ class Languages extends Seeder
     {
         $lang_array=['Kannada','Hindi','Marathi',"Malayalam","Tamil","Telegu","Bengali","Assamese"];
 
-        $i=1;
+
         foreach ($lang_array as $value) {
-        	$lang=App\Models\Detail\Language::firstOrCreate(["language"=>$value,"language_id"=>$i]);
-        	$i++;
+        	$lang=App\Models\Detail\Language::firstOrCreate(["language"=>$value]);
         }
     }
 }

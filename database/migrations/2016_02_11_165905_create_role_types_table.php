@@ -13,9 +13,9 @@ class CreateRoleTypesTable extends Migration
     public function up()
     {
         Schema::create('role_types', function (Blueprint $table) {
-            
-            $table->integer('role_id');
-            $table->foreign('role_id')->references('role_id')->on('roles');
+
+            $table->integer('role_id')->unsigned();;
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->integer('type_id')->unique();
             $table->string('role_type');
             $table->timestamps();

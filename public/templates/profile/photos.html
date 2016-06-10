@@ -14,14 +14,16 @@
 				ngf-accept="'image/*'" ngf-max-size="5MB" >Upload photo</div>
 </center>
 			</div>
-			<div >
-				<div ng-if="pc.photos.length">
-					<h4>My Photos (max 5) <i class="fa fa-plus btn pull-right" ngf-select="pc.addphoto($file)" ng-model="pc.file" name="file" ngf-pattern="'image/*'"
-								ngf-accept="'image/*'" ngf-max-size="5MB"></i></h4>
+					<div >
+					<div ng-if="pc.photos.length" class="c-header">
+						<i class="fa fa-file-image-o"></i> My Photos <small>(max 5)</small><i class="fa fa-plus btn btn-default pull-right" ngf-select="pc.addphoto($file)" ng-model="pc.file" name="file" ngf-pattern="'image/*'"
+											ngf-accept="'image/*'" ngf-max-size="5MB"></i></div>
+						<br>
+					</div>
+			<!-- <h4>My Photos (max 5) </h4> -->
 								<br>
-				</div>
-				<div class="photo-item col-md-4 thumbnail" ng-repeat="p in pc.photos">
-					<div class="btn pull-right" ng-click="pc.deletephoto(p)">
+				<div class="photo-item col-md-4 thumbnail" style='height: 250px' ng-repeat="p in pc.photos">
+					<div class="btn pull-right db" ng-click="pc.deletephoto(p)">
 						<i class="fa fa-trash " ></i>
 					</div>
 					<img  style="width:100%" ng-src="{{'/asset/image/4/'+p.name}}" alt="Image" />

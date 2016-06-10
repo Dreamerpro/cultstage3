@@ -3,7 +3,7 @@
 
 <profile-cover></profile-cover>
 	<div class="content container"  >
-	
+
 	<div class="col-md-3 ">
 		<profile-side-menu></profile-side-menu>
 	</div>
@@ -13,12 +13,12 @@
 				<h3>Overview</h3>
 				<div class="overview-details clearfix">
 					<div class="row">
-						<div class="col-md-2"><h5>Member Since</h5></div><div class="col-md-2">15th Dec, 15 (mock date)</div>
-						<div class="col-md-3 pull-right">{{pac.about.phone}}</div><div class="pull-right"><i class="fa fa-phone"></i></div>
+						<div class="col-md-2"><h5>Member Since</h5></div><div class="col-md-2">{{pac.about.membersince.date.split(" ")[0]}}</div>
+						<div class="col-md-3 pull-right">+91-{{pac.about.phone}}</div><div class="pull-right"><i class="fa fa-phone"></i> </div>
 					</div>
 					<div class="row">
 						<div class="col-md-2"><h5>Connections</h5></div><div class="col-md-2">100</div>
-						<div class="col-md-3 pull-right">{{pac.about.dob}}<!-- 18th Match, 1990 --></div><div class="pull-right"><i class="fa fa-calendar"></i></div>
+						<div title="date of birth" class="col-md-3 pull-right">{{pac.about.dob}}<!-- 18th Match, 1990 --></div><div class="pull-right"><i class="fa fa-birthday-cake" aria-hidden="true"></i></div>
 					</div>
 					<div class="row">
 						<div class="col-md-2"><h5>Roles</h5> </div><div class="col-md-2">
@@ -36,7 +36,7 @@
 						</div>
 					</div>
 					<div class="row">
-						
+
 					</div>
 
 					<!-- <div class="col-md-2"><h5>Last Active</h5><br> 25th Dec, 15</div> -->
@@ -44,21 +44,21 @@
 			</div>
 			<br>
 			<div class="panel overview">
-				<h3>Details</h3>
+				<h3>About</h3>
 				<p>
-{{pac.about.description}}
+{{pac.about.description || '(write something abour yourself)'}}
 				</p>
 
 			</div>
 			<!-- <div class="about panel">
 				<h3>About</h3>
 				<div class="details clearfix">
-					
+
 				</div>
 			</div> -->
 		</div>
-			
-			
+
+
 		</div>
 	</div>
 </div>

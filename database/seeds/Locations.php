@@ -346,10 +346,10 @@ class Locations extends Seeder
 
         ];
 
-        $i=1;
+        // $i=1;
         foreach ($location_array as $value) {
-        	$location=App\Models\Detail\Location::firstOrCreate(["location"=>$value,"location_id"=>$i]);
-        	$i++;
+        	$location=App\Models\Detail\Location::firstOrCreate(["location"=>$value]);
+        	// $i++;
         }
     }
 }

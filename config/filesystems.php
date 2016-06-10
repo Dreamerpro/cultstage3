@@ -63,6 +63,18 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app/profileimages'),
         ],
+        'coverimage' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/coverimages'),
+        ],
+        'audio' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/audiofiles'),
+        ],
+        'video' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/videofiles'),
+        ],
         'ftp' => [
             'driver'   => 'ftp',
             'host'     => 'ftp.example.com',

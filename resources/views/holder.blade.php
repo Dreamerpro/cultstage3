@@ -43,6 +43,8 @@
 	<script type="text/javascript" src="js/controller/profilecoverctrl.js"></script>
 	<script type="text/javascript" src="js/controller/scriptcontroller.js"></script>
 	<script type="text/javascript" src="js/controller/photoscontroller.js"></script>
+	<script type="text/javascript" src="js/controller/videocontroller.js"></script>
+	<script type="text/javascript" src="js/controller/audiocontroller.js"></script>
 	<!--script type="text/javascript" src="js/controller/sent.js"></script>
 	<script type="text/javascript" src="js/controller/inbox.js"></script-->
 
@@ -64,10 +66,8 @@
 				type="text"
 				placeholder="What are you searching?"
 				ng-change="showcats()"></input>
-				<div class="categories list-group" style="position: fixed;z-index: 10;min-width: 400px;" ng-show="showcat">
-					<a style="border-radius: 0;" class="list-group-item" ng-click="search(0)">Job</a>
-					<a style="border-radius: 0;" class="list-group-item" ng-click="search(1)">Poeple</a>
-					<a style="border-radius: 0;" class="list-group-item" ng-click="search(2)">Event</a>
+				<div class="categories list-group tsb" ng-show="showcat" >
+					<a  class='list-group-item' ng-click='search(0)'>Job</a><a  class='list-group-item' ng-click='search(1)'>Poeple</a><a  class='list-group-item' ng-click='search(2)'>Event</a>
 				</div>
 			</div>
 		</div>

@@ -6,17 +6,56 @@
     		<job-side-menu></job-side-menu>
 		</div>
 		<div class="col-md-9">
-			<div ng-if="mjp.myjobs.length<1"><br><h4 class="text-info text-center">No jobs found.</h4></div>
-			<div class="result-item col-md-4" ng-repeat="b in mjp.myjobs">
-				<div class="holder">
-					<div class="img-container events"><img ng-src="asset/image/3/{{b.project.image}}"></img>
+
+			<div class="clearfix" ng-if="mjp.editmode">
+				<h1>Edit Job {{mjp.job.title}}</h1
+				<form class="clearfix" name="editjob">
+
+						<div class="form-group clearfix">
+							<label>Project*</label>
+							<select class="form-control" ng-model="mjp.job.projectid"  ng-options="a.id as a.name for a in mjp.myprojects" required></select>
+						</div>
+						<div class="form-group">
+							<label>Job Title*</label>
+							<input class="form-control" required ng-model="mjp.job.title">
+						</div>
+
+						<div class="form-group">
+							<label>Requirement*</label>
+							<select class="form-control" required ng-model="mjp.job.requirement" ng-options="a.id as a.name for a in mjp.available.roles">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Last date to apply*</label>
+							<input class="form-control" type="date" ng-model="mjp.job.date"  required></input>
+						</div>
+						<br>
+						<input ng-disabled="editjob.$invalid" class="btn btn-red" value="Save" type="submit" ng-click="mjp.saveJob()">
+						<input type="button" class="btn btn-default" ng-click="mjp.reset()" value="Cancel">
+				</form>
+
+			</div>
+			<!-- <div ng-if="mjp.myjobs.length<1 && !mjp.editmode" ><br><h4 class="text-info text-center">No jobs posted.</h4></div> -->
+			<div ng-if="mjp.myjobs.length<1 && mjp.loaded"> <br><h4 class="text-info text-center">There are no job posts.</h4>    </div>
+				<div class="col-md-9" ng-if="!mjp.loaded">
+					<div class="text-center" ng-if="!mjp.loaded">
+							<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+							<span class="sr-only">Loading...</span>
 					</div>
-					<div class="details">
-						<p>{{b.role.name}}</p>
-						<h4 class="name">{{b.title}}</h4>
+				</div>
+			<div class="result-item clearfix" ng-hide="mjp.editmode" ng-repeat="b in mjp.myjobs track by $index">
+				<div class="holder">
+					<div class="img-container col-md-3 events"><img ng-src="asset/image/3/{{b.project.image}}"></img></div>
+					<div class="details col-md-9">
+						<h4 class="name">{{b.title}}</h4><p><b>{{b.role.name}}</b>  required for {{b.project.project_types[0].name}} <b>{{b.project.name}}</b></p>
+						<p>
+							{{b.project.details}}
+						</p>
 					</div>
 					<div class="item-footer">
-						<div class="col-md-6 btn btn-host">View</div>
+						<div class="btn btn-host" ng-click="mjp.editJob(b,$index)">Edit</div>
+						<div class="btn btn-danger" ng-click="mjp.deleteJob(b,$index)">Delete</div>
 						<!-- <div class="col-md-6 btn btn-green">Join</div> -->
 					</div>
 				</div>

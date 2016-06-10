@@ -57,22 +57,25 @@
 		</div>
 
 		<div class="col-md-9" ng-controller="MyEvents as m" ng-init="m.init(1)" ><!--  -->
-			<div ng-if="m.events.length<1"> <br><h4 class="text-info text-center">No events to show.</h4>    </div>
-		<div class="result-item col-md-4 col-xs-12" ng-repeat="x in m.events track by $index"><!-- |object_filter:filter_option -->
-				<div class="holder">
-					<div class="item-location">{{x.locations.join(",")}}</div>
-					<div class="img-container events"><img ng-src=""></img></div><!-- {{x.image}} -->
-					<div class="details">
-						<p><span>{{x.languages.join(',')}}</span>|<span>{{x.audience.join(',')}}</span></p>
-						<h4 class="event-name">{{x.name}}</h4>
-						<p>{{x.detail}}</p>
-					</div>
-					<div class="item-footer">
-						<span><i class="fa fa-calendar"></i> {{x.start_date}}</span>
-						<a class="pull-right" ng-href="#/event/{{x.event_uuid}}">Read More</a>
-						<!-- <a class="pull-right" ng-href="#/event/">View</a> -->
-						<!-- <a ng-href="#/event/{{x.event_uuid}}" class="col-md-6 btn btn-host">Details</a>
-						<div class="col-md-6 btn btn-green">Join</div> -->
+
+		<div ng-if="m.events.length<1 && m.loaded"> <br><h4 class="text-info text-center">No events to show.</h4>    </div>
+		<div class="text-center" ng-if="!m.loaded">
+				<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+				<span class="sr-only">Loading...</span>
+		</div>
+		<div class="result-item col-md-12 col-xs-12" ng-repeat="x in m.events track by $index">
+				<div class="holder clearfix">
+					<div class="img-container events col-md-3" style="background:url(asset/image/2/{{x.image}}) no-repeat center center; background-color: #EAEAEA;background-size: contain;"></div><!-- {{x.image}} -->
+					<div class="details col-md-9">
+						<h3 class="event-name">{{x.name}}</h3>
+						<p><span><i class="fa fa-language" aria-hidden="true"></i> {{x.nlanguages.join(',') || '-'}}</span></p>
+						<p><span><i class="fa fa-check-circle-o" aria-hidden="true"></i> {{x.naudience.join(",") || 'public event' }}</span></p>
+						<p><span><i class="fa fa-location-arrow" aria-hidden="true"></i> {{x.nlocations.join(",")}}</span></p>
+
+
+						<a class="pull-right btn btn-danger" ng-click="m.removebookmark(x,$index)">Delete bookmark</a>
+						<p><span><i class="fa fa-calendar"></i> {{x.start_date}}</span></p>
+						<p>{{x.details}}</p>
 					</div>
 				</div>
 		</div>

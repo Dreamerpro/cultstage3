@@ -30,6 +30,7 @@ ul, menu, dir{
 	background-color: #fff;
 }
 
+
 @media(max-width: 768px){
 	.container{
 		width:100% !important;
@@ -189,8 +190,8 @@ input:disabled{
 }
 .item-footer>a{
 	padding: 4px 8px;
-	background-color: #43435A;
-    color: #fff;
+	/*background-color: #43435A;*/
+    color: #fff !important;
     margin-right: 2px;
 }
 .item-footer>a:last-child{
@@ -208,9 +209,10 @@ input:disabled{
 	padding: 4px;
 	left: 18px;
 	top:4px;
+	z-index: 10;
 }
 .details>h4{
-	margin-top: -10px;
+	/*margin-top: -10px;*/
 }
 .details>p{
 	font-size: 12px;
@@ -253,6 +255,7 @@ background-color: #eee;
 }
 .mt0{
 	margin-top: 0 !important;
+
 }
 .nocaret:before{
 	border: 0 !important;

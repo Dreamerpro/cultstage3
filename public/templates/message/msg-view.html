@@ -1,4 +1,4 @@
-<div class="site-content clearfix" ng-controller="MessageController" ng-init="fetchmsg()"> 
+<div class="site-content clearfix" ng-controller="MessageController" ng-init="fetchmsg()">
 <top-nav></top-nav>
 
 	<div class="content container">
@@ -9,7 +9,7 @@
 		<div class="col-md-9"  >
 			<div class="content-tools clearfix">
 				<div class="pull-left">
-					
+
 					<a class="tool" ng-href="#/message/{{back}}"><i class="fa fa-arrow-left"></i></a>
 					<div class="tool" ng-click="delete()"><i class="fa fa-trash-o"></i></div>
 				</div>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="message-view-holder">
 				<!-- <div class="btn btn-default pull-right" style="margin-top:10px"><i class="fa fa-reply"></i> </div> -->
-				<small class="pull-right">{{messages.open.data[0].created_at}}</small>
+				<small class="pull-right">{{messages.open.data[0].created_at.split(" ")[0]}}</small>
 				<h3>{{messages.open.data[0].subject}}</h3>
 				<hr>
 				<h4>{{messages.open.data[0].sender}}</h4>

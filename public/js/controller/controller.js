@@ -56,11 +56,12 @@ angular.module('cultstage')
 	};
 })
 
-.controller('subRouteController', function($rootScope,$scope){
+.controller('subRouteController', function($rootScope,$scope,$routeParams){
 	$scope.issma=function(v){
 		// console.log(v);
 		return $rootScope.SM===v;
 	}
+	$scope.w=$routeParams.who;
 })
 .controller('AddNewJobCtrl', function($scope){
 	$scope.b=false;
@@ -277,7 +278,7 @@ angular.module('cultstage')
 		if($routeParams.uuid){
 			$http.post('/delete_msg',{uuids:[$routeParams.uuid],type:$scope.back==="inbox"?1:2})
 			.success(function (argument) {
-				console.log(argument);
+				// console.log(argument);
 				$location.path(path.substring(0,path.lastIndexOf("/")))
 			})
 		}
@@ -306,7 +307,7 @@ angular.module('cultstage')
 				AuthService.login($scope.userData.in)
 				.then(
 					function(user){
-						console.log(user);
+						// console.log(user);
 						$scope.error.in=false;
 					},
 					function(err){
@@ -326,7 +327,7 @@ angular.module('cultstage')
 				AuthService.register($scope.userData.up)
 				.then(
 					function(user){
-						console.log(user);
+						// console.log(user);
 						$scope.error.up=false;
 
 					},
@@ -342,7 +343,9 @@ angular.module('cultstage')
 })
 .controller('ContentCtrl', function($scope,$http,$location){//mainly filters for people and event
 	$scope.bool=[false,false,false];
-	$scope.data=$location.search();
+	$scope.data={locations:[],languages:[],roles:[]};
+	$scope.query=$location.search();
+
 	//{types:[["Acting","Singing","Casting"],["Script Writer","Singer"],["DJ Night"]],locations:["Delhi","Bangalore","Kolkata"],languages:['Hindi','Kannada','Assamese']},
 
 
@@ -350,6 +353,14 @@ angular.module('cultstage')
 		$http.get('/availableroles')
 		.success(function(data){
 			$scope.data.roles=data;
+			if($scope.query.roles){
+				for (var i = 0; i < $scope.query.roles.length; i++) {
+					for (var  j= 0;  j< $scope.data.roles.length; j++) {
+						// console.log($scope.query.roles[i]);
+						if($scope.data.roles[j].id==$scope.query.roles[i]){$scope.addfilter(0,$scope.data.roles[j],1);}
+					}
+				}
+			}
 		})
 		.error(function(error){
 			console.log(error);
@@ -357,6 +368,15 @@ angular.module('cultstage')
 		$http.get('/availablelocations')
 		.success(function(data){
 			$scope.data.locations=data;
+			if($scope.query.locations){
+				//  console.log($scope.query.locations,$scope.data.locations);
+				for (var i = 0; i < $scope.query.locations.length; i++) {
+					for (var  j= 0;  j< $scope.data.locations.length; j++) {
+						 //console.log($scope.query.locations[i],$scope.data.locations);
+						if($scope.data.locations[j].id==$scope.query.locations[i]){$scope.addfilter(1,$scope.data.locations[j],1);}
+					}
+				}
+			}
 		})
 		.error(function(error){
 			console.log(error);
@@ -364,6 +384,14 @@ angular.module('cultstage')
 		$http.get('/availablelanguages')
 		.success(function(data){
 			$scope.data.languages=data;
+			if($scope.query.languages){
+				for (var i = 0; i < $scope.query.languages.length; i++) {
+					for (var  j= 0;  j< $scope.data.languages.length; j++) {
+						// console.log($scope.query.languages[i]);
+						if($scope.data.languages[j].id==$scope.query.languages[i]){$scope.addfilter(2,$scope.data.languages[j],1);}
+					}
+				}
+			}
 		})
 		.error(function(error){
 			console.log(error);
@@ -375,6 +403,9 @@ angular.module('cultstage')
 		.error(function(error){
 			console.log(error);
 		})
+		console.log($scope.data);
+
+
 
 	}
 	/*$scope.results=[{name:'Arijit_Singh',avatar:'http://c.saavncdn.com/artists/Arijit_Singh.jpg',types:['Singer'],locations:['Kolkata'],languages:['Hindi'],membersince:'15th Jan',connections:552,profile_uuid:'12311414'},

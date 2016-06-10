@@ -32,7 +32,7 @@
 					<span class="sender">{{msg.to.name}}</span>
 					<span class="subject">{{msg.subject}} - </span>
 					<span class="short-msg"><small style="display: inline-block;" ng-bind-html="msg.body | limitTo:20"></small></span>
-					<span class="msg-date pull-right">{{msg.date}}</span>
+					<span class="msg-date pull-right" style="color: #8A8888;">{{msg.date.split(" ")[0]}}</span>
 					</a>
 				</div>
 			</div>

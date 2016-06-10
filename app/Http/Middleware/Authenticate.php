@@ -21,7 +21,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+                //return redirect()->guest('login');
+                return \Response::json("Error",403);
             }
         }
 

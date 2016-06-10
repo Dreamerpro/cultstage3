@@ -7,6 +7,7 @@ angular.module('cultstage')
 
 	this.init=function () {
 		_self.getUserData();
+		_self.conrequests=0;
 		_self.getconnectionrequests();
 	}
 	this.getUserData=function(){
@@ -25,6 +26,7 @@ angular.module('cultstage')
 	this.getconnectionrequests=function () {
 		$http.get('/get_connect_requests')
 		.success(function (argument) {
+			_self.conrequests=argument.length;
 			_self.dashboard.connectionrequest=argument;
 		})
 		.error(function (argument) {
@@ -35,6 +37,7 @@ angular.module('cultstage')
 	this.accept=function (a) {
 		$http.get('/acceptconnect/'+a.id)
 		.success(function (argument) {
+			_self.conrequests=0;
 			console.log(argument);
 			_self.dashboard.connectionrequest.splice(_self.dashboard.connectionrequest.indexOf(a),1);
 		})

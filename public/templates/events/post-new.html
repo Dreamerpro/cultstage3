@@ -17,13 +17,13 @@
 		<div class="col-md-9"  ng-controller="PostNewEventCtrl as nec" ng-init="nec.init()">
 			<div class="init-message col-md-12" ng-hide="b">{{nec.flashmsg || 'Event will be verified before posting.'}}</div>
 			<div class="form-container">
-				<form name="nec.form">
+				<form name="eventform">
 					<div class="form-group">
-						<label>Event Name</label>
+						<label>Event Name*</label>
 						<input class="form-control" type="text" name="name" ng-model="nec.selected.name" required></input>
 					</div>
 					<div class="form-group">
-						<label>Event Type</label>
+						<label>Event Type*</label>
 						<!-- <input class="form-control" type="text" name="type" ng-model="type"> -->
 						<select class="form-control input-sm" id="Type" name="Type" name="type" ng-model="nec.selected.type" required>
 							<option value=""></option>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label>City</label>
+						<label>City*</label>
 						<span class="sb" ng-repeat="a in nec.selected.locations" ng-click="nec.removeloc(a)">
 							{{a.location}}
 							<i class="fa fa-times"></i>
@@ -83,39 +83,39 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Full address</label>
+						<label>Event Landmark*</label>
 						<textarea class="form-control" type="text" name="name" ng-model="nec.selected.address" required></textarea>
 					</div>
 
 					<div class="form-group">
-						<label>Date<small><small class="text-info" > (Starting - Closing date)</small></small></label>
+						<label>Date*<small><small class="text-info" > (Starting - Closing date)</small></small></label>
 						<br>
 						<!-- <br><input type="checkbox" ng-model="od"> -->
 						<div class="col-md-3" style="padding:0 !important">
 							<!-- <label><i class="fa fa-calendar col-md-2"></i></label> -->
-							<input class="form-control col-md-12"  type="date" ng-model="nec.selected.startingdate">
+							<input class="form-control col-md-12"  type="date" ng-model="nec.selected.startingdate" required>
 						</div>
 						<div class="col-md-3" style="padding:0 !important" ng-show="!nec.ode">
-							<input class="form-control col-md-12" type="date" ng-model="nec.selected.closingdate"></input>
+							<input class="form-control col-md-12" type="date" ng-model="nec.selected.closingdate" required></input>
 						</div>
-						<div class="col-md-3" >
+						<!-- <div class="col-md-3" >
 							 <span style="cursor:pointer" ng-click="nec.ode=!nec.ode;nec.selected.closingdate=null">
 							 	<i class="fa"  ng-class="{'fa-check-square-o':nec.ode,'fa-square-o':!nec.ode}"></i>
 							 	 One day event.</span>
-						</div>
+						</div> -->
 
 						<br>
 					</div>
 					<div class="form-group">
-						<label>Time<small><small class="text-info" > (Starting - Closing time)</small></small></label>
+						<label>Time*<small><small class="text-info" > (Starting - Closing time)</small></small></label>
 						<br>
 						<!-- <br><input type="checkbox" ng-model="od"> -->
 						<div class="col-md-3" style="padding:0 !important">
 							<!-- <label><i class="fa fa-calendar col-md-2"></i></label> -->
-							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.startingtime">
+							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.startingtime" required>
 						</div>
 						<div class="col-md-3" style="padding:0 !important" >
-							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.closingtime"></input>
+							<input class="form-control col-md-12" type="time"  ng-model="nec.selected.closingtime" required></input>
 					</div>
 						<!-- <div class="col-md-3" >
 							<i class="fa fa-square-o" ng-click="check=true" ng-class="{'fa-check-square-o':check}"></i> <span>One day event.</span>
@@ -126,25 +126,25 @@
 					<div class="form-group">
 						<label>Description</label>
 						<br>
-						<textarea class="form-control" name="description" ng-model="nec.selected.description"></textarea>
+						<textarea class="form-control" name="description" ng-model="nec.selected.detail" required></textarea>
 					</div>
 					<div class="form-group" ng-init="nec.selected.image=false">
-						<label>Image</label>
+						<label>Image*</label>
 						<br><br>
 						<div ng-show="nec.selected.image">
-						<img  width="100px" height="100px" ngf-thumbnail="nec.file"><!--  || '/thumb.jpg -->
+							<img  width="100px" height="100px" ngf-thumbnail="nec.file"><!--  || '/thumb.jpg -->
 						</div>
 
 						<br>
-					<div class="btn btn-default" ngf-select ng-model="nec.file" name="file" ngf-pattern="'image/*'"
-						    ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100"
-						    >Select</div><!-- ngf-resize="{width: 100, height: 100}" -->
-
-					<button class="btn btn-default" type="button" ng-click="nec.uploadimage()">Upload Image</button>
+					<div ng-show="!nec.selected.image" class="btn btn-default" ngf-select="nec.uploadnow($file)" ng-model="nec.file" name="file" ngf-pattern="'image/*'"
+						    ngf-accept="'image/*'" ngf-max-size="5MB" >Select</div><!-- ngf-resize="{width: 100, height: 100}" -->
+								<div class="btn btn-danger" ng-show="nec.selected.image" ng-click="nec.deleteImage()">Delete</div>
+					<!-- <button class="btn btn-default" type="button" ng-click="nec.uploadimage()">Upload Image</button> -->
 
 					</div>
-					<input type="hidden" ng-model="nec.selected.image">
-					<input class="btn btn-host col-md-1" type="submit" value="Post" ng-click='nec.submit()'></input>
+					<input type="hidden" ng-model="nec.selected.image" required>
+					<input class="btn btn-host col-md-1" ng-disabled="eventform.$invalid" type="submit" value="Post" ng-click='nec.submit()'></input>
+					<p><i ng-if="eventform.$invalid && eventform.$dirty">Fill all the mandatory fields(*).</i></p>
 				</form>
 			</div>
 		</div>

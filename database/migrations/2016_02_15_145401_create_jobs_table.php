@@ -16,8 +16,8 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned()->nullable();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('role_id');
-            $table->foreign('role_id')->references('role_id')->on('roles')->onDelete('cascade');
+            $table->integer('role_id')->unsigned();
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('title');
             $table->date('last_date');
             $table->tinyInteger('status',0);

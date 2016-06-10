@@ -34,6 +34,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/user' , function(){
 		return \Auth::user();
 	});
+  Route::get('/csrf_token' , function(){
+		return csrf_token();
+	});
 	Route::get('/userdetails/{id}', 'ProfileController@getdetails');
 	Route::get('/availableroles/', 'Data\RawDataController@getavailableroles');
 	Route::get('/availablelocations/', 'Data\RawDataController@getavailablelocations');
@@ -53,21 +56,39 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::post('/uploadprojectimage/', 'Data\ImageController@uploadprojectimage');
     Route::post('/upload/profileimage', 'Data\ImageController@uploadprofileimage');
     Route::post('/upload/albumimage', 'Data\ImageController@uploadalbumimage');
+    Route::post('/upload/coverimage', 'Data\ImageController@uploadcoverimage');
+
+    Route::get('/uploaded/videos','VideoController@getuploaded');
+    Route::post('/upload/video','VideoController@upload');
+    Route::get('/uploaded/audios','AudioController@getuploaded');
+    Route::post('/upload/audio','AudioController@upload');
+    //Route::get('/uploaded/audios','VideoController@getuploaded');
 
 		Route::post('/postnewevent/', 'EventController@postnewevent');
 		Route::get('/bookmarkedevents/', 'EventController@getbookmarkedevents');
-		Route::get('/postedevents/', 'EventController@getpostedevents');
+		Route::get('/bookmarkevent/{eid}', 'EventController@bookmarkevent');
+    Route::get('/unbookmarkevent/{eid}', 'EventController@unbookmarkevent');
 
-		Route::get('/postedevents/', 'EventController@getpostedevents');
+    // Route::get('/postedevents/', 'EventController@getpostedevents');
+    Route::get('/postedevents/', 'EventController@getpostedevents');
+    Route::get('/deleteevent/{id}', 'EventController@deleteevent');
 
-		Route::get('/myprojects/', 'ProjectController@getmyprojects');
+
+    Route::get('/myprojects/', 'ProjectController@getmyprojects');
 		Route::post('/newproject/', 'ProjectController@postnewproject');
-		Route::post('/newjob/', 'ProjectController@postnewjob');
+    Route::get('/deleteproject/{id}', 'ProjectController@deleteproject');
+
+    Route::post('/newjob/', 'ProjectController@postnewjob');//new or edit job
 		Route::get('/myjobpostings/', 'ProjectController@myjobpostings');
+    Route::get('/appliedjobs', 'JobController@getappliedjobs');
+    Route::get('/applyforjob/{jobid}', 'JobController@applyforjob');
+    Route::get('/removeapplication/{jobid}', 'JobController@removeapplication');
 
 		Route::post('/deleteimage','Data\ImageController@deleteimage');
+    Route::get('/deleteprojectimage/{id}','Data\ImageController@deleteprojectimage');
 
-		Route::get('/appliedjobs', 'ProjectController@appliedjobs');
+		//Route::get('/appliedjobs', 'ProjectController@appliedjobs');
+    Route::get('/deletejob/{id}', 'ProjectController@deletejob');
 
     Route::get('/myalbumimages','Data\ImageController@albumimages');
 		/*MEssage*/
@@ -89,12 +110,26 @@ Route::group(['middleware'=>'auth'], function(){
 		Route::post('/edit_post', 'PostController@edit_post');
 
 		Route::post('/connect', 'ProfileController@connect');
+    Route::get('/disconnect/{id}', 'ProfileController@disconnect');
 		Route::get('/acceptconnect/{id}', 'ProfileController@acceptconnect');
 		Route::get('/get_connect_requests', 'ProfileController@connect_requests');
+
+    Route::get('/delete/audio/{name}','AudioController@delete');
+    Route::get('/delete/video/{name}','VideoController@delete');
+
+
+      Route::get('/get_accepted_requests', function ()
+    {
+      return \Auth::user()->connections_accepted();
+    });
+
 });
 
+  Route::get('/asset/audio/{name}','AudioController@get');
+  Route::get('/asset/video/{name}','VideoController@get');
+
 	Route::get('asset/image/{type}/{file}','Data\ImageController@getimage');
-	Route::post('/search/{query}/{category}', 'SearchController@search');
+	Route::post('/search', 'SearchController@search');
 
 	Route::get('auth/{platform}', 'SocialAuthController@redirectToProvider');
 	Route::get('auth/{platform}/callback', 'SocialAuthController@handleProviderCallback');

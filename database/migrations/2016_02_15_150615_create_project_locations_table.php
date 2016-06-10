@@ -16,8 +16,8 @@ class CreateProjectLocationsTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned()->nullable();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('location_id')->nullable();
-            $table->foreign('location_id')->references('location_id')->on('locations')->onDelete('cascade');
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->timestamps();
         });
     }

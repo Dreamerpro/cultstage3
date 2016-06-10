@@ -4,19 +4,19 @@
 	<div class="content container" ng-controller="ContentCtrl" ng-init="init()">
 		<div class="col-md-3 filter {{sideMenuClass}}" ng-init="filter_b=false" >
 			<div class="list-group sub-menu  custom-vxs" ng-controller="subRouteController">
-				<div class="list-group-item" ng-class="{'active-b':issma(0)}"><a href="#/people/connected">Connected ({{pc.peoplesdata.totalconnections}})</a><i class="fa fa-sliders pull-right" ng-click="filter_b=!filter_b"></i> </div>
-				<div class="pad10" ng-show="filter_b">
+				<div class="list-group-item" ng-class="{'active-b':issma(0)}"><a href="#/people/connected">Connected ({{pc.peoplesdata.totalconnections}})</a></div>
+				<div class="pad10">
 
-					<form>
 
+	<form>
 
 	<div class="form-group">
 		<label>Roles</label><br>
 		<span class="fs" ng-repeat="l in filter_option.roles" ng-click="removefilter(0,l,1)">{{l.name}} <i class="fa fa-times"></i></span>
 
-		<input class="form-control" type="text" placeholder="Any Role" ng-model="type" ng-focus="bool[0]=true" ng-blur="bool[0]=false"></input>
-		<div class="list-group suggestion-list col-md-10" ng-show="bool[0]">
-			<div class="list-group-item " ng-repeat="x in data.roles|filter:type " ng-mousedown="addfilter(0,x,1)">{{x.name}}</div>
+		<input class="form-control" type="text" placeholder="Any Role" ng-model="type" ></input>
+		<div class="list-group suggestion-list2" >
+			<div class="list-group-item " ng-repeat="x in data.roles|filter:type | orderBy : 'name' " ng-mousedown="addfilter(0,x,1)">{{x.name}}</div>
 		</div><!-- |orderBy:'toString()' -->
 
 	</div>
@@ -24,8 +24,8 @@
 		<label>Location</label><br>
 		<span class="fs" ng-repeat="l in filter_option.locations track by $index" ng-click="removefilter(1,l,1)">{{l.location}} <i class="fa fa-times"></i></span>
 		<input class="form-control" type="text" placeholder="Location"  ng-model="location" ng-focus="bool[1]=true" ng-blur="bool[1]=false"></input>
-		<div class="list-group suggestion-list col-md-10" ng-show="bool[1]">
-				<div class="list-group-item " ng-repeat="location in data.locations|orderBy:'toString()'|filter:location" ng-mousedown="addfilter(1,location,1)">{{location.location}}</div>
+		<div class="list-group suggestion-list2">
+				<div class="list-group-item " ng-repeat="location in data.locations|orderBy:'location'|filter:location" ng-mousedown="addfilter(1,location,1)">{{location.location}}</div>
 		</div>
 	</div>
 	<div class="form-group">
@@ -33,14 +33,12 @@
 		<span class="fs" ng-repeat="l in filter_option.languages track by $index" ng-click="removefilter(2,l,1)">{{l.language}} <i class="fa fa-times"></i></span>
 
 		<input class="form-control" type="text" placeholder="All Language" ng-model="language" ng-focus="bool[2]=true" ng-blur="bool[2]=false"></input>
-		<div class="list-group suggestion-list col-md-10" ng-show="bool[2]">
-				<div class="list-group-item " ng-repeat="x in data.languages |orderBy:'toString()'|filter:language" ng-mousedown="addfilter(2,x,1)">{{x.language}}</div>
+		<div class="list-group suggestion-list2">
+				<div class="list-group-item " ng-repeat="x in data.languages |orderBy:'language'|filter:language" ng-mousedown="addfilter(2,x,1)">{{x.language}}</div>
 		</div>
 	</div>
 	<div class="btn btn-white" ng-click="reset_filter(1);pc.apply_filter(filter_option)">Clear</div><div class="btn btn-red" ng-click="pc.apply_filter(filter_option)">Apply</div>
-
-
-					</form>
+</form>
 
 
 				</div>
@@ -49,12 +47,35 @@
 
 		</div>
 		<div class="col-md-9">
-			<div  ng-if="pc.peoplesdata.connectedpeople.length<1">
-				<br>
-				<h4 class="text-info text-center">No connected people found!</h4>
+
+			<div ng-if="pc.peoplesdata.connectedpeople.length<1 && pc.loaded"> <br><h4 class="text-info text-center">You have no connection!</h4>    </div>
+			<div class="text-center" ng-if="!pc.loaded">
+					<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
 			</div>
-			<div class="result-item col-md-4" ng-repeat="result in pc.peoplesdata.connectedpeople track by $index"><!-- | object_filter:filter_option -->
+			<div class="result-item clearfix" ng-repeat="result in pc.peoplesdata.connectedpeople track by $index"><!-- | object_filter:filter_option -->
 				<div class="holder">
+					<!-- <div class="item-location"></div> -->
+					<div class="img-container people col-md-3" style="background:url({{result.avatar?result.avatar:'images/avatar-default.jpg'}}) center center;background-size:contain;background-repeat: no-repeat;">
+						<!-- <img ng-src="{{result.avatar?result.avatar:'images/avatar-default.jpg'}}"></img> -->
+					</div>
+					<div class="details col-md-9">
+						<!-- {{result.languages.join(" ")}} -->
+						<h4>{{result.name}} <small>({{result.totalconnections || 0}} connections)</small></h4>
+						<p><i class="fa fa-language" aria-hidden="true"></i> {{result.languages.join(',') || '-'}}</p>
+						<p><i class="fa fa-check-circle" aria-hidden="true"></i> {{result.roles.join(',') || '-'}} </p>
+						<p><i class="fa fa-map" aria-hidden="true"></i> {{result.locations.join(",") || '-'}}</p>
+
+						<a class="pull-right btn btn-primary" ng-href="#/profile/{{result.profile_uuid}}">Profile</a>
+						<a class="pull-right btn btn-default" ng-click="pc.disconnect(result)">Disconnect</a>
+						<p><i class="fa fa-question-circle-o" aria-hidden="true"></i> {{result.details||'-'}}</p>
+						<!-- <p><span><i class="fa fa-calendar"></i> {{result.created_at.split(' ')[0]}}</span></p> -->
+					</div>
+					<!-- <div class="item-footer2">
+
+					</div> -->
+				</div>
+				<!-- <div class="holder">
 					<div class="item-location">{{result.locations.names.join(",")}}</div>
 					<div class="img-container people"><img ng-src="{{result.avatar?result.avatar:'images/avatar-default.jpg'}}"></img></div>
 					<div class="details">
@@ -65,9 +86,8 @@
 					<div class="item-footer">
 						<span><i class="fa fa-calendar"></i> {{result.membersince.date}}</span>
 						<a class="pull-right" ng-href="#/profile/{{result.profile_uuid}}">View</a>
-						<!-- <a class="pull-right" ng-href="#/profile/">Connect</a> -->
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

@@ -20,7 +20,7 @@ class Role extends Seeder
             "Models",
             "Child Artists",
             "Aged Characters",
-            
+
             "Music Director",
             "Playback Singers",
             "Track Singers",
@@ -32,13 +32,13 @@ class Role extends Seeder
             "Mixing and Mastering Team",
             "Dubbing Artist",
             "Sound Engineers",
-            
+
             "Shooting Permission",
             "Film Chamber/Title Registration",
             "Censor Board",
             "Producers Association",
             "Director Association",
-            
+
             "Publicity Designers",
             "Advertising Agencies",
             "Distributors",
@@ -71,13 +71,13 @@ class Role extends Seeder
             "Cinema Vehicle Drivers",
             "Cinema Production Assistance",
             "Cinema Journalists",
-            "Cinema Photo Journalists"   
+            "Cinema Photo Journalists"
         ];
 
-        $i=1;
+        // $i=1;
         foreach ($roles_array as $value) {
-        	$roles=App\Models\Detail\Roles::firstOrCreate(["name"=>$value,"role_id"=>$i]);
-        	$i++;
+        	$roles=App\Models\Detail\Roles::firstOrCreate(["name"=>$value]);
+        	// $i++;
         }
 
     }

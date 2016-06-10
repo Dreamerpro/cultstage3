@@ -1,6 +1,6 @@
 angular.module("cultstage")
 .controller('NewJobCtrl', function ($http) {
-	
+
 	var _self=this;
 	this.available={
 		languages:[],

@@ -5,17 +5,27 @@
 		<div class="col-md-3">
     		<job-side-menu></job-side-menu>
 		</div>
-		<div class="col-md-9" ng-repeat="b in aj.myjobs">
-			<div class="result-item col-md-4">
-				<div class="holder">
-					<div class="img-container events"><img  ng-src="asset/image/3/{{b.dajob.project.image}}"></img></div>
-					<div class="details">
-						<p>{{b.dajob.project.name}}</p>
-						<h4 class="name">{{b.dajob.role.name}}</h4>
+		<div class="col-md-9">
+			<div ng-if="aj.myjobs.length<1 && aj.loaded"> <br><h4 class="text-info text-center">You haven't applied for any job!</h4>    </div>
+			<div class="text-center" ng-if="!aj.loaded">
+					<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+			</div>
+		</div>
 
+		<div class="col-md-9" ng-repeat="b in aj.myjobs">
+			<div class="result-item">
+				<div class="holder">
+					<div class="img-container col-md-3 events" style="background:url(asset/image/3/{{b.project.image}}) center center no-repeat;background-size:contain"></div>
+					<div class="details col-md-9">
+						<h4 class="name">{{b.title}}</h4><p><b>{{b.role.name}}</b>  required for {{b.project.project_types[0].name}} <b>{{b.project.name}}</b></p>
+						<p>
+							{{b.project.details}}
+						</p>
 					</div>
-					<div class="item-footer">
-						<div class="col-md-6 btn btn-host">View</div>
+					<div class="item-footer col-md-9">
+						<div class="btn btn-host" ng-click="aj.cancelJob(b,$index)">Cancel</div>
+						<!-- <div class="btn btn-danger" ng-click="mjp.deleteJob(b,$index)">Delete</div> -->
 						<!-- <div class="col-md-6 btn btn-green">Join</div> -->
 					</div>
 				</div>

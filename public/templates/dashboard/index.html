@@ -4,16 +4,16 @@
 	<div class="content container" ng-controller="DashboardCtrl as dc" ng-init="dc.init()">
 		<div class="col-md-3">
 					<div class="profile-div panel">
-						<div class="dash-profile-pic">
-							<img ng-src="{{dc.dashboard.datauser.avatar|avatar}}">
+						<div class="dash-profile-pic" style="background:url({{dc.dashboard.datauser.avatar|avatar}}) center center;background-size:cover;">
+							<!-- <img ng-src="{{dc.dashboard.datauser.avatar|avatar}}"> -->
 							<!-- ng-if="dc.dashboard.datauser.avatart"  -->
-<!-- https://scontent.xx.fbcdn.net/hprofile-xta1/v/t1.0-1/p160x160/12036432_1202171393142770_5020833743961035711_n.jpg?oh=f601d2f92cbec0b69efb4138099cb691&oe=56D7326A -->						
+<!-- https://scontent.xx.fbcdn.net/hprofile-xta1/v/t1.0-1/p160x160/12036432_1202171393142770_5020833743961035711_n.jpg?oh=f601d2f92cbec0b69efb4138099cb691&oe=56D7326A -->
 						</div>
 						<div class="dash-pro-btm clearfix">
 							<h4 class="name">{{dc.dashboard.datauser.name}}</h4>
 							<a class="btn btn-red" href="#/profile/edit">Complete Profile</a>
 						</div>
-						
+
 					</div>
 
 				<div class="trust-info panel panel-default">
@@ -42,7 +42,7 @@
 					</div>
 					<div class="panel-body white">
 						<div class="roww">
-							<a href="">Projects</a>
+							<a href="#/jobs/my-projects">Projects</a>
 						</div>
 						<div class="roww">
 							<a href="">Help Center</a>
@@ -58,7 +58,7 @@
 					<h4>Welcome {{dc.dashboard.datauser.name}}</h4>
 				</div>
 				<div class="panel-body white">
-					<p>Check your job notification, connection requests, upcoming events , messages and notification all from your dashboard. Before getting started to make new connections and applying for jobs make sure to:<br> 
+					<p>Check your job notification, connection requests, upcoming events , messages and notification all from your dashboard. Before getting started to make new connections and applying for jobs make sure to:<br>
 					<h5><b>Build Profile</b></h5>
 					Upload a photo, write your short bio and upload all your creative stuff respectively to help your connections or recruiters get to know you before accepting your connection requests or inviting you for an interview for the job.
 					<h5><b>Complete Your Trust Information</b></h5>
@@ -73,7 +73,7 @@
 				</div>
 				<div class="panel-body white pt0">
 					<div class="row bb ">
-						<div class="notification-menu">Jobs</div><div class="notification-menu">Events</div><div class="notification-menu">People</div><div class="notification-menu">New Feature</div>
+						<div class="notification-menu">Jobs</div><div class="notification-menu">Events</div><div class="notification-menu">People <span class="badge">{{dc.conrequests}}</span></div><div class="notification-menu">New Feature</div>
 					</div>
 					<br>
 					<div class="connection-requests clearfix">
@@ -83,8 +83,8 @@
 							</div>
 							<div class="col-md-8">
 								<p>{{a.name }}  {{ a.roles.join(",")}}</p>
-								<a class="pull-right view-profile" ng-href="#/event/{{x.event_uuid}}">View Profile</a>
-								<a class="pull-right connect" ng-click="dc.accept(a)">Accept</a>
+								<a class="pull-right view-profile" ng-href="#/event/{{x.event_uuid}}"  style="cursor: pointer;">View Profile</a>
+								<a class="pull-right connect" ng-click="dc.accept(a)" style="cursor: pointer;">Accept</a>
 							</div>
 						</div>
 					</div>

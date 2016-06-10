@@ -33,13 +33,13 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	.when("/events/my-events", { templateUrl:$tu+'events/my-events.html'})
 	.when("/events/post-new", { templateUrl:$tu+'events/post-new.html'})
 
-	.when("/profile", { redirectTo:"profile/about"})
-	.when("/profile/about", { templateUrl:$tu+'profile/about.html'})
-	.when("/profile/posts", { templateUrl:$tu+'profile/posts.html'})
-	.when("/profile/photos", { templateUrl:$tu+'profile/photos.html'})
-	.when("/profile/videos", { templateUrl:$tu+'profile/videos.html'})
-	.when("/profile/audios", { templateUrl:$tu+'profile/audios.html'})
-	.when("/profile/script-works", { templateUrl:$tu+'profile/script-works.html'})
+	.when("/profile", { redirectTo:"profile/me/about"})
+	.when("/profile/:who/about", { templateUrl:$tu+'profile/about.html'})
+	.when("/profile/:who/posts", { templateUrl:$tu+'profile/posts.html'})
+	.when("/profile/:who/photos", { templateUrl:$tu+'profile/photos.html'})
+	.when("/profile/:who/videos", { templateUrl:$tu+'profile/videos.html'})
+	.when("/profile/:who/audios", { templateUrl:$tu+'profile/audios.html'})
+	.when("/profile/:who/script-works", { templateUrl:$tu+'profile/script-works.html'})
 	.when("/profile/edit", { templateUrl:$tu+"profile/edit.html"})
 
 	.when("/event/:uuid",{ templateUrl:$tu+'events/eventview.html'})
@@ -85,10 +85,10 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
         // add the button to the default toolbar definition
         taOptions.toolbar[1].push('colourRed');*/
         taOptions.toolbar = [
-	      ['h1', 'h2', 'h4', 'h6', 'p'],
-	      ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
-	      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']
-	  	];
+		      ['h1', 'h2', 'h4', 'h6', 'p'],
+		      ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
+		      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']
+	  		];
         return taOptions;
     }]);
 })
@@ -98,27 +98,31 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 					query:"",
 					category:null
 				};
+	// $rootScope.tsb="<a  class='list-group-item' ng-click='search(0)'>Job</a><a  class='list-group-item' ng-click='search(1)'>Poeple</a><a  class='list-group-item' ng-click='search(2)'>Event</a>";
 	/*ROUTE HANDLERS*/
 	$rootScope.activeM=-1;
 	$rootScope.activeSM=-1;
 
 	$rootScope.routes=['/home/',"/dashboard","/people","/events","/jobs","/message","/profile","aboutus","ourmission","advertise","contactus"];
 	$rootScope.subRoutes=[
-					["jobs/my-applications","events/interested","/message/compose","/people/connected","/profile/about"],
-					["events/my-events","/jobs/my-job-postings","/message/inbox",,"/profile/posts"],
-					["events/post-new","/jobs/new-job","/message/unread",,"/profile/photo"],
-					["/jobs/my-projects","/message/sent",,"/profile/video"],
-					["/profile/audio"],
-					["/profile/script-works"]
+					["jobs/my-applications","events/interested","/message/compose","/people/connected","/profile/.+/about"],
+					["events/my-events","/jobs/my-job-postings","/message/inbox","/profile/.+/posts"],
+					["events/post-new","/jobs/new-job","/message/unread","/profile/.+/photo"],
+					["/jobs/my-projects","/message/sent","/profile/.+/video"],
+					["/profile/.+/audio"],
+					["/profile/.+/script-works"]
 					];
 
 	$rootScope.findSubRoute=function(){
     	var found=false;
 		for (var i = $rootScope.subRoutes.length - 1; i >= 0; i--) {
 			for (var j = $rootScope.subRoutes[i].length - 1; j >= 0; j--) {
-				if($location.path().indexOf($rootScope.subRoutes[i][j])>-1){
+				//if($location.path().indexOf($rootScope.subRoutes[i][j])>-1){
+
+				if($location.path().match($rootScope.subRoutes[i][j])){
+					//console.log($location.path().match($rootScope.subRoutes[i][j]), i,j, $rootScope.subRoutes[i],$rootScope.subRoutes[i][j]);
+					//$rootScope.SM=$location.path().match($rootScope.subRoutes[i][j]).index;
 					$rootScope.SM=i;
-					console.log(i);
 					var found=true;
 					break;
 				}
@@ -137,9 +141,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	$rootScope.$on('$locationChangeSuccess', function(event){
         var url = $location.url()/*,
         params = $location.search()*/;
-        if(url=="/"){
-        	$rootScope.islanding=true;
-        }
+        if(url=="/"){     	$rootScope.islanding=true;      }
         else{
 					if((_.contains(_.flatten($rootScope.subRoutes),url) || url=="/dashboard") && !AuthService.isloggedin()){
 

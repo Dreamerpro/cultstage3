@@ -16,8 +16,8 @@ class CreateEventLanguagesTable extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->integer('language_id');
-            $table->foreign('language_id')->references('language_id')->on('languages')->onDelete('cascade');
+            $table->integer('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->timestamps();
         });
     }

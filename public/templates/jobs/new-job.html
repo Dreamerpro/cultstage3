@@ -6,36 +6,34 @@
     		<job-side-menu sideMenu="false" ng-class="class"></job-side-menu>
 		</div>
 		<div class="col-md-9" ng-controller="NewJobCtrl as njc" ng-init="njc.init()">
-			<div class="init-message col-md-12" ng-hide="b">You can load details from existing Project .</div>
-			
+			<div class="init-message col-md-12" ng-hide="b">Post new job .</div>
+
 			<div class="add-job-form col-md-12">
-				<form>
+				<form name="addjob">
 					<div class="form-group clearfix">
-						<select class="form-control" ng-model="njc.post.projectid">
-							<option value="">Select Project</option>
-							<option ng-repeat="a in njc.myprojects track by $index" ng-value="a.id" >{{a.name}}</option>
-						</select>
+						<label>Project*</label>
+						<select class="form-control" ng-model="njc.post.projectid"  ng-options="a.id as a.name for a in njc.myprojects" required></select>
 					</div>
 					<div class="form-group">
-						<label>Title</label>
+						<label>Job Title*</label>
 						<input class="form-control" required ng-model="njc.post.title">
 					</div>
 
 					<div class="form-group">
-						<label>Requirement</label>
-						<select class="form-control" required ng-model="njc.post.requirement">
-						<option ng-repeat="a in njc.available.roles" ng-value="a.role_id">
+						<label>Requirement*</label>
+						<select class="form-control" required ng-model="njc.post.requirement" ng-options="a.id as a.name for a in njc.available.roles">
+						<!-- <option ng-repeat="a in njc.available.roles" ng-value="a.role_id">
 									{{a.name}}
-								</option>	
+								</option> -->
 						</select>
 					</div>
 
 					<div class="form-group">
-						<label>Last date</label>
-						 <input class="form-control" type="date" ng-model="njc.post.date"></input>
+						<label>Last date to apply*</label>
+						 <input class="form-control" type="date" ng-model="njc.post.date" required></input>
 					</div>
 					<br>
-					<input class="btn btn-red" value="Post" type="submit" ng-click="njc.createNewJob()">
+					<input ng-disabled="addjob.$invalid" class="btn btn-red" value="Post" type="submit" ng-click="njc.createNewJob()">
 				</form>
 				<!-- <form name="newproject" >
 					<span class="text-info">{{njc.flash}}</span>
@@ -67,10 +65,10 @@
 						</div>
 						<div class="form-group">
 							<label>Add an image</label>
-							
+
 							<br>
 <img
-  ngf-src="njc.file" 
+  ngf-src="njc.file"
   ngf-resize="{width: 150, height: 150, quality: 0.9}"
   ngf-no-object-url="true"
 >

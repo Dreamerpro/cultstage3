@@ -16,8 +16,8 @@ class CreateProjectLanguagesTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned()->nullable();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('language_id')->nullable();
-            $table->foreign('language_id')->references('language_id')->on('languages')->onDelete('cascade');
+            $table->integer('language_id')->unsigned()->nullable();
+            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->timestamps();
         });
     }

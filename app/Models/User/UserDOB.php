@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class UserDOB extends Model
 {
     protected $table="user_d_o_bs";
+    protected $hidden = ['created_at','updated_at'];
 }

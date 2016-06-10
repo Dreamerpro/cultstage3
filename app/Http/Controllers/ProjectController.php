@@ -17,8 +17,8 @@ class ProjectController extends Controller
     {
     	$user=\Auth::user();
     	$projects=$user->my_projects;
-        
-        
+
+
         foreach ($projects as $project) {
           $project->languages;
           $project->locations;
@@ -28,11 +28,26 @@ class ProjectController extends Controller
         return $projects;
     }
 
+    public function deleteproject($id)
+    {
+      $project=Project::findOrFail($id);
+      $project->canDelete();
+      $project->delete();
+      return \Response::json('Project '.$project->name.' successfully deleted!');
+    }
+
     public function postnewproject()
     {
     	$user=\Auth::user();
-    	
-        $project=new Project;
+      $project=null;
+if(Input::get('id')){
+  $project=$user->my_projects->where('id',Input::get('id'))->first();
+  $project->project_types()->detach();
+  $project->languages()->detach();
+  $project->locations()->detach();
+}
+else{  $project=new Project; }
+
         $project->name=Input::get('title');
         $project->user_id=$user->id;
         $project->details=Input::get('description');
@@ -40,43 +55,55 @@ class ProjectController extends Controller
         $project->projectstatus=Input::get('productionstage');
         $project->save();
 
-        $type=new \App\Models\Project\ProjectType;
-        $type->project_id=$project->id;
-        $type->type_id=Input::get('projecttype');
-        $type->save();
+        $project->project_types()->attach(Input::get('projecttype'));
+        $project->languages()->attach(Input::get('language'));
+        $project->locations()->attach(Input::get('location'));
 
-        $projectlanguage=new ProjectLanguage;
-        $projectlanguage->project_id=$project->id;
-        $projectlanguage->language_id=Input::get('language');
-        $projectlanguage->save();
+        $project->project_types;
+        $project->languages;
+        $project->locations;
+        $project->projectstatus=$project->project_status($project->projectstatus);
 
-        $projectlocation=new ProjectLocation;
-        $projectlocation->project_id=$project->id;
-        $projectlocation->location_id=Input::get('location');
-        $projectlocation->save();
-
-//$project->project_type=Input::get('projecttype');
-    	return \Response::json(['msg'=>'Succesful'],200);
+    	return \Response::json(['project'=>$project],200);
     }
 
     public function postnewjob()
     {
+      $job=null;
+
+      if(Input::get('id')){
+        $job=\App\Job::findOrFail(Input::get('id'));
+        if($job->posted_by!=\Auth::user()->id){abort(403);}//abort
+      }
+      else{
         $job=new \App\Job;
+        $job->posted_by=\Auth::user()->id;
+      }
+
         $job->project_id=Input::get('projectid');
         $job->role_id=Input::get('requirement');
         $job->title=Input::get('title');
         $job->last_date=Input::get('date');
-        $job->posted_by=\Auth::user()->id;
+
         $job->save();
 
         return \Response::json(Input::all());
     }
-
+public function deletejob($id)
+{
+  $job=\App\Job::findOrFail($id);
+  if($job->project->user_id==\Auth::user()->id){
+    $job->delete();
+    return \Response::json("success",200);
+  }
+  else{   abort(403);  }
+}
     public function myjobpostings()
     {
         $jobs=\Auth::user()->job_postings;
         foreach ($jobs as $job) {
-           $job->project;
+           $job->project->project_types;
+
            $job->role;
         }
         return $jobs;
@@ -91,6 +118,6 @@ class ProjectController extends Controller
         }
         return $jobs;
     }
-    
-    
+
+
 }

@@ -6,11 +6,41 @@
 			<profile-side-menu></profile-side-menu>
 		</div>
 
-		<div class="col-md-9">
-
-			<center  style="color:#565a5c; margin-top:40px"><i class="fa fa-file-audio-o fa-4x"></i> <br><h4>No Audio found!</h4>
-				<div class="btn btn-default">Upload audio</div>
+		<div class="col-md-9" ng-controller="AudioController as pc" ng-init="pc.init()">
+			<div class="text-center" ng-if="!pc.loaded">
+					<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+			</div>
+			<center  style="color:#565a5c; margin-top:40px" ng-if="pc.loaded && pc.audios.length<1">
+				<i class="fa fa-file-audio-o fa-4x"></i> <br><h4>No Audio found!</h4>
+				<div class="btn btn-default"  ngf-select="pc.upload($file)" ng-model="pc.file" name="file" ngf-pattern="'audio/*'"
+							ngf-accept="'audio/*'" ngf-max-size="10MB" >Upload Audio</div>
 			</center>
+			<div class="clearfix" ng-if="pc.loaded && pc.audios.length>0">
+
+			<div class="c-header">
+				<i class="fa fa-file-image-o"></i> My Audios <small>({{pc.audios.length}})</small>
+				<div class="btn btn-default pull-right"  ngf-select="pc.upload($file)" ng-model="pc.file" name="file" ngf-pattern="'audio/*'"
+							ngf-accept="'audio/*'" ngf-max-size="50MB" ><i class="fa fa-plus"></i></div>
+			</div>
+				<div class="list-group">
+					<div class="list-group-item" ng-repeat="au in pc.audios track by $index">
+						<div class="dropdown pull-right post-tools">
+							<i class="fa fa-angle-down btn btn-default dropdown-toggle" data-toggle="dropdown" ></i>
+							<ul class="dropdown-menu">
+								<li><a href="" ng-click="pc.delete(au, $index)"><i class="fa fa-trash"></i> delete</a></li>
+								<!-- <li><a href="" ng-click="pc.editmode[$index]=true"><i class="fa fa-edit"></i> edit title</a></li> -->
+							</ul>
+						</div>
+						<small><small><i class="pull-right">Uploaded at {{au.created_at.split(' ')[0]}} &nbsp;</i></small></small>
+						<h4>{{au.title.split(".")[0]}}</h4>
+						<audio audios controls link="au.name">
+							Your browser does not support the audio element.
+							</audio>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

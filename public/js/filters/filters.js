@@ -9,21 +9,27 @@ angular.module('cultstage')
 		else{
 			return objects;
 		}
-		
+
 	}
 })
+// .filter('taru', function ($sce) {
+// 	return function (url) {
+// 		return $sce.trustAsResourceUrl(url);
+//
+// 	}
+// })
 .filter('avatar', function () {
 	return function (objects) {
 		console.log(objects);
 		if(objects===null){ console.log(objects); return 'images/avatar-default.jpg';}
 		else{return objects;}
-		
+
 	}
 })
 
 .filter('object_filter', function() {
 	//var option={name:'D\'',types:[],locations:[]};
-	
+
 	return function(objects,option){
 		var out=[];
 		var z=true;
@@ -35,7 +41,7 @@ IF AT LEAST 1 TYPE EXIST IN PEOPLE.TYPE or FILED => TRUE
 
 		for (var i = objects.length - 1; i >= 0; i--) {
 			var object=objects[i];
-			
+
 			if(option.name==undefined || option.name==""){/*DO NOTHING*/}
 			else{if(object.name.indexOf(option.name)<0) continue;}
 
@@ -43,12 +49,12 @@ IF AT LEAST 1 TYPE EXIST IN PEOPLE.TYPE or FILED => TRUE
 			else{
 				if(option.types.length==0){}
 				else{
-					
+
 					for (var j = 0; j <object.types.length; j++) {
 						for (var k = 0; k <option.types.length; k++) {
 							if(object.types[j].indexOf(option.types[k])>-1){ j=object.types.length; break;	}
 							else if(j==object.types.length-1 && k==option.types.length-1){ z=false;}
-						}		
+						}
 					}
 				}
 			}
@@ -61,10 +67,10 @@ IF AT LEAST 1 TYPE EXIST IN PEOPLE.TYPE or FILED => TRUE
 							for (var k = 0; k <option.locations.length; k++) {
 								if(object.locations[j].indexOf(option.locations[k])>-1){ j=object.locations.length; break;	}
 								else if(j==object.locations.length-1 && k==option.locations.length-1){ z=false;}
-							}		
+							}
 						}
 					}
-				}	
+				}
 			}
 
 			if(z){
@@ -76,32 +82,32 @@ IF AT LEAST 1 TYPE EXIST IN PEOPLE.TYPE or FILED => TRUE
 							for (var k = 0; k <option.languages.length; k++) {
 								if(object.languages[j].indexOf(option.languages[k])>-1){ j=object.languages.length; break;	}
 								else if(j==object.languages.length-1 && k==option.languages.length-1){ z=false;}
-							}		
+							}
 						}
 					}
-				}	
+				}
 			}
-			
+
 
 			if(z){ out.push(object); }
 			z=true;
 		}
-			
+
 		return out;
 	}
 
 })
 /*if(option.name!=undefined || option.name!=""){
-				console.log("index is "+element.name.indexOf(option.name))	
+				console.log("index is "+element.name.indexOf(option.name))
 				if(element.name.indexOf(option.name)<-1){console.log("thats it");z=false;}
-				
+
 			}
 			if(z){
 				console.log("helo 2");
 				if(option.types==undefined){}
 				else if(option.types!=undefined || option.types.length>0){
 					for (var i = element.types.length - 1; i >= 0; i--) {
-						
+
 						for (var j = option.types.length - 1; j >= 0; j--) {
 							if(element.types[i].indexOf(option.types[j])>-1){
 								a=1; break;

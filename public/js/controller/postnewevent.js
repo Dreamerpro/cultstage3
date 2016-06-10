@@ -18,7 +18,8 @@ angular.module('cultstage')
 		closingdate:null,
 		startingtime:null,
 		closingtime:null,
-		description:''
+		description:'',
+		image:null
 	}
 
 	this.resetData=function(){
@@ -33,36 +34,26 @@ angular.module('cultstage')
 			closingdate:null,
 			startingtime:null,
 			closingtime:null,
-			description:''
+			description:'',
+			image:null
 			}
 	}
 	this.init=function(){
 		$http.get('/availablelocations/')
-		.success(function(args){
-			_self.available.locations=args;
-			console.log(args);
-		})
+		.success(function(args){		_self.available.locations=args;		})
 		.error(function(err){ console.log(err); })
 
 		$http.get('/availablelanguages/')
-		.success(function(args){
-			_self.available.languages=args;
-			console.log(args);
-		})
+		.success(function(args){ 		_self.available.languages=args;		})
 		.error(function(err){ console.log(err); })
 
 		$http.get('/availableeventtypes/')
 		.success(function(args){
-			_self.available.types=args;
-			console.log(args);
-		})
+			_self.available.types=args;		})
 		.error(function(err){ console.log(err); })
 
 		$http.get('/availableroles/')
-		.success(function(args){
-			_self.available.audiences=args;
-			console.log(args);
-		})
+		.success(function(args){			_self.available.audiences=args;		})
 		.error(function(err){ console.log(err); })
 	}
 
@@ -92,14 +83,25 @@ angular.module('cultstage')
 		_self.available.audiences.push(audobj);
 		_self.selected.audiences.splice(_self.selected.audiences.indexOf(audobj),1);
 	}
-
+	this.deleteImage=function() {
+		$http.post('/deleteimage',{filename:_self.selected.image,type:2})
+		.success(function (argument) {
+			_self.file=null;
+			_self.selected.image=null;
+		})
+		.error(function (argument) {
+			console.log('error deleting file. ' +argument);
+			_self.file=null;
+			_self.selected.image=null;
+		});
+	}
 	this.submit=function(){
 		console.log(_self.selected)
 		$http.post('/postnewevent',_self.selected)
 		.success(function(data){
 			console.log(data)
 			_self.flashmsg=data.msg;
-			_self.resetData();
+			//_self.resetData();
 		})
 		.error(function(err){
 			console.log(err);
@@ -111,16 +113,16 @@ angular.module('cultstage')
 		_self.form=scope;
 		console.log(scope);
 	}
-	this.uploadimage=function(){
-		console.log(_self.form, _self.file.$valid);
-		 if (_self.form.file.$valid && _self.file) {
-		 	console.log('success');
-	        _self.uploadnow(_self.file);
-	    }
-	    else{
-	    	console.log('failed');
-	    }
-	}
+	// this.uploadimage=function(){
+	// 	console.log(_self.form, _self.file.$valid);
+	// 	 if (_self.form.file.$valid && _self.file) {
+	// 	 	console.log('success');
+	//         _self.uploadnow(_self.file);
+	//     }
+	//     else{
+	//     	console.log('failed');
+	//     }
+	// }
 	this.uploadnow=function(file){
 		Upload.upload({
             url: '/uploadeventimage',

@@ -79,6 +79,12 @@
 }
 
 /* HOME */
+.tsb{
+	position: relative;z-index: 10;min-width: 400px;
+}
+.tsb a{
+	cursor: pointer;
+}
 .search-bar{
 	margin-top: 140px;
 	background-color: #000;
@@ -263,7 +269,7 @@ section.home-bottom{
 /*events*/
 .img-container{
 	overflow: hidden;
-    height: 200px;
+    height: 164px;
 }
 .result-item>div>.details{
 	padding: 5px;
@@ -295,6 +301,10 @@ section.home-bottom{
 }
 .event-attendee>.list-group-item>a>img{
    width: 50px
+}
+.event-name{
+	margin-top: 0px;
+	padding-left: 5px;
 }
 .interested-btn,.invite-btn{
 	position: absolute;
@@ -344,7 +354,8 @@ section.home-bottom{
     background-color: grey;
 }
 .img-container>img{
-	height: 200;
+	/*height: 200;*/
+	width: 100%
 }
 
 /* ADD JOB*/
@@ -491,12 +502,12 @@ section.home-bottom{
 /*Suggestion*/
 .suggestion-list{
 	position: absolute !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    z-index: 1000;
-    height: 300px;
-    overflow-y: auto;
     /*width: 80%;*/
+		padding: 0 !important;
+		border-radius: 0 !important;
+		z-index: 1000;
+		height: 300px;
+		overflow-y: auto;
 }
 .suggestion-list>.list-group-item{
 	border-radius: 0 !important;
@@ -505,7 +516,20 @@ section.home-bottom{
 .suggestion-list>.list-group-item:hover{
 	background-color: #eee;
 }
-
+.suggestion-list2{
+	padding: 0 !important;
+	border-radius: 0 !important;
+	z-index: 1000;
+	max-height: 125px;
+	overflow-y: auto;
+}
+.suggestion-list2 .list-group-item{
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.suggestion-list2 .list-group-item:hover{
+	background-color: #ECECEC;
+}
 /*RSULTS*/
 .result-item{
 	margin-bottom: 10px;
@@ -594,7 +618,7 @@ p.paragraph>.tab{
 	cursor: pointer;
 }
 .change-profile{
-	margin-top: -200px;
+	/*margin-top: -200px;*/
 	text-align: center;
 	background: rgba(0, 0, 0, 0.5);;
 	display: none;
@@ -617,6 +641,12 @@ p.paragraph>.tab{
 
 .nav-bar>ul::-webkit-scrollbar{
 	width: 0px;
+}
+.photo-item:hover .db{
+	visibility: visible;
+}
+.db{
+		visibility: hidden;
 }
 @media  (max-width:964px){
 	.custom-vxs .list-group-item{
