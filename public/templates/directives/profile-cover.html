@@ -1,24 +1,6 @@
 <div ng-controller="ProfileCoverCtrl as ppp" ng-init="ppp.init()">
 
-<!--
-<div class="modal fade" role="modal" id="change-profile-modal" >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				Upload new profile pic
-				<button  class="pull-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button >
-			</div>
-			<div class="modal-body">
-				<img ngf-thumbnail="file || ppp.uData.avatar">
-				<br><br>
-				<div class="btn btn-default" ngf-select="ppp.addphoto($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="5MB">Upload</div>
 
-			</div>
-
-		</div>
-	</div>
-</div> -->
-<!-- background:{{pac.about.background? url(pac.about.background):'#777'}}; -->
 <div class="cover container clearfix" style="background:#BEC8CC url({{ppp.uData.cover}});background-position: center center;"><!-- http://media.salon.com/2014/01/wolf_wall_street2.jpg -->
 	<div class="btn btn-default pull-right" style="margin-top: 250px;" ngf-select="ppp.upload($file, 1)" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="4MB"><i class="fa fa-camera"></i></div>
 	<div class="profile-pic" style="background: url({{ppp.uData.avatar || 'images/avatar-default.jpg'}}) center center;
@@ -28,6 +10,7 @@
     box-shadow: 1px 0px 1px #979595;">
 		<!--  ng-src="{{pac.avatar?pac.avatar:'images/avatar-default.jpg'}}"-->
 		<!-- <img class=" img-thumbnail" ng-src="{{ppp.uData.avatar || 'images/avatar-default.jpg'}}"> -->
+		<p ng-if="ppp.uploadPercentage[1]" class="text-center">	{{ppp.uploadPercentage[1]}}%</p>
 		<div class="change-profile" ngf-select="ppp.upload($file, 0)" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="2MB">
 			<div class="fa fa-camera fa-2x" style="margin-top: 86;color:#fff"></div>
 			<p ng-if="ppp.uploadPercentage[0]" style="color:#fff">	{{ppp.uploadPercentage[0]}}%</p>
