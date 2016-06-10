@@ -1,5 +1,5 @@
 angular.module('cultstage')
-.controller("HomeSearchCtrl", function($scope, $location){
+.controller("HomeSearchCtrl", function($scope, $location, Notification){
 
 	$scope.t="Search"
 	$scope.bools=[false,false,false,false];
@@ -35,10 +35,11 @@ angular.module('cultstage')
 		}
 		else{
 			if($scope.data.category==null){
-				alert("Please select a category.")
+				// alert()
+				Notification.error({message:"Please select a category!",replaceMessage:true});
 			}
 			else{
-				alert("Please type something in seach box.")
+				Notification.error({message:"Please type something in seach box",replaceMessage:true});
 			}
 
 		}
