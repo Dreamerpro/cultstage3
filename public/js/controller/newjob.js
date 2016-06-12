@@ -1,5 +1,5 @@
 angular.module("cultstage")
-.controller('NewJobCtrl', function ($http) {
+.controller('NewJobCtrl', function ($http, Notification) {
 
 	var _self=this;
 	this.available={
@@ -40,8 +40,9 @@ angular.module("cultstage")
 	this.createNewJob=function (argument) {
 		$http.post('/newjob',_self.post)
 		.success(function (argument) {
-			_self.flash="The job is successfully added."
+			_self.flash="."
 			_self.post={};
+			Notification.success({message:'The job is successfully posted.', replaceMessage:true});
 		})
 		;
 	}
