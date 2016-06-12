@@ -1,5 +1,5 @@
 angular.module('cultstage')
-.controller('PostNewEventCtrl', function ($http,$scope,Upload) {
+.controller('PostNewEventCtrl', function ($http,$scope,Upload,Notification) {
 	var _self=this;
 	this.available={
 		locations:[],
@@ -101,10 +101,11 @@ angular.module('cultstage')
 		.success(function(data){
 			console.log(data)
 			_self.flashmsg=data.msg;
-			//_self.resetData();
+			_self.resetData();
+			Notification.success({message:"Event post success!", replaceMessage:true});
 		})
 		.error(function(err){
-			console.log(err);
+			Notification.success({message:'There was an error posting new event!', replaceMessage:true});
 			_self.flashmsg='There was an error posting new event!';
 		})
 	}

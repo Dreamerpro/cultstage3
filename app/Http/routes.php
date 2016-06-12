@@ -25,9 +25,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
     	return view('holder')->with('user',false);
 	});
-	/*Route::get('/magazine', function () {
+	Route::get('/magazine', function () {
 	    return view('magazine');
-	});*/
+	});
 	Route::get('/send-entry', function () {
 	    return view('entry');
 	});
