@@ -46,28 +46,28 @@
 </div>
 <section class="home-bottom clearfix">
 	<div class="container">
-		<div class="col-md-3">
+		<div class="col-md-3" ng-click="redirect(1)">
 			<span></span>
-			<div><h3>CONNECT</h3>
+			<div ng-click="redirect(1)"><h3>CONNECT</h3>
 				<p><i class="fa fa-connectdevelop fa-2x"></i> </p>
 				<p>Instantly with the Film Industry, Television and Theatre Professionals from around the world. </p>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" ng-click="redirect(0)">
 			<span></span>
 			<div><h3>FIND</h3>
 				<p><i class="fa fa-search fa-2x"></i> </p>
 				<p>The right talent and best opportunities  today at your finger tips.</p>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" ng-click="redirect(0)">
 			<span></span>
-			<div><h3>GET HIRED</h3>
+			<div ><h3>GET HIRED</h3>
 				<p><i class="fa fa-user-plus fa-2x"></i> </p>
 				<p>By the Producers of Film and Television production teams and many more.</p>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" ng-click="redirect(2)">
 			<span></span>
 			<div><h3>SHOWCASE</h3>
 				<p><i class="fa fa-diamond fa-2x"></i> </p>
@@ -103,9 +103,152 @@
 	color:#fff
 }
  </style>
- <section class="home-cover clearfix  container">
+ <magazine>
+	 <style type="text/css">
+	 .categories-menu>div:hover,.filters-menu>div:hover{
+		 background-color: #333;
+	 }
+	 .filters{
+			 border-left: 1px solid #999;
+			 height: 113px;
+			 vertical-align: top;
+
+	 }
+	 .filters-menu>div:hover>.filter-item-container{
+		 display: block;
+				 font-size: 12px;
+	 }
+	 .filter-item-container{
+		 display: none;
+		 position: absolute;
+			 background-color: #ddd;
+			 margin-top: 20px;
+			 color: black;
+			 padding: 40px;
+	 }
+	 .filter-item-container>a.filter-items{
+		 display: inline-block;
+		 padding: 18px;
+	 }
+	 .filter-item-container>a.filter-items:hover{
+		 text-decoration: underline !important;
+	 }
+	 .right-top{width: 400px;
+			 margin-top: -40;}
+	 .socials-top{height: 40px;
+		 border-bottom:1px solid #fff;
+			 margin-top: 10;
+	 }
+	 .white{    background-color: #fff;
+			 height: 130px;
+			 border-top-left-radius: 230px;
+	 }
+	 .socials-top>a{
+		 padding: 6px;
+		 color: #fff;
+		 margin-top: 5px;
+		 width: 30px;
+			 display: inline-block;
+			 margin-left: 14px;
+	 }
+	 .socials-top>a:hover{
+		 color: #eee;
+	 }
+	 .socials-top>a>i{
+		 font-size: 1.2em;
+	 }
+
+	 .article-item{
+		 background-color: #000;
+		 height: 500px;
+		 margin: 60px 60px;
+	 }
+
+	 .article-heading{
+			 font-size: 16px;
+			 font-weight: bold;
+			 color: #fff;
+	 }
+	 .article-heading>.article-infos{
+		 text-indent: 40px;
+	 }
+	 .article-heading>.white-box{
+		 background-color: #fff;
+		 height: 60px;
+	 }
+	 .article-infos{
+		 height: 60px;
+		 line-height: 60px;
+		 word-spacing: 10px
+	 }
+	 .share-btns{
+		 line-height: 60px;
+	 }
+	 .share-btns>a>i{
+		 width: 20px;
+			 padding: 8px;
+			 margin-right: 20px;
+	 }
+	 .article-content{
+			 height: 440px;
+			 padding:20px 20px 20px 0;
+	 }
+	 img.poster{
+		 width: 100%;
+		 height: 100%;
+	 }
+	 .article-content>.description{
+		 background-color: #fff;
+		 height: 100%;
+		 padding: 0 40px;
+	 }
+	 .filters>h5,.categories>h5{
+				 font-weight: bold;
+			 color: #DADADA;
+	 }
+	 .pdlr8{
+		 padding:0 8px;
+		 display: inline-block;
+	 }
+	 .rh:hover,.rh.active{
+		 color: red;
+	 }
+	 </style>
+	<div class="content container">
+		 <div class="article-item clearfix">
+		 	<div class="article-heading clearfix">
+		 		<div class="white-box col-md-4"></div>
+		 		<div class="article-infos col-md-4">2015 / Movie / Telegu</div>
+		 		<div class="share-btns pull-right">
+		 			<a href=""><i class="fa fa-facebook"></i></a>
+		 			<a href=""><i class="fa fa-twitter"></i></a>
+		 		</div>
+		 	</div>
+		 	<div class="article-content clearfix">
+		 		<div class="col-md-8">
+		 			<img src="http://s2.dmcdn.net/IiCh5/1280x720-vm2.jpg" class="poster" alt="">
+		 		</div>
+		 		<div class="col-md-4 description">
+		 			<div class="header">
+		 				<h3><b>Movie Title</b></h3>
+		 				<p><b>Genre:</b> Action / Horror / Thriller / Drama / Suspense / Comedy</p>
+
+		 				<p><b>Director:</b> X Y X</p>
+		 				<p><b>Casts:</b> X Y X</p>
+
+		 				<p><b>Release Date:</b> 12/12/16</p>
+
+		 				<p><a href="" class="pdlr8">Watch trailer</a> <a href="" class="rh"><i class="fa fa-heart"></i> </a>(60) </p>
+		 				<p><b>Synopsis:</b><br>  This Film is about blah blah blah. blah blah blahblah blah blahblah blah blahblah blah blahblah blah blah blah blah blahblah blah blahblah blah blahblah blah blahblah blah blahblah blah blah</p>
+		 			</div>
+		 		</div>
+		 	</div>
+		</div>
+
+	 </div>
+ </magazine>
+ <!-- <section class="home-cover clearfix  container">
  	<div class="cover-holder col-md-12">
- 		<!-- <img class="col-md-12" src="images/cover1.jpg"> -->
  		<div class="col-md-12" style="background-image:url(images/cover1.jpg);background-size:cover">
  			<div class="cover-text col-md-4" style="background-color:rgba(31,72,125,0.7)">
  			<h3>Connecting opens up a world full of opportunities.</h3>
@@ -143,7 +286,6 @@
  				<h3>SHOWCASE</h3>
  				<p>Your creation whether it be script, music, lyrics, story with thousands of people already looking for it.</p>
  			</div>
- 		<!-- <img src="images/cover3.jpg"> -->
  		</div>
  	</div>
- </section>
+ </section> -->

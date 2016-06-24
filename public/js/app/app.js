@@ -196,6 +196,11 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 		console.log($rootScope.data.query);
 		$rootScope.showcat=false;
 	}
+	$rootScope.redirect=function (q) {
+		// alert(q);
+		$location.path("/search/");
+		$location.search({query:'',category:q});
+	}
 	/*OTHER PARAMS*/
 	//$rootScope.sign=0;//0 or 1: sign up or sign in
 })
