@@ -201,6 +201,9 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 		$location.path("/search/");
 		$location.search({query:'',category:q});
 	}
+	$rootScope.totop=function() {
+		$('html, body').animate({scrollTop : 0},800);
+	}
 	/*OTHER PARAMS*/
 	//$rootScope.sign=0;//0 or 1: sign up or sign in
 })
