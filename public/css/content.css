@@ -1,15 +1,28 @@
 /*body{
 	min-width: 700px !Important;
 }*/
+#homesearchbar{
+	text-align: center;
+}
+#homesearchbar>.form-group{
+	padding: 0 10px !important;
+}
+#homesearchbar>.form-group>.form-control{
+
+	border-radius: 2px !important;
+}
 .site-content{
 	display: block;
 	width: 100%;
 	background-color: #f5f5f5;
+	margin-top: 60px;
 }
 .content{
 	/*background-color: #f5f5f5;*/
 	min-height: 500px;
 	padding-top: 40px;
+	margin-top: 45px;
+
 }
 
 /*SIGN MODAL*/
@@ -224,6 +237,7 @@ section.home-bottom{
 	background-color: rgb(83, 101, 46);
 	height: inherit;
 	padding: 10px 10px;
+	border-radius: 4px;
 	/*mix-blend-mode: multiply;*/
 }
 .home-bottom>.container>div:nth-child(1)>div{
@@ -655,4 +669,9 @@ p.paragraph>.tab{
 	.home-bottom>.container>div>div>h3{
 	    font-size: 120%;
 		}
+}
+@media (max-width: 768px){
+	#homesearchbar>.form-group {
+		margin-top: 5px !important;
+	}
 }

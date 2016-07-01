@@ -1,9 +1,11 @@
 .nav-bar{
-	position: relative;
 	background-color: #565a5c;
 	-webkit-user-select: none;
 	height: 45px;
 	white-space: nowrap;
+	position: fixed;
+	width: 100%;
+    z-index: 10;
 }
 .nav-bar>ul{
 	height: inherit;

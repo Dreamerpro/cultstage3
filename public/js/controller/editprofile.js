@@ -124,7 +124,7 @@ angular.module('cultstage')
 	}
 
 	this.addrole=function (arg) {
-		var toadd=_self.available.roles.splice(_self.available.locations.indexOf(arg),1);
+		var toadd=_self.available.roles.splice(_self.available.roles.indexOf(arg),1);
 		_self.profiledata.roles.push(toadd[0]);
 	}
 

@@ -2,9 +2,15 @@
 	background-color: #fff;
 	width: 100%;
 }
+.header-bar:not(.th){
+	position: fixed;
+	top: 0;
+	z-index: 20;
+}
 .header-bar.th{
 	background-color: transparent !important;
 	position: absolute;
+	padding: 0 40px;
 }
 .header-bar>a{
 	color: #000 !important;
@@ -55,7 +61,7 @@
 	/* width: auto; */
 	height: 61px;
 	line-height: 61px;
-	padding: 0 10px;
+	padding: 0 20px;
 	text-align: center;
 	cursor: pointer;
 	border-left: 1px solid #dce0e0;
@@ -232,7 +238,9 @@ border:1px solid;
 	height: 40px;
 	line-height: 40px !important;
 }
-
+.p10{
+	padding: 30px 0
+}
 @media (max-width: 768px){
 	.header-bar a{
 		    display: block;
@@ -241,5 +249,8 @@ border:1px solid;
 	.menu-right{
 		position: absolute;
 		    right: 0;
+	}
+	.header-bar.th{
+		padding: 0;
 	}
 }
