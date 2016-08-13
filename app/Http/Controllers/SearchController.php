@@ -28,7 +28,10 @@ class SearchController extends Controller
 
     	if($category==1){//people
           $userArray=[];
-    		  $users=User::where('name','LIKE',"%$query%")->get();
+          $users=null;
+          if(strlen($query)==0){$users=Users::all();}
+          else{$users=User::where('name','LIKE',"%$query%")->get();}
+
 
           foreach ($users as $key => $user) {
             if($me){ if($me->id==$user->id){ continue; }
@@ -51,6 +54,11 @@ class SearchController extends Controller
 			return \Response::json($userArray,200);
     	}
     	if($category==0){//job
+        $jobs=null;
+
+        if(strlen($query)==0){$jobs=\App\Job::all();}
+        else{$jobs=\App\Job::where('name','LIKE',"%$query%")->get();}
+
           $jobs=\App\Job::where('title','LIKE',"%$query%")->get();
           $jobArray=[];
           foreach ($jobs as $key => $job) {
@@ -75,9 +83,14 @@ class SearchController extends Controller
           return $jobArray;
     	}
     	if($category==2){//event
-            $events=\App\Event::where('name','LIKE',"%$query%")->get();
+
             $eventsArray=[];
             $user=\Auth::user();
+
+            $events=null;
+            if(strlen($query)==0){$events=\App\Event::all();}
+            else{$events=\App\Event::where('name','LIKE',"%$query%")->get();}
+
             foreach ($events as $event) {
                 $event_attr=[
                   'languages'=>collect($event->languages->pluck('id')),

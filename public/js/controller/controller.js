@@ -3,7 +3,7 @@ angular.module('cultstage')
 
 	$scope.t="Search"
 	$scope.bools=[false,false,false,false];
-	$scope.data={};//0:query,1:cat,2:type,3:location, 4:language
+	$scope.data={query:""};//0:query,1:cat,2:type,3:location, 4:language
 	$scope.suggestions=[
 							[
 								["Acting","Singing","Casting"],
@@ -34,18 +34,18 @@ angular.module('cultstage')
 			$location.search($scope.data);
 		}
 		else{
-			if($scope.data.category==null){
+			//if($scope.data.category==null){
 				// alert()
 				Notification.error({message:"Please select a category!",replaceMessage:true});
-			}
-			else{
-				Notification.error({message:"Please type something in seach box",replaceMessage:true});
-			}
+			// }
+			// else{
+			// 	Notification.error({message:"Please type something in seach box",replaceMessage:true});
+			// }
 
 		}
 	}
 	$scope.validate=function(){
-		if($scope.data.query=="" || $scope.data.query==null ||  $scope.data.category==null){return false;}
+		if($scope.data.category==null ||$scope.data.category.length<1){return false;}
 		else return true;
 	}
 
