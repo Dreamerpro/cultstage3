@@ -39,9 +39,7 @@ header>a.logo{
 .header-menu>a.header-caret-menu>i{
 	line-height: 60px;
 }
-footer{
-	margin-top: 10px;
-}
+
 footer,footer>a{
 	color: #fff;
 }
@@ -99,7 +97,7 @@ footer,footer>a{
 .socials>div:nth-child(5){
 	background-color: #517fa4;
 }
- 
+
 @media (max-width: 768px){
 	.f-menu{
 		float: left;

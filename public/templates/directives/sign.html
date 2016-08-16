@@ -35,7 +35,8 @@
         			</span>
         		</div>
         		<input class="btn btn-red" type="submit" ng-disabled="signupform.name.$dirty && signupform.name.$invalid || signupform.email.$dirty && signupform.email.$invalid || signupform.password.$dirty && signupform.password.$error.minlength" ng-click="submit().signUp()"></input>&nbsp;<span class="error-msg" ng-show="error.up">{{error.up}}</span>
-        	</form>
+            <a class="btn btn-default oim" data-dismiss="modal">Close</a>
+          </form>
 
         	<form class="sign-in" name="signinform" ng-show="sign" novalidate>
         		<div class="form-group">
@@ -55,7 +56,8 @@
         			</span>
         		</div>
         		<input class="btn btn-red" type="submit" ng-click="submit().signIn()"  ng-disabled="signinform.email.$dirty && signinform.email.$invalid || signinform.password.$dirty && signinform.password.$error.minlength"></input>
-        		<a href="#/forgot_password" class="pull-right" id="fp">Forgot Password</a>
+            <a class="btn btn-default oim" data-dismiss="modal">Close</a>
+            <a href="#/forgot_password" class="pull-right" id="fp">Forgot Password</a>
         		&nbsp;<span class="error-msg" ng-show="error.in">{{error.in}}</span>
         	</form>
         </div>

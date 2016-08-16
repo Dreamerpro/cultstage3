@@ -8,7 +8,6 @@
 	padding: 0 10px !important;
 }
 #homesearchbar>.form-group>.form-control{
-
 	border-radius: 2px !important;
 }
 .site-content{
@@ -673,5 +672,11 @@ p.paragraph>.tab{
 @media (max-width: 768px){
 	#homesearchbar>.form-group {
 		margin-top: 5px !important;
+	}
+	.oim{
+		display: inline-block !important;
+	}
+	.proid{
+		float: none;
 	}
 }

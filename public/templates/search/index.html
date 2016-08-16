@@ -1,14 +1,14 @@
 <div class="site-content clearfix" ng-controller="SearchCtrl as pc" ng-init="pc.init()">
 <top-nav></top-nav>
 
-	<div class="content container" ng-controller="ContentCtrl" ng-init="init()">
+	<div class="content container" ng-controller="ContentCtrl" ng-init="init(); hide=true" >
 		<div class="col-md-3 filter " ng-init="filter_b=false">
 			<div class="list-group " ng-controller="subRouteController">
-				<!-- sub-menu -->
-				<div class="list-group-item" ng-class="{'active-b':issma(0)}"><a><b>Filter</b></a></div>
+				<!-- sub-menu asdas-->
+				<div class="list-group-item" ng-class="{'active-b':issma(0)}" ng-click="hide=!hide"><a><b>Filter</b></a> <a class="pull-right"><i class="fa fa-filter "></i></a></div>
 
 
-				<div class="pad10" >
+				<div class="pad10 {{hide?'mhidden':''}}" >
 					<div class="form-group">
 						<label>Search for</label>
 						<select ng-model="pc.query.category"  class="form-control" ng-options="a.id as a.name for a in pc.categories" ></select>
@@ -44,7 +44,9 @@
 								<div class="list-group-item " ng-repeat="x in data.languages |orderBy:'language'|filter:language" ng-mousedown="addfilter(2,x,1)">{{x.language}}</div>
 						</div>
 					</div>
-					<div class="btn btn-white" ng-click="reset_filter(1);pc.apply_filter(filter_option)">Clear</div><div class="btn btn-red" ng-click="pc.apply_filter(filter_option)">Apply</div>
+					<div class="btn btn-red" ng-click="pc.apply_filter(filter_option)">Apply</div>
+					<div class="btn btn-danger" ng-click="reset_filter(1);pc.apply_filter(filter_option)">Clear</div>
+					<div class="btn btn-warning pull-right" ng-click="hide=!hide">Cancel</div>
 				</form>
 				</div>
 			</div>
@@ -69,9 +71,9 @@
 						<p><i class="fa fa-check-circle" aria-hidden="true"></i> {{result.roles.join(',') || '----'}} </p>
 						<p><i class="fa fa-map" aria-hidden="true"></i> {{result.locations.join(",") || '--'}}</p>
 
-						<a class="pull-right btn btn-primary" ng-href="#/profile/{{result.profile_uuid}}">Profile</a>
-						<a ng-if="!result.connection_status || (result.connection_status && result.connection_status.status!=1)" class="pull-right btn btn-default" ng-click="pc.connect(result.id)">Connect</a>
-						<a ng-if="result.connection_status && result.connection_status.status==1" class="pull-right btn btn-default" disabled>Connected</a>
+						<a class="proid btn btn-primary" ng-href="#/profile/{{result.profile_uuid}}">Profile</a>
+						<a ng-if="!result.connection_status || (result.connection_status && result.connection_status.status!=1)" class="proid btn btn-default" ng-click="pc.connect(result.id)">Connect</a>
+						<a ng-if="result.connection_status && result.connection_status.status==1" class="proid btn btn-default" disabled>Connected</a>
 						<p><i class="fa fa-question-circle-o" aria-hidden="true"></i> {{result.details||'-'}}</p>
 					</div>
 				</div>
@@ -90,7 +92,7 @@
 							<p><i class="fa fa-check-circle" aria-hidden="true"></i> {{result.roles.join(',') || 'Public event'}} </p>
 							<p><i class="fa fa-map" aria-hidden="true"></i> {{result.locations.join(",") || '-'}}</p>
 							<!-- <a class="pull-right btn btn-primary" ng-href="#">More</a> -->
-							<button class="pull-right btn btn-default" ng-click="pc.bookmarkevent(result)" ng-disabled="result.bookmarked">{{result.bookmarked?'Bookmarked':'Bookmark'}}</button>
+							<button class="proid btn btn-default" ng-click="pc.bookmarkevent(result)" ng-disabled="result.bookmarked">{{result.bookmarked?'Bookmarked':'Bookmark'}}</button>
 							<p><i class="fa fa-question-circle-o" aria-hidden="true"></i> {{result.details||'-'}}</p>
 						</div>
 						<!-- <div class="item-footer">

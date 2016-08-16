@@ -29,7 +29,7 @@ class SearchController extends Controller
     	if($category==1){//people
           $userArray=[];
           $users=null;
-          if(strlen($query)==0){$users=Users::all();}
+          if(strlen($query)==0){$users=User::all();}
           else{$users=User::where('name','LIKE',"%$query%")->get();}
 
 
