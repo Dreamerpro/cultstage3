@@ -661,6 +661,27 @@ p.paragraph>.tab{
 .db{
 		visibility: hidden;
 }
+.home-col{
+	padding: 10px 0 20px;
+}
+.pop_job{
+  min-height: 110px;
+}
+.pop_job h4{
+	text-align: left;
+	line-height: 24px;
+}
+.pop_job_footer{
+	padding: 10px
+}
+.pop_job_icon{
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+}
+.pop_job_icon>img{
+	width: inherit;
+}
 @media  (max-width:964px){
 	.custom-vxs .list-group-item{
 		display: inline-block;

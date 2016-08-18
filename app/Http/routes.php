@@ -16,11 +16,11 @@
 Route::get('/iq', ['uses'=>'WelcomeCtrl@index']);
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+  Route::auth();
 	Route::post('/login','CultstageAuthController@login');
 	//Route::post('/register','Auth\AuthController@postRegister');
 	//Route::get('/logout','CultstageAuthController@logout');
-    //Route::get('/home', 'HomeController@index');
+    //Route::get('/home','HomeController@index');
 
     Route::get('/', function () {
     	return view('holder')->with('user',false);
