@@ -51,7 +51,7 @@
 	<script type="text/javascript" src="js/directive/directive.js"></script>
 	<script type="text/javascript" src="js/filters/filters.js"></script>
 	<script type="text/javascript" src="js/service/validator.js"></script>
-
+	<base href="/">
 </head>
 <body >
 	<sign-modal></sign-modal>
