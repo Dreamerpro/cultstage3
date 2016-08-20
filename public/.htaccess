@@ -3,14 +3,23 @@
         Options -MultiViews
     </IfModule>
 
-    RewriteEngine On
+    #RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Handle Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    ## Handle Front Controller...
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^ index.php [L]
+
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^(.+)$ - [S=1]
+
+    RewriteRule ^(.+)$ /index.html
+
 </IfModule>
