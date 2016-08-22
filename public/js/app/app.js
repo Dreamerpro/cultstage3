@@ -1,5 +1,5 @@
 angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize', 'ui.select','ngCookies','ui-notification'])
-.config(['$routeProvider','$locationProvider','$httpProvider', function($routeProvider,$locationProvider,$httpProvider) {
+.config(['$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
 	$tu="templates/";
 	$routeProvider
 	.when("/", { templateUrl:$tu+'home.html' })
@@ -55,7 +55,7 @@ angular.module('cultstage',['ngRoute','ngFileUpload','textAngular','ngSanitize',
 	})
 	;
 	$httpProvider.defaults.withCredentials = true;
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 }])
 .config(function(NotificationProvider) {
         NotificationProvider.setOptions({
